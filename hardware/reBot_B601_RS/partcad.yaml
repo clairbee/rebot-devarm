@@ -1,0 +1,638 @@
+# Bill of materials of the reBot Arm B601 RS (RobStride RS00/RS06 actuators).
+#
+# Same conventions as the DM variant - see ../reBot_B601_DM/partcad.yaml and
+# ../../PARTCAD.md. Every entry below is one line of the BOM tables in
+# ./README.md; quantities live in ./arm.assy, and the "(xN)" suffix in each
+# 'desc' preserves the readme quantity until the assembly is complete.
+
+desc: reBot Arm B601 RS - RobStride RS00/RS06 actuators
+url: https://github.com/clairbee/rebot-devarm/tree/main/hardware/reBot_B601_RS
+manufacturable: true
+
+parts:
+  ##############################################################################
+  # 3D printed parts
+  ##############################################################################
+  printed/base-plate:
+    type: step
+    path: 3D_Printed_Parts/1-BASE-PLATE.step
+    desc: Robotic arm base platform (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/base-link:
+    type: step
+    path: 3D_Printed_Parts/1-RSM1-STATOR-1.step
+    desc: Robotic arm base link (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/upper-arm-filler-l:
+    type: step
+    path: 3D_Printed_Parts/1-DOWN-DL.step
+    desc: Upper arm left filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/upper-arm-filler-r:
+    type: step
+    path: 3D_Printed_Parts/1-DOWN-DR.step
+    desc: Upper arm right filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/arm-filler-m:
+    type: step
+    path: 3D_Printed_Parts/1-SPACE-UP.step
+    desc: Upper and lower arm center filler (x2)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/arm-handle:
+    type: step
+    path: 3D_Printed_Parts/1-HANDLE.step
+    desc: Arm handle (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/arm-cover:
+    type: step
+    path: 3D_Printed_Parts/1-COVER.step
+    desc: Upper and lower arm cover (x2)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/lower-arm-filler-l:
+    type: step
+    path: 3D_Printed_Parts/1-UP-DL.step
+    desc: Lower arm left filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/lower-arm-filler-r:
+    type: step
+    path: 3D_Printed_Parts/1-UP-DR.step
+    desc: Lower arm right filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/gripper-limit:
+    type: step
+    path: 3D_Printed_Parts/1-STOPPER-1.step
+    desc: Gripper horizontal limit (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/rail-bracket:
+    type: step
+    path: 3D_Printed_Parts/1-RAIL-BASE-2.step
+    desc: Gripper slider support bracket (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/finger:
+    type: step
+    path: 3D_Printed_Parts/1-CLIP.step
+    desc: Gripper finger (x2) - print from the side of the gripper for strength
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 45
+
+  printed/motor1-harness-clip:
+    type: step
+    path: 3D_Printed_Parts/RS_Motor1_wiring_harness_clip.stp
+    desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  # Power supply enclosure
+  printed/psu-front-cover:
+    type: step
+    path: 3D_Printed_Parts/RS-power-Top Cover.stp
+    desc: Power supply front shell (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  printed/psu-rear-cover:
+    type: step
+    path: 3D_Printed_Parts/RS-power-Bottom Cover.stp
+    desc: Power supply rear shell (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  printed/psu-front-cover-slider:
+    type: step
+    path: 3D_Printed_Parts/RS-power-Top Cover-Sliding Cover.stp
+    desc: Power supply front shell sliding cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  ##############################################################################
+  # CNC machined metal parts
+  #
+  # Machining specification (README.md): key dimension tolerance +/-0.02 mm
+  # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit.
+  #
+  # TODO(partcad): 'manufacturing: {method: subtractive}' cannot be declared -
+  # see ../reBot_B601_DM/partcad.yaml and PARTCAD.md, "Blockers".
+  ##############################################################################
+  cnc/motor1-bearing-mount:
+    type: step
+    path: Metal_Parts/2-RSM1-ROTOR-1.step
+    # NOTE: README.md lists this same file twice, as "Motor 1 Bearing Mount"
+    # (x1) and as "Link1 Bottom Metal" (x3). One of the two rows is wrong.
+    desc: Motor 1 bearing mount (x1) - see note about the duplicated readme row
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link1-metal-l:
+    type: step
+    path: Metal_Parts/2-RSM-ROTOR-L.step
+    desc: Link 1 left metal (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link1-metal-r:
+    type: step
+    path: Metal_Parts/2-RSM-ROTOR-R.step
+    desc: Link 1 right metal (x4)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/joint-disc:
+    type: step
+    path: Metal_Parts/2-CD.step
+    desc: Joint metal disc (x3) - conceals the screws
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/rs06-front-extension:
+    type: step
+    path: Metal_Parts/2-RSM2-STATOR-1.step
+    desc: RS06 front extension (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/rs06-back-extension:
+    type: step
+    path: Metal_Parts/2-RSM2-STATOR-2.step
+    desc: RS06 back extension (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link2:
+    type: step
+    path: Metal_Parts/2-LINK-2_3.step
+    desc: Link 2 left and right metal (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/upper-limit-l:
+    type: step
+    path: Metal_Parts/2-Upper-Limit_L.stp
+    desc: Upper limit, left (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/upper-limit-r:
+    type: step
+    path: Metal_Parts/2-Upper-Limit_R.stp
+    desc: Upper limit, right (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-upper-link-l:
+    type: step
+    path: Metal_Parts/2-RSM3-ROTATOR-L.step
+    desc: Lower and upper link, left (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-upper-link-r:
+    type: step
+    path: Metal_Parts/2-RSM3-ROTATOR-R.step
+    desc: Lower and upper link, right (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link3-metal-l:
+    type: step
+    path: Metal_Parts/2-LINK-3_4-L.step
+    desc: Link 3 left metal (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link3-metal-r:
+    type: step
+    path: Metal_Parts/2-LINK-3_4-R.step
+    desc: Link 3 right metal (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link3-connector:
+    type: step
+    path: Metal_Parts/2-SPACE-UP-2.step
+    desc: Link 3 right and left link (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/motor-cable-clip:
+    type: step
+    path: Metal_Parts/1-O-CLIP.step
+    desc: Motor 4-7 cable fixing (x4) - can be printed in ABS with M2 nuts instead
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/motor-back-spacer:
+    type: step
+    path: Metal_Parts/2-Motor_Back_Spacer.step
+    desc: Motor 4 back cable spacer (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link4-5-l:
+    type: step
+    path: Metal_Parts/2-LINK-4_5-L.step
+    desc: Link 4-5 left (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link4-5-r:
+    type: step
+    path: Metal_Parts/2-LINK-4_5-R.step
+    desc: Link 4-5 right (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link5:
+    type: step
+    path: Metal_Parts/2-RSM5-STATOR.step
+    desc: Link 5 (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/wrist-connector-a:
+    type: step
+    path: Metal_Parts/2-RSM6-RORATOR-1.step
+    desc: Wrist connector A (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/wrist-connector-b:
+    type: step
+    path: Metal_Parts/2-RSM6-RORATOR-2.step
+    desc: Wrist connector B (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/gripper-connector-a:
+    type: step
+    path: Metal_Parts/2-M6-ROTOR.step
+    desc: Gripper connector A (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  # TODO(data): README.md lists "Gripper Connector B" as 2-M7-STATOR.step, which
+  # is not in the repository. 2-M7-ROTOR.step is, and is not listed. Confirm
+  # which file is the right one before declaring the part:
+  # cnc/gripper-connector-b:
+  #   type: step
+  #   path: Metal_Parts/2-M7-ROTOR.step
+  #   desc: Gripper connector B (x1)
+
+  cnc/slider-bracket:
+    type: step
+    path: Metal_Parts/2-RAIL-BASE-1.step
+    desc: Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/slider-extension:
+    type: step
+    path: Metal_Parts/2-SLIDER-FIX.step
+    desc: Slider to gripper extension (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/rack:
+    type: step
+    path: Metal_Parts/2-RACK-1M.step
+    desc: Rack (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  # Present in Metal_Parts/ but absent from the README.md BOM tables, so the
+  # quantity and the role are unknown:
+  #   1-RSM1-STATOR-1.step is declared above as printed/base-link
+  #   2-RSM1-STATOR-2.step
+  #   2-SPACE-M4-STATOR.step
+  # TODO(data): classify them and add them here.
+
+  ##############################################################################
+  # Purchased parts - fasteners
+  #
+  # See ../reBot_B601_DM/partcad.yaml for the naming shorthand (HM/KM/KA) and
+  # for the open question about the drive type of the KM* screws.
+  ##############################################################################
+  purchased/screw-hm3-6:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x6 hex socket head cap screw (x8+)
+    with:
+      size: M3-0.5
+      length: 6
+
+  purchased/screw-hm3-8:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x8 hex socket head cap screw (x60+)
+    with:
+      size: M3-0.5
+      length: 8
+
+  purchased/screw-hm3-26:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x26 hex socket head cap screw (x6+)
+    with:
+      size: M3-0.5
+      length: 26
+
+  purchased/screw-hm3-30:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x30 hex socket head cap screw (x16+)
+    with:
+      size: M3-0.5
+      length: 30
+
+  purchased/screw-hm4-8:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M4x8 hex socket head screw (x6+) - README.md calls it a set screw
+    with:
+      size: M4-0.7
+      length: 8
+
+  purchased/screw-hm4-16:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M4x16 hex socket head screw (x18+) - README.md calls it a set screw
+    with:
+      size: M4-0.7
+      length: 16
+
+  purchased/screw-hm4-70:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M4x70 hex socket head screw (x4+) - README.md calls it a set screw
+    with:
+      size: M4-0.7
+      length: 70
+
+  purchased/screw-km3-7:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x7 countersunk head screw (x80+)
+    with:
+      size: M3-0.5
+      length: 7
+
+  purchased/screw-km3-16:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x16 countersunk head screw (x8+)
+    with:
+      size: M3-0.5
+      length: 16
+
+  # Power supply enclosure fasteners (README.md, "Consumables BOM")
+  purchased/screw-m4x6-countersunk:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    desc: M4x6 304 stainless steel Phillips countersunk head screw (x10)
+    with:
+      size: M4-0.7
+      length: 6
+
+  purchased/screw-m3x8-countersunk:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    desc: M3x8 304 stainless steel Phillips countersunk head screw (x2)
+    with:
+      size: M3-0.5
+      length: 8
+
+  purchased/screw-m3x8-pan:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/raisedcheesehead-iso7045
+    desc: M3x8 304 stainless steel Phillips pan head screw (x2)
+    with:
+      size: M3-0.5
+      length: 8
+
+  ##############################################################################
+  # Purchased parts - catalog items without a CAD model
+  #
+  # Blocked the same way as in the DM variant. See PARTCAD.md, "Blockers".
+  #
+  #   Brushless motor          RobStride RS00                              x4
+  #   Brushless motor          RobStride RS06                              x3
+  #   CAN-USB driver board                                                 x1
+  #   XT30 2+2 power separation board                                      x1
+  #   Bearing                  6803ZZ                                      x3
+  #   Bearing                  AXK5578                                     x1
+  #   Linear rail              MGN9-170mm                                  x1
+  #   Slider block             MGN9                                        x2
+  #   Gear                     module 1, boss type, 16 teeth, 6 mm bore    x1
+  #   Silicone pad             30x9x2mm                                    x1
+  #   Screw                    KA3*12mm self-tapping                       x48+
+  #   Cable                    XT30 2+2 320mm, both ends angled            x1+
+  #   Cable                    XT30 2+2 200mm, both ends angled            x4+
+  #   Cable                    XT30 2+2 300mm, one angled end              x1+
+  #   Cable                    XT30 2+2, both ends straight                x1+
+  #   Power supply             MeanWell LRS-600-48 (48V 12.5A)             x1
+  #   Power cord               US standard AC cable                        x1
+  #   Output port              XT60E female + lug pigtail, 10cm            x1
+  #   Power AC wiring          1.5mm^2 red/blue/yellow, 10cm               x3
+  #   3-in-1 IEC inlet socket  quick-connect, red switch, dual nuts        x1
+  #   Adapter cable            XT30U female to XT60 male                   x1
+  #   Hex nut                  M3x2.5                                      x2
+  ##############################################################################
+
+  ##############################################################################
+  # Reference geometry
+  ##############################################################################
+  reference/arm-v1.0:
+    type: step
+    path: reBot_B601_RS_v1.0_20260625.step
+    desc: Full arm assembly as released (reference only)
+    cache: false
+
+assemblies:
+  power-supply:
+    type: assy
+    desc: Power supply enclosure, assembled per README.md "Power Supply Assembly"
+    manufacturing:
+      method: basic

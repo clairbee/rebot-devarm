@@ -1,0 +1,62 @@
+# PartCAD package for the reBot DevArm open hardware project.
+#
+# This file is the entry point of the digital thread for the robot: it declares
+# the packages that hold the bill of materials (BOM) of each arm variant and the
+# assemblies that carry the manufacturing/assembly instructions.
+#
+# See ./PARTCAD.md for the current status, the conventions used here and the
+# work that still has to be done.
+
+# NOTE: the package intentionally does not declare a 'name' yet. A declared name
+# has to resolve inside the loaded package tree, and '/pub/robotics/rebot' does
+# not exist in the public index - 'pc test', 'pc inspect' and 'pc render' abort
+# with "Package ... is not found" as long as it does not. Add
+#
+#   name: /pub/robotics/rebot/devarm
+#
+# once the path is registered in https://github.com/partcad/partcad-index.
+# Until then the package loads at '//' when it is the root, which is what the
+# commands below expect.
+desc: reBot DevArm - open source 7-DoF robotic arm for developers
+url: https://github.com/clairbee/rebot-devarm
+partcad: ">=0.7.158"
+
+# The parts declared here are meant to be manufactured or purchased, not just
+# viewed. This makes the package visible to 'pc supply quote' and friends.
+manufacturable: true
+
+docs:
+  intro: |
+    reBot DevArm is an open source robotic arm published under CERN-OHL-W-2.0
+    (hardware) and Apache-2.0 (software). Two variants are maintained:
+
+      * B601 DM - Damiao DM43xx actuators
+      * B601 RS - RobStride RS00/RS06 actuators
+
+    Each variant is a separate PartCAD package holding its own BOM (parts) and
+    its own assembly instructions (assemblies).
+  usage: |
+    ```shell
+    pc --no-ansi list packages          # the variants
+    pc --no-ansi list parts -r          # the BOM entries of every variant
+    pc --no-ansi list assemblies -r
+    pc --no-ansi inspect //pub/robotics/rebot/devarm/b601-dm:power-supply
+    ```
+
+dependencies:
+  # The public PartCAD index. It provides '/pub/std/metric/cqwarehouse', which
+  # is where the standard fasteners of the BOM come from.
+  pub:
+    onlyInRoot: true
+    type: git
+    url: https://github.com/partcad/partcad-index.git
+
+  b601-dm:
+    desc: reBot Arm B601 DM (Damiao actuators)
+    type: local
+    path: ./hardware/reBot_B601_DM
+
+  b601-rs:
+    desc: reBot Arm B601 RS (RobStride actuators)
+    type: local
+    path: ./hardware/reBot_B601_RS

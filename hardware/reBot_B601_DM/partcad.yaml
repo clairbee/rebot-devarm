@@ -1,0 +1,792 @@
+# Bill of materials of the reBot Arm B601 DM (Damiao DM43xx actuators).
+#
+# Every entry below is one line of the BOM tables in ./readme.md. The readme
+# stays the human-facing document; this file is the machine-readable source of
+# truth that 'pc' reads to list, render, quote and (eventually) order the parts.
+#
+# Naming convention:
+#   printed/*    - parts the user 3D prints  (readme: "3D Printed Parts")
+#   cnc/*        - parts the user has machined (readme: "CNC Machined Metal Parts")
+#   purchased/*  - catalog parts the user buys (readme: "Purchased Parts")
+#   accessory/*  - optional add-ons that are not part of the base arm
+#
+# Quantities are NOT stored here: in PartCAD a part is declared once and the
+# quantity comes from how many times an assembly places it. See ./arm.assy and
+# ./power-supply.assy. Until those assemblies are complete, the per-part 'desc'
+# carries the readme quantity in the "(xN)" suffix so that no data is lost.
+
+desc: reBot Arm B601 DM - Damiao DM43xx actuators
+url: https://github.com/clairbee/rebot-devarm/tree/main/hardware/reBot_B601_DM
+manufacturable: true
+
+docs:
+  intro: |
+    Open source v1.1 of the B601 DM arm. The published BOM is the
+    minimal-cost reproduction of the design, not the Seeed shipping
+    configuration (see the declaration in readme.md).
+  usage: |
+    ```shell
+    pc --no-ansi list parts
+    pc --no-ansi inspect power-supply
+    ```
+
+parts:
+  ##############################################################################
+  # 3D printed parts
+  #
+  # Printing recommendations (readme.md): 0.2 mm layer height, 0.4 mm nozzle,
+  # supports as needed. Load-bearing parts in ABS at 30-80% infill (nylon or
+  # carbon-fiber reinforced also work), cosmetic parts in PLA at 15%.
+  ##############################################################################
+  printed/base-plate:
+    type: step
+    path: 3D_Printed_Parts/01_BASE_Plate.step
+    desc: Robotic arm base platform (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/base-link:
+    type: step
+    path: 3D_Printed_Parts/01_BASE_Link.step
+    desc: Robotic arm base link (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/upper-arm-filler-l:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Fuller_L.step
+    desc: Upper arm left filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/upper-arm-filler-r:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Fuller_R.step
+    desc: Upper arm right filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/upper-arm-filler-m:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Fuller_M.step
+    desc: Upper arm center filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/upper-arm-limit:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Limit.step
+    desc: Upper arm horizontal limit block (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/arm-handle:
+    type: step
+    path: 3D_Printed_Parts/01_Arm_Handle.step
+    desc: Arm handle (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/lower-arm-filler-l:
+    type: step
+    path: 3D_Printed_Parts/01_Lower_Arm_Filler_L.step
+    desc: Lower arm left filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/lower-arm-filler-r:
+    type: step
+    path: 3D_Printed_Parts/01_Lower_Arm_Filler_R.step
+    desc: Lower arm right filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Black & Green
+      infill:
+        type: int
+        default: 15
+
+  printed/lower-arm-filler-m:
+    type: step
+    path: 3D_Printed_Parts/01_Lower_Arm_Filler_M.step
+    desc: Lower arm center filler (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/upper-arm-cover:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Cover.step
+    desc: Upper arm cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/lower-arm-cover:
+    type: step
+    path: 3D_Printed_Parts/01_Lower_Arm_Cover.step
+    desc: Lower arm cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/motor-cover:
+    type: step
+    path: 3D_Printed_Parts/01_Motor_Cover.step
+    desc: Motor 5 protection cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/gripper-limit:
+    type: step
+    path: 3D_Printed_Parts/01_Lower_Arm_Limit.step
+    desc: Gripper horizontal limit (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/rail-bracket:
+    type: step
+    # NOTE: readme.md calls this file "01-Rail-Bracket.step"; the file in the
+    # repository is "01_Rail_Bracket.step".
+    path: 3D_Printed_Parts/01_Rail_Bracket.step
+    desc: Gripper slider support bracket (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/finger:
+    type: step
+    path: 3D_Printed_Parts/01_Finger.step
+    desc: Gripper finger (x2)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 45
+
+  printed/joint5-cable-restraint-a:
+    type: step
+    path: 3D_Printed_Parts/01_Joint5_Cable Restraint_A.step
+    desc: Motor 5 cable restraint (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu PLA Green
+      infill:
+        type: int
+        default: 15
+
+  printed/joint6-7-cable-restraint-a:
+    type: step
+    path: 3D_Printed_Parts/01_Joint6_7_Cable Restraint_A.step
+    desc: Motor 6 & 7 cable restraint A (x2)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/joint6-7-cable-restraint-b:
+    type: step
+    path: 3D_Printed_Parts/01_Joint6_7_Cable Restraint_B.step
+    desc: Motor 6 & 7 cable restraint B (x2)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  printed/motor1-harness-clip:
+    type: step
+    path: 3D_Printed_Parts/DM_Motor1_wiring_harness_clip.stp
+    desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: Bambu ABS Black
+      infill:
+        type: int
+        default: 30
+
+  # Power supply enclosure
+  printed/psu-front-cover:
+    type: step
+    path: 3D_Printed_Parts/DM-power-Top Cover.stp
+    desc: Power supply front cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  printed/psu-rear-cover:
+    type: step
+    path: 3D_Printed_Parts/DM-power-Bottom Cover.stp
+    desc: Power supply rear cover (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  printed/psu-front-cover-slider:
+    type: step
+    path: 3D_Printed_Parts/DM-power-Top Cover-Sliding Cover.stp
+    desc: Power supply front cover slider (x1)
+    manufacturing:
+      method: additive
+    parameters:
+      material:
+        type: string
+        default: PLA
+      infill:
+        type: int
+        default: 30
+
+  ##############################################################################
+  # CNC machined metal parts
+  #
+  # Machining specification (readme.md): key dimension tolerance +/-0.02 mm
+  # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit on
+  # mating features.
+  #
+  # TODO(partcad): these should declare 'manufacturing: {method: subtractive}'.
+  # The schema only accepts basic|additive|pcbBasic while the loader only
+  # accepts additive|subtractive|forming, so no value is valid in both. See
+  # PARTCAD.md, "Blockers".
+  ##############################################################################
+  cnc/base-reinforcement:
+    type: step
+    path: Metal_Parts/02_Base_Reinforcement_Part.step
+    desc: Motor 1 bearing mount (x1) - can be printed in ABS at high infill to save cost
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/arm-yaw-limit:
+    type: step
+    path: Metal_Parts/02_Arm_Yaw_Limit.step
+    desc: Motor 1 rotation axis, yaw angle motion limit (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/motor-front-spacer:
+    type: step
+    path: Metal_Parts/02_Motor_Front_Spacer.step
+    desc: Motor 2-5 front spacer (x4) - can be printed in ABS at 30% infill
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/motor-back-spacer:
+    type: step
+    path: Metal_Parts/02_Motor_Back_Spacer.step
+    desc: Motor 2-4 rear spacer (x3)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/flange:
+    type: step
+    path: Metal_Parts/02_FLANGE.step
+    desc: Motor 2-4 rear flange (x3)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/wrist-bracket:
+    type: step
+    path: Metal_Parts/02_Wrist_Bracket.step
+    desc: Wrist motor 5 bracket (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/gripper-connector-a:
+    type: step
+    path: Metal_Parts/02_Gripper_Connector_A.step
+    desc: Gripper connector A (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/gripper-connector-b:
+    type: step
+    path: Metal_Parts/02_Gripper_Connector_B.step
+    desc: Gripper connector B (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/slider-bracket:
+    type: step
+    path: Metal_Parts/02_Slider_Bracket.step
+    desc: Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/slider-extension:
+    type: step
+    path: Metal_Parts/02_Slider_Extension.step
+    desc: Slider to gripper extension (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-upper-link-l:
+    type: step
+    path: Metal_Parts/02_Lower_Upper_Link_L.step
+    desc: Upper-lower arm link, left (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-upper-link-r:
+    type: step
+    path: Metal_Parts/02_Lower_Upper_Link_R.step
+    desc: Upper-lower arm link, right (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-wrist-link-l:
+    type: step
+    path: Metal_Parts/02_Lower_Wrist_Link_L.step
+    desc: Lower arm-wrist link, left (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/lower-wrist-link-r:
+    type: step
+    path: Metal_Parts/02_Lower_Wrist_Link_R.step
+    desc: Lower arm-wrist link, right (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/gear-connector:
+    type: step
+    path: Metal_Parts/02_Gear_Connector.step
+    desc: Gear connector (x1)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/rack:
+    type: step
+    # NOTE: "02-RACK.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/02_Rack.step
+    desc: Rack (x2)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/base-motor-shim:
+    type: step
+    path: Metal_Parts/02_Base_Motor_Shim.step
+    desc: Base motor shim (quantity unknown - present in the repository and in the
+      images folder, but missing from the readme.md BOM table)
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link1:
+    type: step
+    # NOTE: "03-Link1.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/03_Link1.step
+    desc: Link 1 (x1) - CNC + sheet metal
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link2:
+    type: step
+    # NOTE: "03-Link2.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/03_Link2.step
+    desc: Link 2 (x2) - CNC + sheet metal
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link3-l:
+    type: step
+    # NOTE: "03-Link3_L.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/03_Link3_L.step
+    desc: Link 3 left (x1) - CNC + sheet metal
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link3-r:
+    type: step
+    # NOTE: "03-Link3_R.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/03_Link3_R.step
+    desc: Link 3 right (x1) - CNC + sheet metal
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  cnc/link5:
+    type: step
+    # NOTE: "03-Link5.step" in the same folder is a duplicate of this file.
+    path: Metal_Parts/03_Link5.step
+    desc: Link 5 (x1) - CNC + sheet metal
+    parameters:
+      material:
+        type: string
+        default: Aluminum Alloy 5052
+
+  ##############################################################################
+  # Purchased parts - fasteners
+  #
+  # Modelled by enriching the parametric cq-warehouse parts from the public
+  # PartCAD index, so that they carry real geometry and can be mated later.
+  #
+  # readme.md names them in the vendor's shorthand:
+  #   HM<d>-<l>  hex socket head cap screw  -> ISO 4762
+  #   KM<d>*<l>  countersunk head screw     -> ISO 10642 (hex socket)
+  #   KA<d>*<l>  self-tapping screw         -> no standard part available yet
+  #
+  # TODO(data): confirm the drive type of the KM* screws. readme.md says "standard
+  # hex socket screws have been selected" but links a Phillips countersunk product;
+  # ISO 10642 (hex socket) is assumed here, ISO 7046 would be the Phillips one.
+  ##############################################################################
+  purchased/screw-hm3-6:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x6 hex socket head cap screw (x16+)
+    with:
+      size: M3-0.5
+      length: 6
+
+  purchased/screw-hm3-12:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x12 hex socket head cap screw (x14+)
+    with:
+      size: M3-0.5
+      length: 12
+
+  purchased/screw-hm3-25:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M3x25 hex socket head cap screw (x14+)
+    with:
+      size: M3-0.5
+      length: 25
+
+  purchased/screw-hm4-75:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    desc: M4x75 hex socket head screw (x4+) - readme.md calls it a set screw
+    with:
+      size: M4-0.7
+      length: 75
+
+  purchased/screw-km3-7:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x7 countersunk head screw (x76+)
+    with:
+      size: M3-0.5
+      length: 7
+
+  purchased/screw-km3-8:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x8 socket micro profile head screw (x31+)
+    with:
+      size: M3-0.5
+      length: 8
+
+  purchased/screw-km3-9:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x9 countersunk head screw (x31+)
+    with:
+      size: M3-0.5
+      length: 9
+
+  purchased/screw-km3-12:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x12 countersunk head screw (x30+)
+    with:
+      size: M3-0.5
+      length: 12
+
+  purchased/screw-km3-16:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    desc: M3x16 countersunk head screw (x34+)
+    with:
+      size: M3-0.5
+      length: 16
+
+  # Power supply enclosure fasteners (readme.md, "Consumables BOM")
+  purchased/screw-m4x6-countersunk:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    desc: M4x6 304 stainless steel Phillips countersunk head screw (x6)
+    with:
+      size: M4-0.7
+      length: 6
+
+  purchased/screw-m3x8-countersunk:
+    type: enrich
+    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    desc: M3x8 304 stainless steel Phillips countersunk head screw (x2)
+    with:
+      size: M3-0.5
+      length: 8
+
+  purchased/screw-m3x8-pan:
+    type: enrich
+    # ISO 7045 is the Phillips pan head standard; cq-warehouse names it
+    # "raised cheese head".
+    source: /pub/std/metric/cqwarehouse:fastener/raisedcheesehead-iso7045
+    desc: M3x8 304 stainless steel Phillips pan head screw (x2)
+    with:
+      size: M3-0.5
+      length: 8
+
+  ##############################################################################
+  # Purchased parts - catalog items without a CAD model
+  #
+  # These cannot be declared yet: PartCAD requires every part to resolve to
+  # geometry ('type' is mandatory and every type builds a shape), and there is no
+  # public package that provides these. See PARTCAD.md, "Blockers", item 1.
+  #
+  #   Brushless motor          DM4310(V4)                                  x4
+  #   Brushless motor          DM4340P(V4)                                 x3
+  #   CAN-USB driver board                                                 x1
+  #   Bearing                  6707ZZ                                      x1
+  #   Bearing                  6803ZZ                                      x3
+  #   Bearing                  AXK5578                                     x1
+  #   Linear rail              MGN9-170mm                                  x1
+  #   Slider block             MGN9                                        x2
+  #   Gear                     module 1, boss type, 16 teeth, 6 mm bore    x1
+  #   Silicone pad             30x9x2mm                                    x1
+  #   Screw                    KA3*12mm self-tapping                       x72+
+  #   Dowel pin                M4*8mm                                      several
+  #   Dowel pin                M4*12mm                                     several
+  #   Cable                    XT30 2+2 350mm, both ends angled            x2
+  #   Cable                    XT30 2+2 350mm, one angled + one straight   x1
+  #   Cable                    XT30 2+2 200mm, both ends angled            x3
+  #   Cable                    XT30 2+2 200mm, both ends straight          x1
+  #   Power supply             MeanWell LRS-350-24 (24V 14.6A)             x1
+  #   Power cord               US standard AC cable                        x1
+  #   Output port              XT60E female + lug pigtail, 10cm            x1
+  #   Power AC wiring          1.5mm^2 red/blue/yellow, 10cm               x3
+  #   3-in-1 IEC inlet socket  quick-connect, red switch, dual nuts        x1
+  #   Adapter cable            XT30U female to XT60 male                   x1
+  #   Hex nut                  M3x2.5                                      x2
+  ##############################################################################
+
+  ##############################################################################
+  # Optional accessories
+  #
+  # Present in the repository, not part of the base arm BOM in readme.md.
+  ##############################################################################
+  accessory/d405-mount:
+    type: step
+    path: 3D_Printed_Parts/D405_305_Mount.step
+    desc: Intel RealSense D405/D305 camera mount
+    manufacturing:
+      method: additive
+
+  accessory/d435-gemini2-mount:
+    type: step
+    path: 3D_Printed_Parts/D435_Gemini2_Mount.step
+    desc: Intel RealSense D435i / Orbbec Gemini 2 camera mount
+    manufacturing:
+      method: additive
+
+  accessory/uvc32-mount:
+    type: step
+    path: 3D_Printed_Parts/UVC32_mount.step
+    desc: UVC32 camera mount
+    manufacturing:
+      method: additive
+
+  accessory/soft-gripper-finger:
+    type: step
+    path: 3D_Printed_Parts/Soft_Gripper_Finger.step
+    desc: Soft gripper finger
+    manufacturing:
+      method: additive
+
+  accessory/soft-gripper-mount:
+    type: step
+    path: 3D_Printed_Parts/Soft_Gripper_Mount.step
+    desc: Soft gripper mount
+    manufacturing:
+      method: additive
+
+  ##############################################################################
+  # Reference geometry
+  ##############################################################################
+  reference/arm-v1.1:
+    type: step
+    path: reBot_B601_DM_v1.1_20260425.step
+    desc: Full arm assembly as released (reference only - a single solid, not a
+      structured assembly; ./arm.assy is the structured version being built)
+    # This one is large and is only used as a visual reference.
+    cache: false
+
+assemblies:
+  power-supply:
+    type: assy
+    desc: Power supply enclosure, assembled per readme.md "Power Supply Assembly"
+    manufacturing:
+      method: basic
+
+  arm:
+    type: assy
+    desc: reBot Arm B601 DM (structure only so far - see PARTCAD.md)
+    manufacturing:
+      method: basic

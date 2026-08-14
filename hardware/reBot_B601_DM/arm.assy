@@ -1,0 +1,201 @@
+# reBot Arm B601 DM.
+#
+# The purpose of this file today is the bill of materials: every manufactured
+# part of ./readme.md is placed here as many times as the readme says it is
+# used, so that 'pc' can aggregate the BOM ('Assembly.get_bom()', used by
+# 'pc supply quote' and 'pc test') instead of the numbers living only in a
+# markdown table.
+#
+# STATUS
+#   * All 3D printed and CNC machined parts are placed with the quantities of
+#     the readme.
+#   * Purchased parts are NOT placed. The actuators, bearings, rails, gear,
+#     cables and the self-tapping screws have no CAD model available, and the
+#     per-joint quantity of each fastener is not documented anywhere - the
+#     readme only gives arm-wide minimums ("14+"). See PARTCAD.md.
+#   * Every 'location' is the identity location, so this assembly is NOT
+#     geometrically correct yet. The placements have to be recovered from
+#     reBot_B601_DM_v1.1_20260425.step and then, ideally, replaced by
+#     interface/port matings ('connect:') so that the joints are described
+#     rather than baked into coordinates. See PARTCAD.md, "Next steps".
+#   * The grouping into base/upper arm/lower arm/wrist/gripper below is inferred
+#     from part names and has to be confirmed against the CAD model.
+
+links:
+  # ---------------------------------------------------------------------------
+  # Base
+  # ---------------------------------------------------------------------------
+  - name: base
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      - part: printed/base-plate
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/base-link
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/base-reinforcement
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/arm-yaw-limit
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/link1
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      # TODO(blocked): motor 1 is a DM4340P(V4) actuator - no CAD model.
+      # TODO(blocked): the 6707ZZ bearing and the AXK5578 thrust bearing that
+      # sit in this joint have no CAD model.
+      # TODO(data): 02_Base_Motor_Shim.step exists in Metal_Parts/ but is absent
+      # from the readme BOM, so its quantity is unknown and it is not placed.
+
+  # ---------------------------------------------------------------------------
+  # Motor mounting hardware, joints 2..5
+  # ---------------------------------------------------------------------------
+  - name: joint-hardware
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      {% for i in range(4) %}
+      - part: cnc/motor-front-spacer
+        name: motor-front-spacer-{{ i + 2 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      {% for i in range(3) %}
+      - part: cnc/motor-back-spacer
+        name: motor-back-spacer-{{ i + 2 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      {% for i in range(3) %}
+      - part: cnc/flange
+        name: flange-{{ i + 2 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      # TODO(blocked): actuators DM4310(V4) x4 and DM4340P(V4) x3 - no CAD model.
+
+  # ---------------------------------------------------------------------------
+  # Upper arm
+  # ---------------------------------------------------------------------------
+  - name: upper-arm
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      - part: printed/upper-arm-filler-l
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/upper-arm-filler-r
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/upper-arm-filler-m
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/upper-arm-cover
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/upper-arm-limit
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/arm-handle
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% for i in range(2) %}
+      - part: cnc/link2
+        name: link2-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      - part: cnc/lower-upper-link-l
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/lower-upper-link-r
+        location: [[0, 0, 0], [0, 0, 1], 0]
+
+  # ---------------------------------------------------------------------------
+  # Lower arm
+  # ---------------------------------------------------------------------------
+  - name: lower-arm
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      - part: printed/lower-arm-filler-l
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/lower-arm-filler-r
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/lower-arm-filler-m
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/lower-arm-cover
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/link3-l
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/link3-r
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/lower-wrist-link-l
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/lower-wrist-link-r
+        location: [[0, 0, 0], [0, 0, 1], 0]
+
+  # ---------------------------------------------------------------------------
+  # Wrist
+  # ---------------------------------------------------------------------------
+  - name: wrist
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      - part: cnc/wrist-bracket
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/link5
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/motor-cover
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/joint5-cable-restraint-a
+        location: [[0, 0, 0], [0, 0, 1], 0]
+
+  # ---------------------------------------------------------------------------
+  # Gripper
+  # ---------------------------------------------------------------------------
+  - name: gripper
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      - part: cnc/gripper-connector-a
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/gripper-connector-b
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: cnc/slider-bracket
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% for i in range(2) %}
+      - part: cnc/slider-extension
+        name: slider-extension-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      - part: cnc/gear-connector
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% for i in range(2) %}
+      - part: cnc/rack
+        name: rack-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      - part: printed/rail-bracket
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: printed/gripper-limit
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% for i in range(2) %}
+      - part: printed/finger
+        name: finger-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      {% for i in range(2) %}
+      - part: printed/joint6-7-cable-restraint-a
+        name: joint6-7-cable-restraint-a-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      {% for i in range(2) %}
+      - part: printed/joint6-7-cable-restraint-b
+        name: joint6-7-cable-restraint-b-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      # TODO(blocked): MGN9-170mm linear rail x1, MGN9 slider blocks x2,
+      # module 1 / 16 teeth / 6 mm bore gear x1, 6803ZZ bearings x3 and the
+      # 30x9x2mm silicone pad have no CAD model.
+
+  # ---------------------------------------------------------------------------
+  # Cable management (optional, recommended by readme.md)
+  # ---------------------------------------------------------------------------
+  - name: harness
+    location: [[0, 0, 0], [0, 0, 1], 0]
+    links:
+      {% for i in range(2) %}
+      - part: printed/motor1-harness-clip
+        name: motor1-harness-clip-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      # TODO(blocked): the XT30 2+2 cables (350mm x3, 200mm x4) have no CAD
+      # model.
+
+  # TODO(data): fasteners are not placed. readme.md only gives arm-wide
+  # minimums (HM3-6 x16+, HM3-12 x14+, HM3-25 x14+, HM4-75 x4+, KM3-7 x76+,
+  # KM3-8 x31+, KM3-9 x31+, KM3-12 x30+, KM3-16 x34+, KA3-12 x72+), not which
+  # joint each screw belongs to. They are declared as parts in partcad.yaml and
+  # have to be placed here joint by joint.
