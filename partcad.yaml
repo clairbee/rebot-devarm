@@ -7,19 +7,15 @@
 # See ./PARTCAD.md for the current status, the conventions used here and the
 # work that still has to be done.
 
-# NOTE: the package intentionally does not declare a 'name' yet. A declared name
-# has to resolve inside the loaded package tree, and '/pub/robotics/rebot' does
-# not exist in the public index - 'pc test', 'pc inspect' and 'pc render' abort
-# with "Package ... is not found" as long as it does not. Add
-#
-#   name: /pub/robotics/rebot/devarm
-#
-# once the path is registered in https://github.com/partcad/partcad-index.
-# Until then the package loads at '//' when it is the root, which is what the
-# commands below expect.
+# The package path this package expects to be published at. It is not in the
+# public index yet, which no longer stops the commands from working: a declared
+# name that the index does not know is honoured as of PartCAD 0.8.x. Registering
+# it in https://github.com/partcad/partcad-index is what makes the arm findable
+# by that path for everybody else.
+name: //pub/robotics/rebot/devarm
 desc: reBot DevArm - open source 7-DoF robotic arm for developers
 url: https://github.com/clairbee/rebot-devarm
-partcad: ">=0.7.158"
+partcad: ">=0.8.33"
 
 # The parts declared here are meant to be manufactured or purchased, not just
 # viewed. This makes the package visible to 'pc supply quote' and friends.
@@ -37,14 +33,16 @@ docs:
     its own assembly instructions (assemblies).
   usage: |
     ```shell
+    pc --no-ansi install                # fetch what the packages depend on
     pc --no-ansi list packages          # the variants
-    pc --no-ansi list parts -r          # the BOM entries of every variant
-    pc --no-ansi list assemblies -r
-    pc --no-ansi inspect //pub/robotics/rebot/devarm/b601-dm:power-supply
+    pc --no-ansi list parts -r          # every part of every variant
+    pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
+    pc --no-ansi render -t pdf -a power-supply -P //pub/robotics/rebot/devarm/b601-dm
+    pc --no-ansi inspect -a //pub/robotics/rebot/devarm/b601-dm:reference/arm-v1.1
     ```
 
 dependencies:
-  # The public PartCAD index. It provides '/pub/std/metric/cqwarehouse', which
+  # The public PartCAD index. It provides '//pub/std/metric/cqwarehouse', which
   # is where the standard fasteners of the BOM come from.
   pub:
     onlyInRoot: true

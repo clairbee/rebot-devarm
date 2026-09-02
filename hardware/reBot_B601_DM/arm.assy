@@ -6,6 +6,10 @@
 # 'pc supply quote' and 'pc test') instead of the numbers living only in a
 # markdown table.
 #
+# Check it with:
+#
+#   pc bom -P //b601-dm arm       # the bill of materials this file produces
+#
 # STATUS
 #   * All 3D printed and CNC machined parts are placed with the quantities of
 #     the readme.
@@ -14,10 +18,13 @@
 #     per-joint quantity of each fastener is not documented anywhere - the
 #     readme only gives arm-wide minimums ("14+"). See PARTCAD.md.
 #   * Every 'location' is the identity location, so this assembly is NOT
-#     geometrically correct yet. The placements have to be recovered from
-#     reBot_B601_DM_v1.1_20260425.step and then, ideally, replaced by
-#     interface/port matings ('connect:') so that the joints are described
-#     rather than baked into coordinates. See PARTCAD.md, "Next steps".
+#     geometrically correct yet. The placements are to be recovered from the
+#     released STEP file, which this package now reads as an assembly of its own
+#     ('reference/arm-v1.1'), and then replaced by interface/port matings
+#     ('connect:') so that the joints are described rather than baked into
+#     coordinates. Nothing here can carry a 'how' section - the stage, the
+#     torque, what to hold each part by - until that happens: ASSY accepts one
+#     only inside 'connect'/'connectPorts'. See PARTCAD.md, "Next steps".
 #   * The grouping into base/upper arm/lower arm/wrist/gripper below is inferred
 #     from part names and has to be confirmed against the CAD model.
 
@@ -26,6 +33,8 @@ links:
   # Base
   # ---------------------------------------------------------------------------
   - name: base
+    description: >-
+      The base - the plate the arm stands on, the base link, the motor 1 bearing mount and its yaw limit, and link 1.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       - part: printed/base-plate
@@ -48,6 +57,8 @@ links:
   # Motor mounting hardware, joints 2..5
   # ---------------------------------------------------------------------------
   - name: joint-hardware
+    description: >-
+      The spacers and flanges that mount actuators 2 to 5, fitted to each motor before the links go on.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       {% for i in range(4) %}
@@ -71,6 +82,8 @@ links:
   # Upper arm
   # ---------------------------------------------------------------------------
   - name: upper-arm
+    description: >-
+      The upper arm - link 2 with its fillers, cover, limit block and handle, and the links to the lower arm.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       - part: printed/upper-arm-filler-l
@@ -99,6 +112,8 @@ links:
   # Lower arm
   # ---------------------------------------------------------------------------
   - name: lower-arm
+    description: >-
+      The lower arm - link 3 with its fillers and cover, and the links to the wrist.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       - part: printed/lower-arm-filler-l
@@ -122,6 +137,8 @@ links:
   # Wrist
   # ---------------------------------------------------------------------------
   - name: wrist
+    description: >-
+      The wrist - the motor 5 bracket, link 5, the motor cover and the joint 5 cable restraint.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       - part: cnc/wrist-bracket
@@ -137,6 +154,8 @@ links:
   # Gripper
   # ---------------------------------------------------------------------------
   - name: gripper
+    description: >-
+      The gripper - the rack-and-pinion drive, the slider and its bracket, the two fingers and the cable restraints.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       - part: cnc/gripper-connector-a
@@ -184,6 +203,8 @@ links:
   # Cable management (optional, recommended by readme.md)
   # ---------------------------------------------------------------------------
   - name: harness
+    description: >-
+      Cable management - the clips that keep harness 1 off the motor 1 connector.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
       {% for i in range(2) %}

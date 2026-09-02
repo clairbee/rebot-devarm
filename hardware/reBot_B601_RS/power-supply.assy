@@ -1,12 +1,16 @@
 # Power supply enclosure of the reBot Arm B601 RS.
 #
-# Follows the "Power Supply Assembly" section of ./README.md. The RS enclosure
-# is assembled exactly like the DM one, around the 48V LRS-600-48 supply instead
-# of the 24V LRS-350-24.
+# Follows the "Power Supply Assembly" section of ./README.md, one node per step,
+# carrying the README's own wording in 'description'. The RS enclosure is
+# assembled exactly like the DM one, around the 48V LRS-600-48 supply instead of
+# the 24V LRS-350-24.
+#
+#   pc render -t pdf -a power-supply     # the instruction book
 #
 # STATUS: printed shells and their fasteners are placed; the purchased contents
 # (LRS-600-48, XT60E connector, 3-in-1 IEC socket, AC wiring, M3 hex nuts) have
-# no CAD model and are not placed. Locations are identity locations.
+# no CAD model and are not placed. Locations are identity locations, and nothing
+# here can carry a 'how' section until the parts declare interfaces.
 # See ../../PARTCAD.md.
 
 links:
@@ -14,52 +18,65 @@ links:
   # 1. Front shell assembly
   # ---------------------------------------------------------------------------
   - name: front-cover
-    # 1-1  Prepare the parts and printed components; check that all are present.
+    description: >-
+      Step 1-1. Prepare the parts and printed components required for front
+      shell assembly. Check that all parts are present.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
-      # 1-2  Assemble according to the wiring sequence diagram.
       - part: printed/psu-front-cover
         name: front-cover-shell
+        description: >-
+          Step 1-2. Wiring sequence instructions for each part; assemble
+          according to the wiring sequence diagram
+          (Assembly_Steps/powerstep_images/1-2(1..3).png).
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 1-3  Install the XT60 connector.
-      #      M3x8 304 countersunk cross-head screws + M3x2.5 hex nuts.
       # TODO(blocked): XT60E female + lug pigtail, M3x2.5 hex nuts - no CAD model.
       {% for i in range(2) %}
       - part: purchased/screw-m3x8-countersunk
         name: xt60-screw-{{ i + 1 }}
+        description: >-
+          Step 1-3. Install the XT60 connector, secured with M3x8 304
+          countersunk cross-head screws and M3x2.5 hex nuts.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-4  Install the 3-in-1 IEC socket with M3x8 304 pan head screws.
       # TODO(blocked): 3-in-1 IEC inlet socket - no CAD model.
       {% for i in range(2) %}
       - part: purchased/screw-m3x8-pan
         name: iec-socket-screw-{{ i + 1 }}
+        description: >-
+          Step 1-4. Install the 3-in-1 IEC socket, secured with M3x8 304 pan
+          head cross-head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-5  Internal wiring of the front shell; check against the diagram.
+      # Step 1-5. Internal wiring of the front shell; check against the diagram.
       # TODO(blocked): 1.5mm^2 AC wiring (x3) - no CAD model.
 
-      # 1-6  Secure the front shell to both sides of the power supply:
-      #      4x M4x6 304 countersunk cross-head screws.
       # TODO(blocked): MeanWell LRS-600-48 power supply - no CAD model.
       {% for i in range(4) %}
       - part: purchased/screw-m4x6-countersunk
         name: front-cover-screw-{{ i + 1 }}
+        description: >-
+          Step 1-6. Secure the front shell to both sides of the power supply
+          with 4x M4x6 304 countersunk cross-head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-7  Install the sliding cover, pushing it in from the bottom.
       - part: printed/psu-front-cover-slider
         name: front-cover-slider
+        description: >-
+          Step 1-7. Install the sliding cover, pushing it in from the bottom of
+          the power supply.
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 1-8  Secure the sliding cover: 2x M4x6 304 countersunk cross-head screws.
       {% for i in range(2) %}
       - part: purchased/screw-m4x6-countersunk
         name: slider-screw-{{ i + 1 }}
+        description: >-
+          Step 1-8. Secure the sliding cover with 2x M4x6 304 countersunk
+          cross-head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
@@ -67,21 +84,26 @@ links:
   # 2. Rear shell assembly
   # ---------------------------------------------------------------------------
   - name: rear-cover
-    # 2-1  Prepare the parts; check that all accessories are complete.
+    description: >-
+      Step 2-1. Prepare the parts and printed components required for rear shell
+      assembly. Check that all accessories are complete.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
-      # 2-2  Assemble the rear shell with the power supply; align the position.
       - part: printed/psu-rear-cover
         name: rear-cover-shell
+        description: >-
+          Step 2-2. Assemble the rear shell with the power supply, aligning the
+          position.
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 2-3  Secure both sides of the rear shell and the power supply:
-      #      M4x6 304 countersunk cross-head screws (x2).
-      # NOTE: README.md's consumables BOM lists 10 M4x6 screws in total, which
-      # matches 4 (step 1-6) + 2 (step 1-8) + 2 (step 2-3) = 8 only if two are
-      # spares. TODO(data): confirm the count with the vendor.
+      # NOTE: README.md's consumables BOM lists 10 M4x6 screws in total, while
+      # the steps use 4 (1-6) + 2 (1-8) + 2 (2-3) = 8.
+      # TODO(data): confirm the count with the vendor.
       {% for i in range(2) %}
       - part: purchased/screw-m4x6-countersunk
         name: rear-cover-screw-{{ i + 1 }}
+        description: >-
+          Step 2-3. Secure both sides of the rear shell and the power supply
+          with M4x6 304 countersunk cross-head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}

@@ -1,86 +1,101 @@
 # Power supply enclosure of the reBot Arm B601 DM.
 #
 # This file follows the "Power Supply Assembly" section of ./readme.md step by
-# step. Each step of the readme is one container node below, named after the
-# step number used there, so that the readme and the model stay comparable.
+# step. Each readme step is one node here, carrying the readme's own wording in
+# 'description'.
+#
+# The instruction book is generated from this file:
+#
+#   pc render -t pdf -a power-supply     # or -t html
 #
 # STATUS
 #   * The printed enclosure parts and the fasteners that hold them are placed.
 #   * The purchased contents (the LRS-350-24 supply, the XT60E connector, the
 #     3-in-1 IEC socket, the AC wiring and the M3 hex nuts) are NOT placed:
-#     PartCAD has no way to declare a catalog part that has no CAD model yet.
+#     PartCAD still has no way to declare a catalog part that has no CAD model.
 #     See PARTCAD.md, "Blockers", item 1.
-#   * Every 'location' below is the identity location. The relative placement of
-#     the parts still has to be measured off the CAD model.
-#     See PARTCAD.md, "Next steps", item 3.
+#   * Every node is placed with 'location', so none of them can carry the 'how'
+#     section - the torque, the push force, the stage, what to hold each part
+#     by - which ASSY accepts only inside 'connect'/'connectPorts'. Interfaces
+#     and ports have to be declared on the parts first. See PARTCAD.md,
+#     "Next steps", item 2.
+#   * Every 'location' is the identity location. The relative placement of the
+#     parts still has to be measured off the CAD model.
 #
 # NOTE ON REPEATED PARTS
-#   PartCAD has no 'count' field in ASSY: a part appears in the BOM once per
-#   link. Repeated fasteners are therefore emitted with a Jinja loop, which is
-#   what keeps the quantity of the BOM correct and the file short.
+#   ASSY has no quantity field, by design: a part appears in the bill of
+#   materials once per link. Repeated fasteners are emitted with a Jinja2 loop,
+#   which is how a file stays short without the model losing track of the
+#   individual instances.
 
 links:
   # ---------------------------------------------------------------------------
   # 1. Front cover assembly
   # ---------------------------------------------------------------------------
   - name: front-cover
-    # 1-1  Prepare the parts and printed components required for front shell
-    #      assembly. Check that all parts are complete.
+    description: >-
+      Step 1-1. Prepare the parts and printed components required for front
+      shell assembly. Check that all parts are complete.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
-      # 1-2  Wiring sequence instructions for each part; assemble according to
-      #      the wiring sequence. Connect strictly according to the wiring
-      #      sequence diagram.
-      # TODO(data): the wiring sequence itself is only available as the images
-      # Assembly_Steps/powerstep_images/1-2(1..3).png.
-
       - part: printed/psu-front-cover
         name: front-cover-shell
+        description: >-
+          Step 1-2. Wiring sequence instructions for each part; assemble
+          according to the wiring sequence. Connect strictly according to the
+          wiring sequence diagram
+          (Assembly_Steps/powerstep_images/1-2(1..3).png).
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 1-3  Install the XT60 connector.
-      #      Secured with M3x8 304 countersunk screws and M3x2.5 hex nuts.
       # TODO(blocked): the XT60E female + lug pigtail has no CAD model.
       # TODO(blocked): the M3x2.5 hex nuts (x2) have no CAD model.
       {% for i in range(2) %}
       - part: purchased/screw-m3x8-countersunk
         name: xt60-screw-{{ i + 1 }}
+        description: >-
+          Step 1-3. Install the XT60 connector, secured with 304 stainless steel
+          Phillips countersunk head screws M3x8 and M3x2.5 hex nuts.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-4  Install the 3-in-1 IEC socket.
-      #      Secured with M3x8 304 pan head screws.
       # TODO(blocked): the 3-in-1 IEC inlet socket has no CAD model.
       {% for i in range(2) %}
       - part: purchased/screw-m3x8-pan
         name: iec-socket-screw-{{ i + 1 }}
+        description: >-
+          Step 1-4. Install the 3-in-1 IEC socket, secured with 304 stainless
+          steel Phillips pan head screws M3x8.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-5  Internal wiring of the front shell. Check the connections against
-      #      the wiring sequence diagram.
+      # Step 1-5. Internal wiring of the front shell. Check the connections
+      # against the wiring sequence diagram.
       # TODO(blocked): the 1.5mm^2 red/blue/yellow AC wiring (x3) has no CAD
-      # model.
+      # model, so this step has no node of its own to describe.
 
-      # 1-6  Secure both sides of the front shell and the power supply with
-      #      M4x6 304 countersunk screws (x2).
       # TODO(blocked): the MeanWell LRS-350-24 power supply has no CAD model.
       {% for i in range(2) %}
       - part: purchased/screw-m4x6-countersunk
         name: front-cover-screw-{{ i + 1 }}
+        description: >-
+          Step 1-6. Secure both sides of the front shell and the power supply
+          with M4x6 304 stainless steel Phillips countersunk head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-      # 1-7  Install the sliding cover. Push it in from the bottom of the power
-      #      supply.
       - part: printed/psu-front-cover-slider
         name: front-cover-slider
+        description: >-
+          Step 1-7. Install the sliding cover, pushing it in from the bottom of
+          the power supply.
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 1-8  Secure the sliding cover with M4x6 304 countersunk screws (x2).
       {% for i in range(2) %}
       - part: purchased/screw-m4x6-countersunk
         name: slider-screw-{{ i + 1 }}
+        description: >-
+          Step 1-8. Secure the sliding cover with M4x6 304 stainless steel
+          Phillips countersunk head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
@@ -88,21 +103,25 @@ links:
   # 2. Rear shell assembly
   # ---------------------------------------------------------------------------
   - name: rear-cover
-    # 2-1  Prepare the parts and printed components required for rear shell
-    #      assembly. Check accessories for completeness.
+    description: >-
+      Step 2-1. Prepare the parts and printed components required for rear shell
+      assembly. Check accessories for completeness.
     location: [[0, 0, 0], [0, 0, 1], 0]
     links:
-      # 2-2  Assemble the rear shell with the power supply. Align the position.
       - part: printed/psu-rear-cover
         name: rear-cover-shell
+        description: >-
+          Step 2-2. Assemble the rear shell with the power supply, aligning the
+          position.
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # 2-3  Secure both sides of the rear shell and the power supply with
-      #      M4x6 304 countersunk screws (x2).
       {% for i in range(2) %}
       - part: purchased/screw-m4x6-countersunk
         name: rear-cover-screw-{{ i + 1 }}
+        description: >-
+          Step 2-3. Secure both sides of the rear shell and the power supply
+          with M4x6 304 stainless steel Phillips countersunk head screws.
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
 
-  # 3. Overall completion: check that all screws are tightened.
+  # Step 3. Overall completion: check that all screws are tightened.

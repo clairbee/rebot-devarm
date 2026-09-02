@@ -44,13 +44,10 @@ parts:
     desc: Robotic arm base platform (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/base-link:
     type: step
@@ -58,13 +55,10 @@ parts:
     desc: Robotic arm base link (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-filler-l:
     type: step
@@ -72,13 +66,10 @@ parts:
     desc: Upper arm left filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Black & Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Black & Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/upper-arm-filler-r:
     type: step
@@ -86,13 +77,10 @@ parts:
     desc: Upper arm right filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Black & Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Black & Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/upper-arm-filler-m:
     type: step
@@ -100,13 +88,10 @@ parts:
     desc: Upper arm center filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-limit:
     type: step
@@ -114,13 +99,10 @@ parts:
     desc: Upper arm horizontal limit block (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/arm-handle:
     type: step
@@ -128,13 +110,10 @@ parts:
     desc: Arm handle (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/lower-arm-filler-l:
     type: step
@@ -142,13 +121,10 @@ parts:
     desc: Lower arm left filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Black & Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Black & Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-r:
     type: step
@@ -156,13 +132,10 @@ parts:
     desc: Lower arm right filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Black & Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Black & Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-m:
     type: step
@@ -170,13 +143,10 @@ parts:
     desc: Lower arm center filler (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-cover:
     type: step
@@ -184,13 +154,10 @@ parts:
     desc: Upper arm cover (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-cover:
     type: step
@@ -198,13 +165,10 @@ parts:
     desc: Lower arm cover (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/motor-cover:
     type: step
@@ -212,13 +176,10 @@ parts:
     desc: Motor 5 protection cover (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/gripper-limit:
     type: step
@@ -226,13 +187,10 @@ parts:
     desc: Gripper horizontal limit (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/rail-bracket:
     type: step
@@ -242,13 +200,10 @@ parts:
     desc: Gripper slider support bracket (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/finger:
     type: step
@@ -256,13 +211,10 @@ parts:
     desc: Gripper finger (x2)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 45
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 45% infill
 
   printed/joint5-cable-restraint-a:
     type: step
@@ -270,13 +222,10 @@ parts:
     desc: Motor 5 cable restraint (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu PLA Green
-      infill:
-        type: int
-        default: 15
+    properties:
+      material: Bambu PLA Green
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/joint6-7-cable-restraint-a:
     type: step
@@ -284,13 +233,10 @@ parts:
     desc: Motor 6 & 7 cable restraint A (x2)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/joint6-7-cable-restraint-b:
     type: step
@@ -298,13 +244,10 @@ parts:
     desc: Motor 6 & 7 cable restraint B (x2)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/motor1-harness-clip:
     type: step
@@ -312,13 +255,10 @@ parts:
     desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: Bambu ABS Black
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: Bambu ABS Black
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   # Power supply enclosure
   printed/psu-front-cover:
@@ -327,13 +267,10 @@ parts:
     desc: Power supply front cover (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: PLA
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: PLA
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/psu-rear-cover:
     type: step
@@ -341,13 +278,10 @@ parts:
     desc: Power supply rear cover (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: PLA
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: PLA
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/psu-front-cover-slider:
     type: step
@@ -355,13 +289,10 @@ parts:
     desc: Power supply front cover slider (x1)
     manufacturing:
       method: additive
-    parameters:
-      material:
-        type: string
-        default: PLA
-      infill:
-        type: int
-        default: 30
+    properties:
+      material: PLA
+    requirements:
+      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   ##############################################################################
   # CNC machined metal parts
@@ -370,215 +301,307 @@ parts:
   # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit on
   # mating features.
   #
-  # TODO(partcad): these should declare 'manufacturing: {method: subtractive}'.
-  # The schema only accepts basic|additive|pcbBasic while the loader only
-  # accepts additive|subtractive|forming, so no value is valid in both. See
-  # PARTCAD.md, "Blockers".
+  # The tolerance and the finish are the manufacturing request and belong in a
+  # manufacturing section; PartCAD has no field for either on a 'step' part, so
+  # they are carried in 'requirements' where a human or an LLM can still read
+  # them. 'pc test' fails these parts for exactly that reason. See PARTCAD.md.
+  #
+  # Links 1, 2, 3 and 5 are "CNC + sheet metal" in the readme: two methods, one
+  # after the other. 'manufacturing.method' takes a single value, so they are
+  # declared 'subtractive' with a note on each.
   ##############################################################################
   cnc/base-reinforcement:
     type: step
     path: Metal_Parts/02_Base_Reinforcement_Part.step
     desc: Motor 1 bearing mount (x1) - can be printed in ABS at high infill to save cost
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/arm-yaw-limit:
     type: step
     path: Metal_Parts/02_Arm_Yaw_Limit.step
     desc: Motor 1 rotation axis, yaw angle motion limit (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/motor-front-spacer:
     type: step
     path: Metal_Parts/02_Motor_Front_Spacer.step
     desc: Motor 2-5 front spacer (x4) - can be printed in ABS at 30% infill
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/motor-back-spacer:
     type: step
     path: Metal_Parts/02_Motor_Back_Spacer.step
     desc: Motor 2-4 rear spacer (x3)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/flange:
     type: step
     path: Metal_Parts/02_FLANGE.step
     desc: Motor 2-4 rear flange (x3)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/wrist-bracket:
     type: step
     path: Metal_Parts/02_Wrist_Bracket.step
     desc: Wrist motor 5 bracket (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/gripper-connector-a:
     type: step
     path: Metal_Parts/02_Gripper_Connector_A.step
     desc: Gripper connector A (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/gripper-connector-b:
     type: step
     path: Metal_Parts/02_Gripper_Connector_B.step
     desc: Gripper connector B (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/slider-bracket:
     type: step
     path: Metal_Parts/02_Slider_Bracket.step
     desc: Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/slider-extension:
     type: step
     path: Metal_Parts/02_Slider_Extension.step
     desc: Slider to gripper extension (x2)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/lower-upper-link-l:
     type: step
     path: Metal_Parts/02_Lower_Upper_Link_L.step
     desc: Upper-lower arm link, left (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/lower-upper-link-r:
     type: step
     path: Metal_Parts/02_Lower_Upper_Link_R.step
     desc: Upper-lower arm link, right (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/lower-wrist-link-l:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_L.step
     desc: Lower arm-wrist link, left (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/lower-wrist-link-r:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_R.step
     desc: Lower arm-wrist link, right (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/gear-connector:
     type: step
     path: Metal_Parts/02_Gear_Connector.step
     desc: Gear connector (x1)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/rack:
     type: step
     # NOTE: "02-RACK.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/02_Rack.step
     desc: Rack (x2)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/base-motor-shim:
     type: step
     path: Metal_Parts/02_Base_Motor_Shim.step
     desc: Base motor shim (quantity unknown - present in the repository and in the
       images folder, but missing from the readme.md BOM table)
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/link1:
     type: step
     # NOTE: "03-Link1.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link1.step
     desc: Link 1 (x1) - CNC + sheet metal
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/link2:
     type: step
     # NOTE: "03-Link2.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link2.step
     desc: Link 2 (x2) - CNC + sheet metal
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/link3-l:
     type: step
     # NOTE: "03-Link3_L.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link3_L.step
     desc: Link 3 left (x1) - CNC + sheet metal
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/link3-r:
     type: step
     # NOTE: "03-Link3_R.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link3_R.step
     desc: Link 3 right (x1) - CNC + sheet metal
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   cnc/link5:
     type: step
     # NOTE: "03-Link5.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link5.step
     desc: Link 5 (x1) - CNC + sheet metal
-    parameters:
-      material:
-        type: string
-        default: Aluminum Alloy 5052
+    manufacturing:
+      method: subtractive
+    properties:
+      material: Aluminum Alloy 5052
+    requirements:
+      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
+        home for this yet - see PARTCAD.md"
+      finish: Anodizing / sandblasting; H7 or interference fit on mating features
 
   ##############################################################################
   # Purchased parts - fasteners
@@ -597,7 +620,7 @@ parts:
   ##############################################################################
   purchased/screw-hm3-6:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
     desc: M3x6 hex socket head cap screw (x16+)
     with:
       size: M3-0.5
@@ -605,7 +628,7 @@ parts:
 
   purchased/screw-hm3-12:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
     desc: M3x12 hex socket head cap screw (x14+)
     with:
       size: M3-0.5
@@ -613,7 +636,7 @@ parts:
 
   purchased/screw-hm3-25:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
     desc: M3x25 hex socket head cap screw (x14+)
     with:
       size: M3-0.5
@@ -621,7 +644,7 @@ parts:
 
   purchased/screw-hm4-75:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
     desc: M4x75 hex socket head screw (x4+) - readme.md calls it a set screw
     with:
       size: M4-0.7
@@ -629,7 +652,7 @@ parts:
 
   purchased/screw-km3-7:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
     desc: M3x7 countersunk head screw (x76+)
     with:
       size: M3-0.5
@@ -637,7 +660,7 @@ parts:
 
   purchased/screw-km3-8:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
     desc: M3x8 socket micro profile head screw (x31+)
     with:
       size: M3-0.5
@@ -645,7 +668,7 @@ parts:
 
   purchased/screw-km3-9:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
     desc: M3x9 countersunk head screw (x31+)
     with:
       size: M3-0.5
@@ -653,7 +676,7 @@ parts:
 
   purchased/screw-km3-12:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
     desc: M3x12 countersunk head screw (x30+)
     with:
       size: M3-0.5
@@ -661,7 +684,7 @@ parts:
 
   purchased/screw-km3-16:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
     desc: M3x16 countersunk head screw (x34+)
     with:
       size: M3-0.5
@@ -670,7 +693,7 @@ parts:
   # Power supply enclosure fasteners (readme.md, "Consumables BOM")
   purchased/screw-m4x6-countersunk:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
     desc: M4x6 304 stainless steel Phillips countersunk head screw (x6)
     with:
       size: M4-0.7
@@ -678,7 +701,7 @@ parts:
 
   purchased/screw-m3x8-countersunk:
     type: enrich
-    source: /pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
+    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
     desc: M3x8 304 stainless steel Phillips countersunk head screw (x2)
     with:
       size: M3-0.5
@@ -688,7 +711,7 @@ parts:
     type: enrich
     # ISO 7045 is the Phillips pan head standard; cq-warehouse names it
     # "raised cheese head".
-    source: /pub/std/metric/cqwarehouse:fastener/raisedcheesehead-iso7045
+    source: //pub/std/metric/cqwarehouse:fastener/raisedcheesehead-iso7045
     desc: M3x8 304 stainless steel Phillips pan head screw (x2)
     with:
       size: M3-0.5
@@ -767,26 +790,27 @@ parts:
     manufacturing:
       method: additive
 
-  ##############################################################################
-  # Reference geometry
-  ##############################################################################
-  reference/arm-v1.1:
-    type: step
-    path: reBot_B601_DM_v1.1_20260425.step
-    desc: Full arm assembly as released (reference only - a single solid, not a
-      structured assembly; ./arm.assy is the structured version being built)
-    # This one is large and is only used as a visual reference.
-    cache: false
-
 assemblies:
   power-supply:
     type: assy
     desc: Power supply enclosure, assembled per readme.md "Power Supply Assembly"
-    manufacturing:
-      method: basic
+    manufacturable: true
 
   arm:
     type: assy
     desc: reBot Arm B601 DM (structure only so far - see PARTCAD.md)
-    manufacturing:
-      method: basic
+    manufacturable: true
+
+  # The released full-arm STEP file, read as an assembly: PartCAD takes the
+  # component tree out of the file, names a part after each component and
+  # recognizes the components that are the same geometry, so this is where the
+  # real placements and the geometry-derived quantities come from. It is the
+  # reference ./arm.assy is being built against, not a replacement for it: the
+  # ASSY is what says how the arm goes together, which a STEP file cannot.
+  reference/arm-v1.1:
+    type: step
+    path: reBot_B601_DM_v1.1_20260425.step
+    desc: Full arm assembly as released on 2026-04-25 (reference)
+    # Not manufacturable: it is somebody else's export, not a thing this package
+    # claims can be built from what it declares.
+    manufacturable: false
