@@ -20,9 +20,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/base-link:
     type: step
@@ -31,9 +32,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-filler-l:
     type: step
@@ -42,9 +44,9 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Black & Green
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/upper-arm-filler-r:
     type: step
@@ -53,9 +55,9 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Black & Green
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/arm-filler-m:
     type: step
@@ -64,9 +66,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/arm-handle:
     type: step
@@ -75,9 +78,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/arm-cover:
     type: step
@@ -86,9 +90,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Green
+      material: //pub/std/manufacturing/material/plastic:pla
+      color: "#2E7D32"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-l:
     type: step
@@ -97,9 +102,9 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Black & Green
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-r:
     type: step
@@ -108,9 +113,9 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Black & Green
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/gripper-limit:
     type: step
@@ -119,9 +124,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Green
+      material: //pub/std/manufacturing/material/plastic:pla
+      color: "#2E7D32"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/rail-bracket:
     type: step
@@ -130,9 +136,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu PLA Green
+      material: //pub/std/manufacturing/material/plastic:pla
+      color: "#2E7D32"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/finger:
     type: step
@@ -141,9 +148,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 45% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 45% infill
 
   printed/motor1-harness-clip:
     type: step
@@ -152,9 +160,10 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: Bambu ABS Black
+      material: //pub/std/manufacturing/material/plastic:abs
+      color: "#1A1A1A"
     requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
+      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   # Power supply enclosure
   printed/psu-front-cover:
@@ -164,7 +173,7 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: PLA
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
       process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
@@ -175,7 +184,7 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: PLA
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
       process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
@@ -186,7 +195,7 @@ parts:
     manufacturing:
       method: additive
     properties:
-      material: PLA
+      material: //pub/std/manufacturing/material/plastic:pla
     requirements:
       process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
@@ -196,9 +205,10 @@ parts:
   # Machining specification (README.md): key dimension tolerance +/-0.02 mm
   # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit.
   #
-  # The tolerance and the finish are the manufacturing request; PartCAD has no
-  # field for either on a 'step' part, so they are carried in 'requirements'.
-  # See ../reBot_B601_DM/partcad.yaml and PARTCAD.md.
+  # The tolerance and the finish are what the manufacturer is asked for, and a
+  # 'step' part has nowhere to declare either, so they are carried in
+  # 'requirements'. The alloy is a plain string because no metals catalogue is
+  # published yet. See ../reBot_B601_DM/partcad.yaml and PARTCAD.md.
   ##############################################################################
   cnc/motor1-bearing-mount:
     type: step
@@ -646,32 +656,76 @@ parts:
       length: 8
 
   ##############################################################################
-  # Purchased parts - catalog items without a CAD model
+  # Purchased parts - the vendor publishes no CAD model
   #
-  # Blocked the same way as in the DM variant. See PARTCAD.md, "Blockers".
+  # Envelopes from //pub/robotics/rebot/devarm/third_party, aliased here under the
+  # names the readme uses. See ../reBot_B601_DM/partcad.yaml for the same block on
+  # the DM side, and each envelope's 'summary' for what it is not.
+  ##############################################################################
+  # NOTE: no 'vendor'/'sku' here. An alias reads them from the part it points at,
+  # which is where they are declared; declaring them on the alias itself has no
+  # effect at all (a PartCAD bug - see PARTCAD.md), so writing them twice would
+  # only be a second copy to keep in step.
+  purchased/actuator-rs00:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:actuator/rs00
+    desc: Brushless actuator RobStride RS00 (x4)
+
+  purchased/actuator-rs06:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:actuator/rs06
+    desc: Brushless actuator RobStride RS06 (x3)
+
+  purchased/bearing-6803zz:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:bearing/6803zz
+    desc: Bearing 6803ZZ (x3)
+
+  purchased/bearing-axk5578:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:bearing/axk5578
+    desc: Thrust bearing AXK5578 (x1)
+
+  purchased/rail-mgn9-170:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:rail/mgn9-170
+    desc: Linear rail MGN9-170mm (x1, gripper)
+
+  purchased/carriage-mgn9:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:carriage/mgn9c
+    desc: Slider block MGN9 (x2, gripper)
+
+  purchased/pad-silicone:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:pad/silicone-30x9x2
+    desc: Silicone pad 30x9x2mm (x1 per the readme; the released CAD has four)
+
+  purchased/psu-lrs-600-48:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:psu/lrs-600-48
+    desc: Power supply MeanWell LRS-600-48, 48V 12.5A (x1)
+
+  purchased/connector-xt60e:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:connector/xt60e-female
+    desc: Output port XT60E female + lug pigtail (x1)
+
+  # Still without a shape, and so still out of the BOM:
   #
-  #   Brushless motor          RobStride RS00                              x4
-  #   Brushless motor          RobStride RS06                              x3
+  #   Gear                     module 1, boss type, 16 teeth, 6 mm bore    x1
+  #   Screw                    KA3*12mm self-tapping                       x48+
+  #   Hex nut                  M3x2.5                                      x2
   #   CAN-USB driver board                                                 x1
   #   XT30 2+2 power separation board                                      x1
-  #   Bearing                  6803ZZ                                      x3
-  #   Bearing                  AXK5578                                     x1
-  #   Linear rail              MGN9-170mm                                  x1
-  #   Slider block             MGN9                                        x2
-  #   Gear                     module 1, boss type, 16 teeth, 6 mm bore    x1
-  #   Silicone pad             30x9x2mm                                    x1
-  #   Screw                    KA3*12mm self-tapping                       x48+
-  #   Cable                    XT30 2+2 320mm, both ends angled            x1+
-  #   Cable                    XT30 2+2 200mm, both ends angled            x4+
-  #   Cable                    XT30 2+2 300mm, one angled end              x1+
-  #   Cable                    XT30 2+2, both ends straight                x1+
-  #   Power supply             MeanWell LRS-600-48 (48V 12.5A)             x1
-  #   Power cord               US standard AC cable                        x1
-  #   Output port              XT60E female + lug pigtail, 10cm            x1
-  #   Power AC wiring          1.5mm^2 red/blue/yellow, 10cm               x3
   #   3-in-1 IEC inlet socket  quick-connect, red switch, dual nuts        x1
+  #   Power cord               US standard AC cable                        x1
+  #   Power AC wiring          1.5mm^2 red/blue/yellow, 10cm               x3
   #   Adapter cable            XT30U female to XT60 male                   x1
-  #   Hex nut                  M3x2.5                                      x2
+  #
+  # The XT30 2+2 harnesses (320 mm x1+, 200 mm x4+, 300 mm x1+, straight x1+) are
+  # assemblies rather than parts - see 'cable/xt30-2x2-350' in the third_party
+  # package for the pattern.
   ##############################################################################
 
 assemblies:
@@ -679,6 +733,9 @@ assemblies:
     type: assy
     desc: Power supply enclosure, assembled per README.md "Power Supply Assembly"
     manufacturable: true
+    # The bill of materials as markdown, so a change to it is a diff.
+    render:
+      readme:
 
   # The released full-arm STEP file, read as an assembly - see the DM package.
   reference/arm-v1.0:

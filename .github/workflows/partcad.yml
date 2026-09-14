@@ -1,0 +1,77 @@
+# Keep the machine-readable bill of materials honest.
+#
+# The BOM lives in the PartCAD package (see ../../PARTCAD.md) and the markdown
+# copies of it - hardware/*/arm.md, hardware/*/power-supply.md - are generated
+# from it. This workflow regenerates them and fails if what lands differs from
+# what is checked in, so a change to a quantity is a diff somebody reviewed
+# rather than a surprise a builder finds.
+#
+# It also lints the configuration and every Assembly YAML file, which is cheap
+# and catches a typo before anyone tries to build a shape from it.
+
+name: PartCAD
+
+on:
+  pull_request:
+    paths:
+      - "partcad.yaml"
+      - "third_party/**"
+      - "hardware/**/partcad.yaml"
+      - "hardware/**/*.assy"
+      - "hardware/**/*.md"
+      - ".github/workflows/partcad.yml"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  bom:
+    name: Lint and regenerate the BOM
+    runs-on: ubuntu-latest
+    # Generous: the first run provisions PartCAD's CAD sandbox, which is a few
+    # hundred megabytes of wheels, and reading the released full-arm STEP takes
+    # the better part of a minute on its own.
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PartCAD
+        # The floor the packages declare. Kept as a floor rather than a pin so
+        # that a release with a fix lands here without an edit; if a release ever
+        # breaks this, pin it here and say why.
+        run: pip install "partcad>=0.8.80"
+
+      - name: Fetch what the packages depend on
+        run: pc --no-ansi install
+
+      - name: Lint the configuration and the ASSY files
+        run: pc --no-ansi lint
+
+      - name: Print the bills of materials
+        run: |
+          set -e
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm power-supply
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs power-supply
+
+      - name: Regenerate the BOM documents
+        run: |
+          set -e
+          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm arm
+          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm power-supply
+          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs power-supply
+
+      - name: Fail if a generated document is out of date
+        run: |
+          if ! git diff --exit-code -- '*.md'; then
+            echo
+            echo "A generated bill of materials differs from the one checked in."
+            echo "Run the 'pc render' commands above and commit the result."
+            exit 1
+          fi

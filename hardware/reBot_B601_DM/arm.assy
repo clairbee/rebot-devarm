@@ -12,11 +12,13 @@
 #
 # STATUS
 #   * All 3D printed and CNC machined parts are placed with the quantities of
-#     the readme.
-#   * Purchased parts are NOT placed. The actuators, bearings, rails, gear,
-#     cables and the self-tapping screws have no CAD model available, and the
-#     per-joint quantity of each fastener is not documented anywhere - the
-#     readme only gives arm-wide minimums ("14+"). See PARTCAD.md.
+#     the readme, and so are the purchased parts that now have an envelope in
+#     //pub/robotics/rebot/devarm/third_party: the seven actuators, the five
+#     bearings, the linear rail, its two carriages and the silicone pad.
+#   * Fasteners are NOT placed, and neither is the gear. The readme gives only
+#     arm-wide minimums for the fasteners ("14+"), never a per-joint count - but
+#     the released CAD does, and counting them there is the next step (see
+#     PARTCAD.md).
 #   * Every 'location' is the identity location, so this assembly is NOT
 #     geometrically correct yet. The placements are to be recovered from the
 #     released STEP file, which this package now reads as an assembly of its own
@@ -47,9 +49,21 @@ links:
         location: [[0, 0, 0], [0, 0, 1], 0]
       - part: cnc/link1
         location: [[0, 0, 0], [0, 0, 1], 0]
-      # TODO(blocked): motor 1 is a DM4340P(V4) actuator - no CAD model.
-      # TODO(blocked): the 6707ZZ bearing and the AXK5578 thrust bearing that
-      # sit in this joint have no CAD model.
+      - part: purchased/bearing-6707zz
+        description: The joint 1 radial bearing, in the base reinforcement.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: purchased/bearing-axk5578
+        description: >-
+          The joint 1 thrust bearing, which carries the weight of the arm. The
+          readme does not order the two AS5578 washers it normally sits between,
+          although the released CAD models a 5 mm stack where this 3 mm bearing
+          goes - see PARTCAD.md.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      - part: purchased/pad-silicone
+        description: >-
+          The silicone pad. TODO(data): the readme does not say where it goes;
+          under the base plate is the guess, and it is placed here on that basis.
+        location: [[0, 0, 0], [0, 0, 1], 0]
       # TODO(data): 02_Base_Motor_Shim.step exists in Metal_Parts/ but is absent
       # from the readme BOM, so its quantity is unknown and it is not placed.
 
@@ -76,7 +90,27 @@ links:
         name: flange-{{ i + 2 }}
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
-      # TODO(blocked): actuators DM4310(V4) x4 and DM4340P(V4) x3 - no CAD model.
+      # The actuators. Joints 1-3 are the DM4340P, joints 4-7 the DM4310, which
+      # is what the readme's quantities say; which physical joint each one is
+      # remains to be confirmed against the CAD.
+      {% for i in range(3) %}
+      - part: purchased/actuator-dm4340p
+        name: motor-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      {% for i in range(4) %}
+      - part: purchased/actuator-dm4310
+        name: motor-{{ i + 4 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      # The three 6803ZZ bearings. TODO(data): the readme gives the quantity and
+      # not the joints they belong to, so they are grouped with the actuators
+      # rather than placed in a joint.
+      {% for i in range(3) %}
+      - part: purchased/bearing-6803zz
+        name: bearing-6803zz-{{ i + 1 }}
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
 
   # ---------------------------------------------------------------------------
   # Upper arm
@@ -195,9 +229,17 @@ links:
         name: joint6-7-cable-restraint-b-{{ i + 1 }}
         location: [[0, 0, 0], [0, 0, 1], 0]
       {% endfor %}
-      # TODO(blocked): MGN9-170mm linear rail x1, MGN9 slider blocks x2,
-      # module 1 / 16 teeth / 6 mm bore gear x1, 6803ZZ bearings x3 and the
-      # 30x9x2mm silicone pad have no CAD model.
+      - part: purchased/rail-mgn9-170
+        description: The gripper's linear rail, on the slider bracket.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% for i in range(2) %}
+      - part: purchased/carriage-mgn9
+        name: carriage-{{ i + 1 }}
+        description: One of the two carriages the gripper fingers are driven by.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+      {% endfor %}
+      # TODO(blocked): the module 1, 16 tooth, 6 mm bore gear that drives the
+      # rack has no envelope yet - see partcad.yaml.
 
   # ---------------------------------------------------------------------------
   # Cable management (optional, recommended by readme.md)

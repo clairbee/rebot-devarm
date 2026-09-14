@@ -1,0 +1,384 @@
+# Third-party shapes for the parts the reBot DevArm buys rather than makes.
+#
+# WHY THIS PACKAGE EXISTS
+#   Every part of an assembly needs a shape. Not for manufacturing - a part with
+#   a 'vendor' and an 'sku' is ordered, not made, and PartCAD asks nothing about
+#   how it could be - but for everything else a model is for: seeing the arm,
+#   checking that the parts fit, and eventually simulating them. A BOM line with
+#   no shape is a hole in the assembly.
+#
+#   The vendors of these parts publish no CAD model, so the shapes live here.
+#
+# WHAT THESE SHAPES ARE
+#   Envelopes, not models. Each one reproduces the dimensions that matter for
+#   fit - the bore and outside diameter of a bearing, the section and length of a
+#   rail, the bounding box of an actuator - and nothing else. They are the right
+#   thing to check a clearance against and the wrong thing to machine from.
+#
+#   Every part below says which of its dimensions are from a datasheet or a
+#   product listing ("stated") and which are inferred ("approximate"), and
+#   'summary:' says what the envelope leaves out. Where a dimension is not known
+#   at all the part is not declared: an invented figure is worse than a gap,
+#   because nothing downstream can tell it from a measured one.
+#
+# WHERE A BETTER SHAPE WOULD COME FROM, IN ORDER
+#   1. The vendor's own STEP file, declared with 'fileFrom: url' + 'fileHash'.
+#      That is the whole of what this package should be, and none of these
+#      vendors publish one.
+#   2. A public PartCAD package: '//pub/std/metric/bosl2' generates parametric
+#      ball bearings, gears and threaded parts from BOSL2, and
+#      '//pub/std/metric/cqwarehouse' the ISO fasteners this repository already
+#      uses. A part these serve should be enriched from them rather than
+#      re-modelled here - see PARTCAD.md for what stopped the bearings and the
+#      gear from being declared that way today.
+#   3. The released full-arm STEP file, which carries the vendor geometry the
+#      designers actually worked against. See PARTCAD.md, "Next steps".
+#
+# Vendor and SKU come from the product links in the two variant readmes, so an
+# Amazon ASIN is the SKU of vendor 'amazon' and a Seeed Studio product page id
+# the SKU of 'seeedstudio'. They are what a store provider would order by.
+
+name: //pub/robotics/rebot/devarm/third_party
+desc: Envelope shapes for the purchased parts of the reBot DevArm
+partcad: ">=0.8.80"
+
+# Nothing here is manufactured: these are other people's products, and this
+# package makes no claim that they can be made from what it declares.
+manufacturable: false
+
+docs:
+  usage: |
+    ```shell
+    pc --no-ansi list parts //pub/robotics/rebot/devarm/third_party
+    pc --no-ansi inspect //pub/robotics/rebot/devarm/third_party:bearing/6803zz
+    ```
+
+parts:
+  ##############################################################################
+  # Bearings
+  #
+  # A deep-groove ball bearing as an envelope: the outer ring, the inner ring and
+  # the shield between them, with the balls left out. Bore, outside diameter and
+  # width are what a housing is cut to, and all three are stated by the product
+  # listings the readmes link to.
+  ##############################################################################
+  # NOTE: each bearing is its own declaration of the same script rather than an
+  # 'enrich' of one parametric bearing, which is what this was. A 'vendor' and an
+  # 'sku' declared on an enrich (or on an alias) are ignored - only the ones on
+  # the part underneath are read - so an enriched bearing was a bearing nothing
+  # could order. See PARTCAD.md.
+  bearing/6707zz:
+    type: build123d
+    path: src/bearing_ball.py
+    desc: 6707ZZ shielded ball bearing, 35x44x5 mm (x1 in the DM arm, joint 1)
+    parameters:
+      bore: 35.0
+      od: 44.0
+      width: 5.0
+    vendor: amazon
+    sku: B0D6WBMW3F
+    properties:
+      material: chrome steel (AISI 52100)
+      color: "#9AA3AA"
+    summary: >-
+      Stated dimensions (35 mm bore, 44 mm outside diameter, 5 mm width) from the
+      product listing, and confirmed by the released CAD, which has one solid of
+      45.3 x 44.8 x 5.0 mm where this bearing goes. The envelope has no balls, no
+      raceway grooves and no seal lip, and its two rings are drawn as one solid,
+      so it cannot be used to check anything that turns.
+
+  bearing/6803zz:
+    type: build123d
+    path: src/bearing_ball.py
+    desc: 6803ZZ shielded ball bearing, 17x26x5 mm (x3 in both arms)
+    parameters:
+      bore: 17.0
+      od: 26.0
+      width: 5.0
+    vendor: amazon
+    sku: B0D54JSWBZ
+    properties:
+      material: chrome steel (AISI 52100)
+      color: "#9AA3AA"
+    summary: >-
+      Stated dimensions (17 mm bore, 26 mm outside diameter, 5 mm width) from the
+      product listing, and confirmed by the released CAD, which has exactly three
+      solids of 26.0 x 26.0 x 5.0 mm. An envelope, as for the 6707ZZ.
+
+  bearing/axk5578:
+    type: build123d
+    path: src/bearing_ball.py
+    desc: AXK5578 thrust needle roller bearing, 55x78x3 mm (x1 in both arms)
+    parameters:
+      bore: 55.0
+      od: 78.0
+      width: 3.0
+    vendor: amazon
+    sku: B0B3M3RZGW
+    properties:
+      material: chrome steel (AISI 52100)
+      color: "#9AA3AA"
+    summary: >-
+      Stated dimensions (55 mm bore, 78 mm outside diameter, 3 mm thickness) from
+      the AXK5578 designation. Drawn as the same annular envelope as a ball
+      bearing, which it is not: a thrust needle bearing is a cage of rollers that
+      is normally used between two washers (an AS5578 pair). The readme orders no
+      washers, but the released CAD has a 5 mm stack where this 3 mm bearing goes,
+      which is this bearing plus two 1 mm washers - see PARTCAD.md.
+
+  ##############################################################################
+  # Linear motion
+  ##############################################################################
+  rail/mgn9-170:
+    type: build123d
+    path: src/rail_mgn9.py
+    desc: MGN9 linear rail, 170 mm (x1 in both arms)
+    parameters:
+      length: 170.0
+    vendor: amazon
+    sku: B0D54L45WM
+    properties:
+      material: stainless steel
+      color: "#B8BEC4"
+    summary: >-
+      A 9 mm wide, 10 mm high rail section 170 mm long, which is the MGN9
+      standard profile and the length the readme names. Approximate in its
+      detail: the real rail has ball grooves down both flanks and a row of
+      counterbored mounting holes at 20 mm pitch, and this envelope has neither,
+      so it says where the rail is and not how it is fixed down.
+
+  carriage/mgn9c:
+    type: build123d
+    path: src/carriage_mgn9c.py
+    desc: MGN9C carriage block (x2 in both arms)
+    vendor: amazon
+    sku: B0D9QBQDKB
+    properties:
+      material: stainless steel
+      color: "#B8BEC4"
+    summary: >-
+      The MGN9C block envelope - 20 mm wide, 39 mm long, 10 mm high, with the
+      slot that straddles the rail - and the four M3 mounting holes on its top
+      face at the standard 20 x 10 mm pitch. Approximate: the readme names only
+      "MGN9", and the C and H blocks differ in length, so the length is the one a
+      C block has. The end seals, the grease nipple and the ball circuit are left
+      out.
+
+  ##############################################################################
+  # Actuators
+  #
+  # The arm's joints: the Damiao pair for the DM variant, the RobStride pair for
+  # the RS one. Three of the four are sized from the released full-arm STEP files
+  # rather than from a datasheet, because their vendors publish none - see the
+  # 'summary' of each, and the table in PARTCAD.md that the measurements come
+  # from.
+  ##############################################################################
+  actuator/dm4310:
+    type: build123d
+    path: src/actuator_cylindrical.py
+    desc: Damiao DM4310(V4) actuator (x4 in the DM arm)
+    parameters:
+      diameter: 57.0
+      height: 57.0
+      output_diameter: 30.0
+      output_height: 4.0
+    vendor: seeedstudio
+    sku: DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660
+    properties:
+      material: aluminium alloy
+      color: "#4A4A4A"
+    summary: >-
+      A cylinder 57 mm across and 57 mm tall with a 30 mm output boss. Measured
+      rather than quoted: the released full-arm STEP holds four identical solids
+      of 69.5 x 57.0 x 57.0 mm, which is the DM4310's count in the BOM, and this
+      cylinder is the round part of that envelope. The extra 12.5 mm of the
+      measured box is the side connector, which is not modelled.
+      TODO(data): the Seeed Studio listing says 56 x 56 x 46 mm for this
+      actuator, which is smaller in every direction than what the CAD shows.
+      One of the two is wrong and the vendor is the one to ask.
+
+  actuator/dm4340p:
+    type: build123d
+    path: src/actuator_cylindrical.py
+    desc: Damiao DM4340P(V4) actuator (x3 in the DM arm, joints 1-3)
+    parameters:
+      diameter: 57.0
+      height: 56.6
+      output_diameter: 34.0
+      output_height: 4.0
+    vendor: seeedstudio
+    sku: DM4340P-Actuator-p-6663
+    properties:
+      material: aluminium alloy
+      color: "#4A4A4A"
+    summary: >-
+      A cylinder 57 mm across and 56.6 mm tall with a 34 mm output boss. Measured
+      the same way as the DM4310 above and from the same file - three identical
+      solids of 57.0 x 57.0 x 56.6 mm, matching the three DM4340P actuators of
+      the BOM - because the vendor publishes no dimensions at all for this one.
+      Approximate in everything but its overall size.
+
+  actuator/rs00:
+    type: build123d
+    path: src/actuator_cylindrical.py
+    desc: RobStride RS00 actuator (x4 in the RS arm)
+    parameters:
+      diameter: 57.0
+      height: 52.0
+      output_diameter: 30.0
+      output_height: 4.0
+    vendor: seeedstudio
+    sku: Robostride-00-Actuator-p-6664
+    properties:
+      material: aluminium alloy
+      color: "#4A4A4A"
+    summary: >-
+      A cylinder 57 mm across and 52 mm tall with a 30 mm output boss, measured
+      off the released RS arm STEP - four identical solids of 57.1 x 57.0 x
+      52.0 mm, matching the four RS00 actuators of the BOM. RobStride publishes
+      no dimensioned drawing, so the overall size is all this is right about.
+
+  actuator/rs06:
+    type: build123d
+    path: src/actuator_cylindrical.py
+    desc: RobStride RS06 actuator (x3 in the RS arm)
+    parameters:
+      diameter: 87.0
+      height: 50.5
+      output_diameter: 44.0
+      output_height: 5.0
+    vendor: seeedstudio
+    sku: Robostride-06-Actuator-p-6668
+    properties:
+      material: aluminium alloy
+      color: "#4A4A4A"
+    summary: >-
+      A cylinder 87 mm across and 50.5 mm tall with a 44 mm output boss. Measured
+      off the released RS arm STEP, where the three solids that match this
+      actuator's BOM quantity are all 50.5 mm tall and between 84.5 and 87.3 mm
+      across - they are drawn slightly differently from one another, and this
+      envelope takes the largest of the three so that a clearance checked against
+      it holds for all of them.
+
+  ##############################################################################
+  # Power
+  ##############################################################################
+  psu/lrs-350-24:
+    type: build123d
+    path: src/psu_enclosed.py
+    desc: MeanWell LRS-350-24 power supply, 24V 14.6A (x1, DM arm)
+    parameters:
+      length: 215.0
+      width: 115.0
+      height: 30.0
+    vendor: amazon
+    sku: B013ETVO12
+    properties:
+      material: galvanized steel
+      color: "#C9CDD1"
+    summary: >-
+      The 215 x 115 x 30 mm case of the LRS-350 series, stated by the MeanWell
+      datasheet, with the mounting flanges it is screwed down by. The terminal
+      block, the ventilation slots and the adjustment trimmer are left out, and
+      the flange hole positions are approximate.
+
+  psu/lrs-600-48:
+    type: build123d
+    path: src/psu_enclosed.py
+    desc: MeanWell LRS-600-48 power supply, 48V 12.5A (x1, RS arm)
+    parameters:
+      length: 215.0
+      width: 115.0
+      height: 30.0
+    vendor: amazon
+    sku: B0BV5XFYNS
+    properties:
+      material: galvanized steel
+      color: "#C9CDD1"
+    summary: >-
+      The same 215 x 115 x 30 mm case as the LRS-350 above: the LRS-600 shares
+      the case of the LRS-350 in the MeanWell datasheet. Same envelope, same
+      omissions.
+
+  ##############################################################################
+  # Connectors and cables
+  #
+  # A cable is not one shape. It is two connectors and a length of wire whose
+  # path is decided when the arm is assembled, which is an assembly rather than a
+  # part - see ./cable-xt30-2x2.assy, where the wire is a 'sweep' along the route
+  # it takes and the connectors are these parts.
+  ##############################################################################
+  connector/xt30-2x2-plug:
+    type: build123d
+    path: src/connector_xt30.py
+    desc: XT30 2+2 connector housing, one end of a motor harness
+    properties:
+      material: nylon
+      color: "#F2C230"
+    summary: >-
+      The 2+2 XT30 housing as a 16 x 12 x 8 mm block with the two power bullets
+      and two signal pins standing off one face. Approximate: taken from the
+      XT30 footprint the photographs in the readme show, not from a datasheet -
+      Amass publishes none for the 2+2 variant.
+
+  connector/xt60e-female:
+    type: build123d
+    path: src/connector_xt60e.py
+    desc: XT60E-F panel-mount connector with lug pigtail (x1 in both arms)
+    vendor: amazon
+    sku: B0CQK1P1DP
+    properties:
+      material: nylon
+      color: "#F2C230"
+    summary: >-
+      The XT60E-F panel body as a 16 x 8 mm plate with the two 3.5 mm bullets
+      behind it and the two M3 mounting holes the readme's assembly step 1-3
+      screws through. Approximate in depth; the pigtail is not part of the shape.
+
+  wire/silicone-14awg:
+    type: build123d
+    path: src/wire_round.py
+    desc: A length of 14 AWG silicone wire
+    parameters:
+      length: 100.0
+      diameter: 3.5
+    properties:
+      material: silicone
+      color: "#1A1A1A"
+    summary: >-
+      A round 3.5 mm section - 14 AWG conductor plus silicone insulation - run
+      straight for the given length. It is the shape of a wire in its bag, not of
+      an installed one: the route an installed wire takes belongs to the assembly
+      that routes it, and a swept path replaces this cylinder as soon as there is
+      a route to sweep along (see ./cable-xt30-2x2.assy).
+
+  ##############################################################################
+  # Miscellaneous
+  ##############################################################################
+  pad/silicone-30x9x2:
+    type: extrude
+    sketch: pad-30x9
+    depth: 2.0
+    desc: Self-adhesive silicone pad, 30 x 9 x 2 mm (x1 in both arms)
+    vendor: amazon
+    sku: B0F9KVYXFZ
+    properties:
+      material: silicone
+      color: "#2E2E2E"
+    summary: Stated dimensions, and nothing about this part is more than its box.
+
+sketches:
+  pad-30x9:
+    type: basic
+    rectangle:
+      side-x: 30.0
+      side-y: 9.0
+
+assemblies:
+  cable/xt30-2x2-350:
+    type: assy
+    path: cable-xt30-2x2.assy
+    desc: XT30 2+2 motor harness, 350 mm, both ends angled (x2 in the DM arm)
+    parameters:
+      length: 350.0
+    manufacturable: false

@@ -49,6 +49,11 @@ dependencies:
     type: git
     url: https://github.com/partcad/partcad-index.git
 
+  third_party:
+    desc: Envelope shapes for the parts the arm buys rather than makes
+    type: local
+    path: ./third_party
+
   b601-dm:
     desc: reBot Arm B601 DM (Damiao actuators)
     type: local

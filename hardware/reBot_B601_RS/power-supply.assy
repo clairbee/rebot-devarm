@@ -7,9 +7,9 @@
 #
 #   pc render -t pdf -a power-supply     # the instruction book
 #
-# STATUS: printed shells and their fasteners are placed; the purchased contents
-# (LRS-600-48, XT60E connector, 3-in-1 IEC socket, AC wiring, M3 hex nuts) have
-# no CAD model and are not placed. Locations are identity locations, and nothing
+# STATUS: the printed shells, their fasteners, the supply itself and the XT60E
+# connector are placed; the 3-in-1 IEC socket, the AC wiring and the M3 hex nuts
+# have no envelope yet and are not. Locations are identity locations, and nothing
 # here can carry a 'how' section until the parts declare interfaces.
 # See ../../PARTCAD.md.
 
@@ -31,7 +31,12 @@ links:
           (Assembly_Steps/powerstep_images/1-2(1..3).png).
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      # TODO(blocked): XT60E female + lug pigtail, M3x2.5 hex nuts - no CAD model.
+      - part: purchased/connector-xt60e
+        name: xt60-connector
+        description: Step 1-3. The XT60E output connector, through the front shell.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+
+      # TODO(blocked): the M3x2.5 hex nuts (x2) have no envelope yet.
       {% for i in range(2) %}
       - part: purchased/screw-m3x8-countersunk
         name: xt60-screw-{{ i + 1 }}
@@ -54,7 +59,11 @@ links:
       # Step 1-5. Internal wiring of the front shell; check against the diagram.
       # TODO(blocked): 1.5mm^2 AC wiring (x3) - no CAD model.
 
-      # TODO(blocked): MeanWell LRS-600-48 power supply - no CAD model.
+      - part: purchased/psu-lrs-600-48
+        name: power-supply
+        description: Step 1-6. The power supply itself, which both shells are screwed to.
+        location: [[0, 0, 0], [0, 0, 1], 0]
+
       {% for i in range(4) %}
       - part: purchased/screw-m4x6-countersunk
         name: front-cover-screw-{{ i + 1 }}

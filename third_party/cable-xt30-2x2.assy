@@ -1,0 +1,43 @@
+# An XT30 2+2 motor harness, as an assembly.
+#
+# A cable is not a part. Its two connectors are rigid and orderable, and the wire
+# between them takes whatever route the arm leaves for it - so what a cable is, in
+# PartCAD terms, is an assembly of two connector parts and a wire whose shape is a
+# 'sweep' along that route. The route is data of this assembly, not of the wire,
+# which is why 'wire/silicone-14awg' in partcad.yaml declares a straight default
+# and every cable overrides it.
+#
+# STATUS
+#   The route below is a straight run of 'param_length', which is the cable as it
+#   comes off the shelf rather than as it is installed. The installed route is a
+#   curve through the arm's cable channels, and it can only be drawn once the arm
+#   assembly has real placements - see PARTCAD.md, "Next steps". Then this same
+#   file gets the real 'axis' and the connectors get 'connect:' to the actuators
+#   they plug into, and the harness becomes a thing whose length can be checked
+#   against the route instead of trusted.
+#
+#   The readme orders four lengths of this cable (350 mm angled/angled x2,
+#   350 mm angled/straight x1, 200 mm angled/angled x3, 200 mm straight x1). One
+#   assembly with a 'length' parameter covers the lengths; the angled and straight
+#   variants differ in the connector, which is not modelled yet.
+
+links:
+  - part: connector/xt30-2x2-plug
+    name: connector-a
+    description: The connector at the motor end of the harness.
+    location: [[0, 0, 0], [0, 0, 1], 0]
+
+  # The wire itself, as long as the harness was ordered.
+  - part: wire/silicone-14awg
+    name: wire
+    description: >-
+      The wire run between the two connectors. Straight for now; the installed
+      route replaces it.
+    params:
+      length: "{{ param_length }}"
+    location: [[0, 0, 8], [0, 0, 1], 0]
+
+  - part: connector/xt30-2x2-plug
+    name: connector-b
+    description: The connector at the controller end of the harness.
+    location: [[0, 0, {{ param_length + 16 }}], [1, 0, 0], 180]
