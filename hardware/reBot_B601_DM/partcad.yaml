@@ -44,11 +44,14 @@ parts:
     desc: Robotic arm base platform (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/base-link:
     type: step
@@ -56,11 +59,14 @@ parts:
     desc: Robotic arm base link (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-filler-l:
     type: step
@@ -68,10 +74,13 @@ parts:
     desc: Upper arm left filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/upper-arm-filler-r:
     type: step
@@ -79,10 +88,13 @@ parts:
     desc: Upper arm right filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/upper-arm-filler-m:
     type: step
@@ -90,11 +102,14 @@ parts:
     desc: Upper arm center filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-limit:
     type: step
@@ -102,11 +117,14 @@ parts:
     desc: Upper arm horizontal limit block (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/arm-handle:
     type: step
@@ -114,11 +132,14 @@ parts:
     desc: Arm handle (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/lower-arm-filler-l:
     type: step
@@ -126,10 +147,13 @@ parts:
     desc: Lower arm left filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-r:
     type: step
@@ -137,10 +161,13 @@ parts:
     desc: Lower arm right filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: Bambu PLA Black & Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-filler-m:
     type: step
@@ -148,11 +175,14 @@ parts:
     desc: Lower arm center filler (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/upper-arm-cover:
     type: step
@@ -160,11 +190,14 @@ parts:
     desc: Upper arm cover (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
-    requirements:
-      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/lower-arm-cover:
     type: step
@@ -172,11 +205,14 @@ parts:
     desc: Lower arm cover (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
-    requirements:
-      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/motor-cover:
     type: step
@@ -184,11 +220,14 @@ parts:
     desc: Motor 5 protection cover (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/gripper-limit:
     type: step
@@ -196,11 +235,14 @@ parts:
     desc: Gripper horizontal limit (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
-    requirements:
-      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/rail-bracket:
     type: step
@@ -210,11 +252,14 @@ parts:
     desc: Gripper slider support bracket (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
-    requirements:
-      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/finger:
     type: step
@@ -222,11 +267,14 @@ parts:
     desc: Gripper finger (x2)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 45%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 45% infill
 
   printed/joint5-cable-restraint-a:
     type: step
@@ -234,11 +282,14 @@ parts:
     desc: Motor 5 cable restraint (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 15%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
-    requirements:
-      process: Bambu PLA Green; 0.4 mm nozzle, 0.2 mm layer height, 15% infill
 
   printed/joint6-7-cable-restraint-a:
     type: step
@@ -246,11 +297,14 @@ parts:
     desc: Motor 6 & 7 cable restraint A (x2)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/joint6-7-cable-restraint-b:
     type: step
@@ -258,11 +312,14 @@ parts:
     desc: Motor 6 & 7 cable restraint B (x2)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/motor1-harness-clip:
     type: step
@@ -270,11 +327,14 @@ parts:
     desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
-    requirements:
-      process: Bambu ABS Black; 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   # Power supply enclosure
   printed/psu-front-cover:
@@ -283,10 +343,13 @@ parts:
     desc: Power supply front cover (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/psu-rear-cover:
     type: step
@@ -294,10 +357,13 @@ parts:
     desc: Power supply rear cover (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   printed/psu-front-cover-slider:
     type: step
@@ -305,10 +371,13 @@ parts:
     desc: Power supply front cover slider (x1)
     manufacturing:
       method: additive
+      parameters:
+        nozzle: 0.4 mm
+        layer height: 0.2 mm
+        infill: 30%
+    tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
-    requirements:
-      process: 0.4 mm nozzle, 0.2 mm layer height, 30% infill
 
   ##############################################################################
   # CNC machined metal parts
@@ -317,16 +386,17 @@ parts:
   # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit on
   # mating features.
   #
-  # 'material' is the alloy, and it is a plain string rather than a catalogued
-  # material: //pub/std/manufacturing/material publishes plastics only, so the
-  # printed parts above name an object and these name a substance. A metals
-  # catalogue is what would fix that (see PARTCAD.md).
+  # 'material' names a catalogued material like the printed parts above do. The
+  # alloys are catalogued in ../../partcad.yaml, because
+  # //pub/std/manufacturing/material publishes plastics only - a metals
+  # catalogue there is what would let this package stop keeping its own (see
+  # PARTCAD.md).
   #
-  # The tolerance and the finish are what the manufacturer is asked for, and a
-  # 'step' part has nowhere to declare either - the object-type parameters that
-  # carry them are refused on this part type - so they are carried in
-  # 'requirements', which nothing reads, and 'pc test' fails every part here for
-  # having no tolerance. See PARTCAD.md.
+  # The tolerance is the 'tolerance:' field, which a 'step' part takes, and the
+  # finish and the fit are 'manufacturing.parameters' - what the manufacturer is
+  # asked for that the geometry does not carry. All three are columns of the
+  # generated bills of materials, and 'pc test' holds the tolerance to being
+  # declared.
   #
   # A NOTE ON "CNC + SHEET METAL"
   #   The readme says links 1, 2, 3 and 5 are machined *and* formed, and one
@@ -348,129 +418,120 @@ parts:
     desc: Motor 1 bearing mount (x1) - can be printed in ABS at high infill to save cost
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/arm-yaw-limit:
     type: step
     path: Metal_Parts/02_Arm_Yaw_Limit.step
     desc: Motor 1 rotation axis, yaw angle motion limit (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/motor-front-spacer:
     type: step
     path: Metal_Parts/02_Motor_Front_Spacer.step
     desc: Motor 2-5 front spacer (x4) - can be printed in ABS at 30% infill
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/motor-back-spacer:
     type: step
     path: Metal_Parts/02_Motor_Back_Spacer.step
     desc: Motor 2-4 rear spacer (x3)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/flange:
     type: step
     path: Metal_Parts/02_FLANGE.step
     desc: Motor 2-4 rear flange (x3)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/wrist-bracket:
     type: step
     path: Metal_Parts/02_Wrist_Bracket.step
     desc: Wrist motor 5 bracket (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/gripper-connector-a:
     type: step
     path: Metal_Parts/02_Gripper_Connector_A.step
     desc: Gripper connector A (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/gripper-connector-b:
     type: step
     path: Metal_Parts/02_Gripper_Connector_B.step
     desc: Gripper connector B (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/slider-bracket:
     type: step
     path: Metal_Parts/02_Slider_Bracket.step
     desc: Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/slider-extension:
     type: step
     path: Metal_Parts/02_Slider_Extension.step
     desc: Slider to gripper extension (x2)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   cnc/lower-upper-link-l:
     type: step
@@ -478,65 +539,60 @@ parts:
     desc: Upper-lower arm link, left (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/lower-upper-link-r:
     type: step
     path: Metal_Parts/02_Lower_Upper_Link_R.step
     desc: Upper-lower arm link, right (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/lower-wrist-link-l:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_L.step
     desc: Lower arm-wrist link, left (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/lower-wrist-link-r:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_R.step
     desc: Lower arm-wrist link, right (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/gear-connector:
     type: step
     path: Metal_Parts/02_Gear_Connector.step
     desc: Gear connector (x1)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/rack:
     type: step
     # NOTE: "02-RACK.step" in the same folder is a duplicate of this file.
@@ -544,13 +600,12 @@ parts:
     desc: Rack (x2)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/base-motor-shim:
     type: step
     path: Metal_Parts/02_Base_Motor_Shim.step
@@ -558,13 +613,12 @@ parts:
       images folder, but missing from the readme.md BOM table)
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
-
+      material: //pub/robotics/rebot/devarm:aluminium-5052
   cnc/link1:
     type: step
     # NOTE: "03-Link1.step" in the same folder is a duplicate of this file.
@@ -572,12 +626,12 @@ parts:
     desc: Link 1 (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   cnc/link2:
     type: step
@@ -586,12 +640,12 @@ parts:
     desc: Link 2 (x2) - CNC + sheet metal
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   cnc/link3-l:
     type: step
@@ -600,12 +654,12 @@ parts:
     desc: Link 3 left (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   cnc/link3-r:
     type: step
@@ -614,12 +668,12 @@ parts:
     desc: Link 3 right (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   cnc/link5:
     type: step
@@ -628,12 +682,12 @@ parts:
     desc: Link 5 (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
+      parameters:
+        finish: anodized or sandblasted
+        fit: H7 or interference on mating features
+    tolerance: 0.02
     properties:
-      material: Aluminum Alloy 5052
-    requirements:
-      tolerance: "+/-0.02 mm on key dimensions (GB/T1840-M); PartCAD has no
-        home for this yet - see PARTCAD.md"
-      finish: Anodizing / sandblasting; H7 or interference fit on mating features
+      material: //pub/robotics/rebot/devarm:aluminium-5052
 
   ##############################################################################
   # Purchased parts - fasteners
@@ -876,6 +930,223 @@ parts:
     desc: Soft gripper mount
     manufacturing:
       method: additive
+
+# What the shop cuts these plates on, once, for every part that declares a
+# 'cam:' section of its own. The numbers are a 3-axis router in 5052 aluminium
+# with flood coolant: conservative feeds, a shallow pass, and climb milling for
+# the edge finish the readme's anodized parts need. A part that needs something
+# else says so for itself.
+#
+# 'pc cam' writes the route of every such part; 'pc test' runs the same code as
+# its 'cam' check and fails a part whose section cannot produce one. That is what
+# makes the "subtractive" method above a claim somebody checked rather than a
+# label: a tool that will not fit the inside corners of a part is a route that
+# does not come out.
+
+
+
+  ##############################################################################
+  # The machined plates, as jobs on a machine
+  #
+  # A 2.5D route is cut down Z, so a plate has to lie flat in XY for one to mean
+  # anything - and these plates are drawn in the orientation they have in the
+  # arm, which is not that. Each entry below is the same part turned flat: an
+  # alias with the 'offset' that lays it down and the 'cam:' section that says
+  # how it is cut. The parts themselves keep the orientation the assembly needs.
+  #
+  # Each is a second declaration of the same STEP file rather than an alias of
+  # the part: a 'cam:' section on an alias is dropped, so an alias cannot be
+  # "the same part as a job on a machine". See ../../PARTCAD.md.
+  #
+  # Which way *up* matters as much as flat. A route follows the section at the
+  # bottom of the cut, so the face carrying the pockets and the counterbores has
+  # to point at the spindle: laid the other way up, the route follows the
+  # pocket floor and cuts the part in half. Where the two faces differ, the
+  # 'offset' below is the one that puts the widest section down - which is also
+  # the physical truth about how the part is held. 'pc cam' says so out loud
+  # ("the outline changes over the depth of the cut ... this route follows the
+  # one at the bottom"), and that warning is still there for every part with a
+  # pocket in it: the outline cut is right, and the pockets are a second
+  # operation these routes do not carry. See ../../PARTCAD.md.
+  #
+  # 'pc cam -p' writes the routes; 'pc test' fails any of these whose section
+  # cannot produce one, which is what makes 'method: subtractive' on the part a
+  # claim somebody checked. The cutter is 2 mm because the M3 clearance holes are
+  # 3.2 mm and a profile cut goes around the inside of every hole.
+  ##############################################################################
+  cam/base-reinforcement:
+    type: step
+    path: Metal_Parts/02_Base_Reinforcement_Part.step
+    desc: Motor 1 bearing mount, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], 180]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/arm-yaw-limit:
+    type: step
+    path: Metal_Parts/02_Arm_Yaw_Limit.step
+    desc: Motor 1 rotation axis, yaw angle motion limit, laid flat for the machine
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/motor-front-spacer:
+    type: step
+    path: Metal_Parts/02_Motor_Front_Spacer.step
+    desc: Motor 2-5 front spacer, laid flat for the machine
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/motor-back-spacer:
+    type: step
+    path: Metal_Parts/02_Motor_Back_Spacer.step
+    desc: Motor 2-4 rear spacer, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/flange:
+    type: step
+    path: Metal_Parts/02_FLANGE.step
+    desc: Motor 2-4 rear flange, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], 90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/wrist-bracket:
+    type: step
+    path: Metal_Parts/02_Wrist_Bracket.step
+    desc: Wrist motor 5 bracket, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], 90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/gripper-connector-a:
+    type: step
+    path: Metal_Parts/02_Gripper_Connector_A.step
+    desc: Gripper connector A, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/gripper-connector-b:
+    type: step
+    path: Metal_Parts/02_Gripper_Connector_B.step
+    desc: Gripper connector B, laid flat for the machine
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/slider-bracket:
+    type: step
+    path: Metal_Parts/02_Slider_Bracket.step
+    desc: Gripper slider metal bracket, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/lower-upper-link-l:
+    type: step
+    path: Metal_Parts/02_Lower_Upper_Link_L.step
+    desc: Upper-lower arm link, left, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], 90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/lower-upper-link-r:
+    type: step
+    path: Metal_Parts/02_Lower_Upper_Link_R.step
+    desc: Upper-lower arm link, right, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/lower-wrist-link-l:
+    type: step
+    path: Metal_Parts/02_Lower_Wrist_Link_L.step
+    desc: Lower arm-wrist link, left, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], 90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/lower-wrist-link-r:
+    type: step
+    path: Metal_Parts/02_Lower_Wrist_Link_R.step
+    desc: Lower arm-wrist link, right, laid flat for the machine
+    offset: [[0, 0, 0], [0, 1, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/gear-connector:
+    type: step
+    path: Metal_Parts/02_Gear_Connector.step
+    desc: Gear connector, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], -90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/rack:
+    type: step
+    path: Metal_Parts/02_Rack.step
+    desc: Rack, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], 90]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+  cam/base-motor-shim:
+    type: step
+    path: Metal_Parts/02_Base_Motor_Shim.step
+    desc: Base motor shim, laid flat for the machine
+    offset: [[0, 0, 0], [1, 0, 0], 180]
+    tolerance: 0.02
+    cam:
+      operation: profile
+      tool: 2 mm
+
+# A projection of every object, next to the package. The generated bills of
+# materials show each line's picture from these, which is the column a reader of
+# a parts list looks at first; SVG so that a diff is a diff and the files stay
+# small.
+render:
+  svg:
+    prefix: doc/
+
+cam:
+  gcode:
+    feed: 900 mm/min
+    plunge: 250 mm/min
+    depth_per_pass: 0.8 mm
+    safe_z: 5 mm
+    speed: 12000 rpm
+    direction: climb
 
 assemblies:
   power-supply:

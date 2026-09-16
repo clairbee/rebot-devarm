@@ -15,7 +15,7 @@
 name: //pub/robotics/rebot/devarm
 desc: reBot DevArm - open source 7-DoF robotic arm for developers
 url: https://github.com/clairbee/rebot-devarm
-partcad: ">=0.8.33"
+partcad: ">=0.8.91"
 
 # The parts declared here are meant to be manufactured or purchased, not just
 # viewed. This makes the package visible to 'pc supply quote' and friends.
@@ -40,6 +40,64 @@ docs:
     pc --no-ansi render -t pdf -a power-supply -P //pub/robotics/rebot/devarm/b601-dm
     pc --no-ansi inspect -a //pub/robotics/rebot/devarm/b601-dm:reference/arm-v1.1
     ```
+
+# The materials this robot is made of, for the ones no public catalogue
+# publishes yet. '//pub/std/manufacturing/material/plastic' has PLA, ABS and
+# nylon, which the printed parts and the connector housings name there; metals
+# and silicone are catalogued here so that a part can name an object rather than
+# repeat a string, and so that a density turns a volume into a mass.
+#
+# Densities are g/mm^3, which is what PartCAD reads: a datasheet's g/cm^3
+# divided by 1000.
+materials:
+  aluminium-5052:
+    formal: AL 5052
+    full: Aluminium alloy 5052 (AlMg2.5)
+    desc: |
+      The alloy every machined part of both arms is cut from. Non-heat-treatable,
+      good corrosion resistance, and the one the readmes name for CNC work with
+      an anodized or sandblasted finish.
+    url: https://en.wikipedia.org/wiki/5052_aluminium_alloy
+    density: 0.00268
+    tags:
+      - corrosion-resistant
+      - weldable
+      - anodizable
+
+  stainless-304:
+    formal: SS 304
+    full: Stainless steel 304 (A2)
+    desc: The steel the power supply enclosure's screws and nuts are made of.
+    url: https://en.wikipedia.org/wiki/SAE_304_stainless_steel
+    density: 0.0079
+    tags:
+      - corrosion-resistant
+
+  chrome-steel-52100:
+    formal: AISI 52100
+    full: Chrome steel AISI 52100 (100Cr6)
+    desc: Bearing steel - the rings and the rollers of every bearing in the arm.
+    url: https://en.wikipedia.org/wiki/52100_steel
+    density: 0.00781
+    tags:
+      - hardened
+      - bearing
+
+  silicone:
+    full: Silicone rubber
+    desc: The anti-slip pad under the base, and the insulation of the wiring.
+    url: https://en.wikipedia.org/wiki/Silicone_rubber
+    density: 0.0012
+    tags:
+      - elastomer
+      - heat-resistant
+
+  steel-galvanized:
+    full: Galvanized steel
+    desc: The case of the MeanWell power supplies.
+    density: 0.00785
+    tags:
+      - corrosion-resistant
 
 dependencies:
   # The public PartCAD index. It provides '//pub/std/metric/cqwarehouse', which

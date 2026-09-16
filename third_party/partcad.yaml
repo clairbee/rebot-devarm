@@ -16,8 +16,8 @@
 #   thing to check a clearance against and the wrong thing to machine from.
 #
 #   Every part below says which of its dimensions are from a datasheet or a
-#   product listing ("stated") and which are inferred ("approximate"), and
-#   'summary:' says what the envelope leaves out. Where a dimension is not known
+#   product listing ("stated") and which are inferred ("approximate"), and a
+#   comment on each says what the envelope leaves out. Where a dimension is not known
 #   at all the part is not declared: an invented figure is worse than a gap,
 #   because nothing downstream can tell it from a measured one.
 #
@@ -80,12 +80,11 @@ parts:
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    summary: >-
-      Stated dimensions (35 mm bore, 44 mm outside diameter, 5 mm width) from the
-      product listing, and confirmed by the released CAD, which has one solid of
-      45.3 x 44.8 x 5.0 mm where this bearing goes. The envelope has no balls, no
-      raceway grooves and no seal lip, and its two rings are drawn as one solid,
-      so it cannot be used to check anything that turns.
+    # What this envelope is, and what it leaves out:
+    # Stated dimensions (35 mm bore, 44 mm outside diameter, 5 mm width) from the product listing,
+    # and confirmed by the released CAD, which has one solid of 45.3 x 44.8 x 5.0 mm where this
+    # bearing goes. The envelope has no balls, no raceway grooves and no seal lip, and its two rings
+    # are drawn as one solid, so it cannot be used to check anything that turns.
 
   bearing/6803zz:
     type: build123d
@@ -100,10 +99,10 @@ parts:
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    summary: >-
-      Stated dimensions (17 mm bore, 26 mm outside diameter, 5 mm width) from the
-      product listing, and confirmed by the released CAD, which has exactly three
-      solids of 26.0 x 26.0 x 5.0 mm. An envelope, as for the 6707ZZ.
+    # What this envelope is, and what it leaves out:
+    # Stated dimensions (17 mm bore, 26 mm outside diameter, 5 mm width) from the product listing,
+    # and confirmed by the released CAD, which has exactly three solids of 26.0 x 26.0 x 5.0 mm. An
+    # envelope, as for the 6707ZZ.
 
   bearing/axk5578:
     type: build123d
@@ -118,13 +117,12 @@ parts:
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    summary: >-
-      Stated dimensions (55 mm bore, 78 mm outside diameter, 3 mm thickness) from
-      the AXK5578 designation. Drawn as the same annular envelope as a ball
-      bearing, which it is not: a thrust needle bearing is a cage of rollers that
-      is normally used between two washers (an AS5578 pair). The readme orders no
-      washers, but the released CAD has a 5 mm stack where this 3 mm bearing goes,
-      which is this bearing plus two 1 mm washers - see PARTCAD.md.
+    # What this envelope is, and what it leaves out:
+    # Stated dimensions (55 mm bore, 78 mm outside diameter, 3 mm thickness) from the AXK5578
+    # designation. Drawn as the same annular envelope as a ball bearing, which it is not: a thrust
+    # needle bearing is a cage of rollers that is normally used between two washers (an AS5578
+    # pair). The readme orders no washers, but the released CAD has a 5 mm stack where this 3 mm
+    # bearing goes, which is this bearing plus two 1 mm washers - see PARTCAD.md.
 
   ##############################################################################
   # Linear motion
@@ -140,12 +138,11 @@ parts:
     properties:
       material: stainless steel
       color: "#B8BEC4"
-    summary: >-
-      A 9 mm wide, 10 mm high rail section 170 mm long, which is the MGN9
-      standard profile and the length the readme names. Approximate in its
-      detail: the real rail has ball grooves down both flanks and a row of
-      counterbored mounting holes at 20 mm pitch, and this envelope has neither,
-      so it says where the rail is and not how it is fixed down.
+    # What this envelope is, and what it leaves out:
+    # A 9 mm wide, 10 mm high rail section 170 mm long, which is the MGN9 standard profile and the
+    # length the readme names. Approximate in its detail: the real rail has ball grooves down both
+    # flanks and a row of counterbored mounting holes at 20 mm pitch, and this envelope has neither,
+    # so it says where the rail is and not how it is fixed down.
 
   carriage/mgn9c:
     type: build123d
@@ -156,13 +153,12 @@ parts:
     properties:
       material: stainless steel
       color: "#B8BEC4"
-    summary: >-
-      The MGN9C block envelope - 20 mm wide, 39 mm long, 10 mm high, with the
-      slot that straddles the rail - and the four M3 mounting holes on its top
-      face at the standard 20 x 10 mm pitch. Approximate: the readme names only
-      "MGN9", and the C and H blocks differ in length, so the length is the one a
-      C block has. The end seals, the grease nipple and the ball circuit are left
-      out.
+    # What this envelope is, and what it leaves out:
+    # The MGN9C block envelope - 20 mm wide, 39 mm long, 10 mm high, with the slot that straddles
+    # the rail - and the four M3 mounting holes on its top face at the standard 20 x 10 mm pitch.
+    # Approximate: the readme names only "MGN9", and the C and H blocks differ in length, so the
+    # length is the one a C block has. The end seals, the grease nipple and the ball circuit are
+    # left out.
 
   ##############################################################################
   # Actuators
@@ -170,7 +166,7 @@ parts:
   # The arm's joints: the Damiao pair for the DM variant, the RobStride pair for
   # the RS one. Three of the four are sized from the released full-arm STEP files
   # rather than from a datasheet, because their vendors publish none - see the
-  # 'summary' of each, and the table in PARTCAD.md that the measurements come
+  # comment on each, and the table in PARTCAD.md that the measurements come
   # from.
   ##############################################################################
   actuator/dm4310:
@@ -187,15 +183,13 @@ parts:
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    summary: >-
-      A cylinder 57 mm across and 57 mm tall with a 30 mm output boss. Measured
-      rather than quoted: the released full-arm STEP holds four identical solids
-      of 69.5 x 57.0 x 57.0 mm, which is the DM4310's count in the BOM, and this
-      cylinder is the round part of that envelope. The extra 12.5 mm of the
-      measured box is the side connector, which is not modelled.
-      TODO(data): the Seeed Studio listing says 56 x 56 x 46 mm for this
-      actuator, which is smaller in every direction than what the CAD shows.
-      One of the two is wrong and the vendor is the one to ask.
+    # What this envelope is, and what it leaves out:
+    # A cylinder 57 mm across and 57 mm tall with a 30 mm output boss. Measured rather than quoted:
+    # the released full-arm STEP holds four identical solids of 69.5 x 57.0 x 57.0 mm, which is the
+    # DM4310's count in the BOM, and this cylinder is the round part of that envelope. The extra
+    # 12.5 mm of the measured box is the side connector, which is not modelled. TODO(data): the
+    # Seeed Studio listing says 56 x 56 x 46 mm for this actuator, which is smaller in every
+    # direction than what the CAD shows. One of the two is wrong and the vendor is the one to ask.
 
   actuator/dm4340p:
     type: build123d
@@ -211,12 +205,11 @@ parts:
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    summary: >-
-      A cylinder 57 mm across and 56.6 mm tall with a 34 mm output boss. Measured
-      the same way as the DM4310 above and from the same file - three identical
-      solids of 57.0 x 57.0 x 56.6 mm, matching the three DM4340P actuators of
-      the BOM - because the vendor publishes no dimensions at all for this one.
-      Approximate in everything but its overall size.
+    # What this envelope is, and what it leaves out:
+    # A cylinder 57 mm across and 56.6 mm tall with a 34 mm output boss. Measured the same way as
+    # the DM4310 above and from the same file - three identical solids of 57.0 x 57.0 x 56.6 mm,
+    # matching the three DM4340P actuators of the BOM - because the vendor publishes no dimensions
+    # at all for this one. Approximate in everything but its overall size.
 
   actuator/rs00:
     type: build123d
@@ -232,11 +225,11 @@ parts:
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    summary: >-
-      A cylinder 57 mm across and 52 mm tall with a 30 mm output boss, measured
-      off the released RS arm STEP - four identical solids of 57.1 x 57.0 x
-      52.0 mm, matching the four RS00 actuators of the BOM. RobStride publishes
-      no dimensioned drawing, so the overall size is all this is right about.
+    # What this envelope is, and what it leaves out:
+    # A cylinder 57 mm across and 52 mm tall with a 30 mm output boss, measured off the released RS
+    # arm STEP - four identical solids of 57.1 x 57.0 x 52.0 mm, matching the four RS00 actuators of
+    # the BOM. RobStride publishes no dimensioned drawing, so the overall size is all this is right
+    # about.
 
   actuator/rs06:
     type: build123d
@@ -252,13 +245,12 @@ parts:
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    summary: >-
-      A cylinder 87 mm across and 50.5 mm tall with a 44 mm output boss. Measured
-      off the released RS arm STEP, where the three solids that match this
-      actuator's BOM quantity are all 50.5 mm tall and between 84.5 and 87.3 mm
-      across - they are drawn slightly differently from one another, and this
-      envelope takes the largest of the three so that a clearance checked against
-      it holds for all of them.
+    # What this envelope is, and what it leaves out:
+    # A cylinder 87 mm across and 50.5 mm tall with a 44 mm output boss. Measured off the released
+    # RS arm STEP, where the three solids that match this actuator's BOM quantity are all 50.5 mm
+    # tall and between 84.5 and 87.3 mm across - they are drawn slightly differently from one
+    # another, and this envelope takes the largest of the three so that a clearance checked against
+    # it holds for all of them.
 
   ##############################################################################
   # Power
@@ -276,11 +268,10 @@ parts:
     properties:
       material: galvanized steel
       color: "#C9CDD1"
-    summary: >-
-      The 215 x 115 x 30 mm case of the LRS-350 series, stated by the MeanWell
-      datasheet, with the mounting flanges it is screwed down by. The terminal
-      block, the ventilation slots and the adjustment trimmer are left out, and
-      the flange hole positions are approximate.
+    # What this envelope is, and what it leaves out:
+    # The 215 x 115 x 30 mm case of the LRS-350 series, stated by the MeanWell datasheet, with the
+    # mounting flanges it is screwed down by. The terminal block, the ventilation slots and the
+    # adjustment trimmer are left out, and the flange hole positions are approximate.
 
   psu/lrs-600-48:
     type: build123d
@@ -295,10 +286,9 @@ parts:
     properties:
       material: galvanized steel
       color: "#C9CDD1"
-    summary: >-
-      The same 215 x 115 x 30 mm case as the LRS-350 above: the LRS-600 shares
-      the case of the LRS-350 in the MeanWell datasheet. Same envelope, same
-      omissions.
+    # What this envelope is, and what it leaves out:
+    # The same 215 x 115 x 30 mm case as the LRS-350 above: the LRS-600 shares the case of the
+    # LRS-350 in the MeanWell datasheet. Same envelope, same omissions.
 
   ##############################################################################
   # Connectors and cables
@@ -315,11 +305,10 @@ parts:
     properties:
       material: nylon
       color: "#F2C230"
-    summary: >-
-      The 2+2 XT30 housing as a 16 x 12 x 8 mm block with the two power bullets
-      and two signal pins standing off one face. Approximate: taken from the
-      XT30 footprint the photographs in the readme show, not from a datasheet -
-      Amass publishes none for the 2+2 variant.
+    # What this envelope is, and what it leaves out:
+    # The 2+2 XT30 housing as a 16 x 12 x 8 mm block with the two power bullets and two signal pins
+    # standing off one face. Approximate: taken from the XT30 footprint the photographs in the
+    # readme show, not from a datasheet - Amass publishes none for the 2+2 variant.
 
   connector/xt60e-female:
     type: build123d
@@ -330,10 +319,10 @@ parts:
     properties:
       material: nylon
       color: "#F2C230"
-    summary: >-
-      The XT60E-F panel body as a 16 x 8 mm plate with the two 3.5 mm bullets
-      behind it and the two M3 mounting holes the readme's assembly step 1-3
-      screws through. Approximate in depth; the pigtail is not part of the shape.
+    # What this envelope is, and what it leaves out:
+    # The XT60E-F panel body as a 16 x 8 mm plate with the two 3.5 mm bullets behind it and the two
+    # M3 mounting holes the readme's assembly step 1-3 screws through. Approximate in depth; the
+    # pigtail is not part of the shape.
 
   wire/silicone-14awg:
     type: build123d
@@ -345,12 +334,11 @@ parts:
     properties:
       material: silicone
       color: "#1A1A1A"
-    summary: >-
-      A round 3.5 mm section - 14 AWG conductor plus silicone insulation - run
-      straight for the given length. It is the shape of a wire in its bag, not of
-      an installed one: the route an installed wire takes belongs to the assembly
-      that routes it, and a swept path replaces this cylinder as soon as there is
-      a route to sweep along (see ./cable-xt30-2x2.assy).
+    # What this envelope is, and what it leaves out:
+    # A round 3.5 mm section - 14 AWG conductor plus silicone insulation - run straight for the
+    # given length. It is the shape of a wire in its bag, not of an installed one: the route an
+    # installed wire takes belongs to the assembly that routes it, and a swept path replaces this
+    # cylinder as soon as there is a route to sweep along (see ./cable-xt30-2x2.assy).
 
   ##############################################################################
   # Miscellaneous
@@ -365,7 +353,7 @@ parts:
     properties:
       material: silicone
       color: "#2E2E2E"
-    summary: Stated dimensions, and nothing about this part is more than its box.
+    # What this envelope is: stated dimensions, and nothing about this part is more than its box.
 
 sketches:
   pad-30x9:

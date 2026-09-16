@@ -40,82 +40,88 @@ This BOM is for the reBot Arm B601 RS robotic arm, which uses ROBOSTRIDE series 
 
 ---
 
+## Where the parts list lives
+
+**The parts list of this arm is generated, not written by hand.** Every part is
+declared once in [`partcad.yaml`](./partcad.yaml), the arm is assembled out of
+those declarations in [`arm.assy`](./arm.assy), and these documents are what
+[PartCAD](https://partcad.org) reads back out of them:
+
+| Document | What it lists |
+|---|---|
+| [arm.md](./arm.md) | the whole arm: every printed, machined and purchased part, with its picture, material, process, tolerance, file and the quantity the assembly places |
+| [power-supply.md](./power-supply.md) | the power supply enclosure, the same way |
+
+Regenerate them with:
+
+```shell
+pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs arm
+pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs power-supply
+```
+
+CI regenerates them on every pull request and fails if the result differs, so a
+part that changes shape, material, supplier or quantity changes the parts list in
+the same commit. A quantity in particular is nowhere typed in: it is how many
+times the assembly places the part. See [PARTCAD.md](../../PARTCAD.md).
+
+The sections below keep what a generated table cannot say: what the parts are
+for, what to watch out for when making them, and what they cost.
+
+---
+
 ## 🖨️ 3D Printed Parts
 
-| Part Description | Image | File Name | Material | Qty | Notes |
-|----------|------|--------|------|----------|------|
-| Robotic Arm Base Platform | <img src="./3D_Printed_Parts/images/02-BASE.png" width="80"> | 1-BASE-PLATE.step | Bambu ABS Black | 1 | 0.4 nozzle, 0.2 layer height, 30% infill |
-| Robotic Arm Base Link | <img src="./3D_Printed_Parts/images/02-BASE_02.png" width="80"> | 1-RSM1-STATOR-1.step | Bambu ABS Black | 1 | 0.4 nozzle, 0.2 layer height, 30% infill |
-| Upper Arm Left Filler | <img src="./3D_Printed_Parts/images/02-DOWN_TRIM_1.png" width="80"> | 1-DOWN-DL.step | Bambu PLA Black & Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Upper Arm Right Filler | <img src="./3D_Printed_Parts/images/02-DOWN_TRIM_2.png" width="80"> | 1-DOWN-DR.step | Bambu PLA Black & Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Upper Arm and Lower Arm Center Filler | <img src="./3D_Printed_Parts/images/02-DOWN-FILLING.png" width="80"> | 1-SPACE-UP.step | Bambu ABS Black | 2 | 0.4 nozzle, 0.2 layer height, 30% infill |
-| Arm Handle | <img src="./3D_Printed_Parts/images/02-HANDLE.png" width="80"> | 1-HANDLE.step | Bambu ABS Black | 1 | 0.4 nozzle, 0.2 layer height, 30% infill |
-| Upper and Lower Arm Cover | <img src="./3D_Printed_Parts/images/02-DOWN-COVER.png" width="80"> | 1-COVER.step | Bambu PLA Green | 2 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Lower Arm Left Filler | <img src="./3D_Printed_Parts/images/02-UP-TRIM_1.png" width="80"> | 1-UP-DL.step | Bambu PLA Black & Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Lower Arm Right Filler | <img src="./3D_Printed_Parts/images/02-UP-TRIM_2.png" width="80"> | 1-UP-DR.step | Bambu PLA Black & Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Gripper Horizontal Limit | <img src="./3D_Printed_Parts/images/02-SPACER.png" width="80"> | 1-STOPPER-1.step | Bambu PLA Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Gripper Slider Support Bracket | <img src="./3D_Printed_Parts/images/02-3D-RAIL-BRACKET.png" width="80"> | 1-RAIL-BASE-2.step | Bambu PLA Green | 1 | 0.4 nozzle, 0.2 layer height, 15% infill |
-| Gripper Finger | <img src="./3D_Printed_Parts/images/02-CLIP_1.png" width="80"> | 1-CLIP.step | Bambu ABS Black | 2 | 0.4 nozzle, 0.2 layer height, 45% infill. Print from the side of the gripper to improve its structural strength. |
+**[The printed parts of the arm](./arm.md)** are every `printed/*` line of the
+generated list, with the nozzle, layer height and infill each one is printed at.
+Reference price: **~$50**, varying with material and printing time.
 
-
-Long-term dragging of Wiring Harness 1 may abrade the motor connector and result in poor electrical contact. Printing the parts listed below can mitigate this risk.
-
-| Part Description | Image | File Name | Material | Qty | Remarks |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| Wiring Harness Clips for Two Sides of Motor 1 | <img src="./3D_Printed_Parts/images/RS_Motor1_wiring_harness_clip.jpg" width="80"> | `RS_Motor1_wiring_harness_clip.stp` | Bambu Lab Black ABS | 2 | 0.4 mm nozzle, 0.2 mm layer height, 30% infill |
+Long-term dragging of Wiring Harness 1 may abrade the motor connector and result
+in poor electrical contact. Printing `printed/motor1-harness-clip` (x2) mitigates
+that; it is in the list above, and it is optional.
 
 ### 🧩 Printing Recommendations
 - Layer height: 0.2 mm
 - Nozzle: 0.4 mm
 - Supports: Add as needed
 - Materials: High-temperature and load-bearing parts use ABS with 30–80% infill; may also use nylon or carbon-fiber reinforced materials. Cosmetic parts use PLA with 15% infill.
-- Recommended materials for load-bearing parts:
 
 ---
 
 ## 🔩 CNC Machined Metal Parts
 
 > [!WARNING]
-> Some parts that can be replaced with 3D printing are noted in the remarks, which can significantly reduce costs.
+> Some of these can be 3D printed instead, which reduces the cost significantly.
+> Which ones is in each part's description in the generated list.
 
-| Part Description | Image | File Name | Material | Qty | Machining | Notes |
-|----------|------|--------|----------|------|------|------|
-| Motor 1 Bearing Mount | <img src="./Metal_Parts/images/02_Base_Reinforcement_Part.png" width="80"> | 2-RSM1-ROTOR-1.step | Aluminum Alloy 5052 | 1 | CNC |  |
-| Link1 Left Metal | <img src="./Metal_Parts/images/Link1_Left_Metal.png" width="80"> | 2-RSM-ROTOR-L.step | Aluminum Alloy 5052 | 1 | CNC |  |
-| Link1 Right Metal | <img src="./Metal_Parts/images/Link1_Right_Metal.png" width="80"> | 2-RSM-ROTOR-R.step | Aluminum Alloy 5052 | 4 | CNC ||
-| Link1 Bottom Metal | <img src="./Metal_Parts/images/Link1_Bottom_Metal.png" width="80"> | 2-RSM1-ROTOR-1.step | Aluminum Alloy 5052 | 3 | CNC | |
-| Joint Metal Disc  | <img src="./Metal_Parts/images/2-CD.png" width="80"> | 2-CD.step | Aluminum Alloy 5052 | 3 | CNC | Used to Conceal Screws |
-| RS06 Front Extesnion | <img src="./Metal_Parts/images/RS06_Front_Extesnion.png" width="80"> | 2-RSM2-STATOR-1.step | Aluminum Alloy 5052 | 2 | CNC | |
-| RS06 Back Extesnion | <img src="./Metal_Parts/images/RS06_Back_Extesnion.png" width="80"> | 2-RSM2-STATOR-2.step | Aluminum Alloy 5052 | 2 | CNC | |
-| Link2 Left and Right Metal | <img src="./Metal_Parts/images/2-LINK-2_3.png" width="80"> | 2-LINK-2_3.step | Aluminum Alloy 5052 | 2 | CNC | |
-| Upper Limit L | <img src="./Metal_Parts/images/Upper_limit_L.png" width="80"> | 2-Upper-Limit_L.stp | Aluminum Alloy 5052 | 1 | CNC | |
-| Upper Limit R | <img src="./Metal_Parts/images/Upper_limit_R.png" width="80"> | 2-Upper-Limit_R.stp | Aluminum Alloy 5052 | 1 | CNC | |
-| Lower & Upper Link L| <img src="./Metal_Parts/images/2-RSM3-ROTATOR-L.png" width="80"> | 2-RSM3-ROTATOR-L.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Lower & Upper Link R| <img src="./Metal_Parts/images/2-RSM3-ROTATOR-R.png" width="80"> | 2-RSM3-ROTATOR-R.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Link3 Left Metal| <img src="./Metal_Parts/images/Link3-Left-Metal.png" width="80"> | 2-LINK-3_4-L.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Link3 Right Metal| <img src="./Metal_Parts/images/Link3-Right-Metal.png" width="80"> | 2-LINK-3_4-R.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Link3 Right & Left Link | <img src="./Metal_Parts/images/Link3-Right-Left-Link.png" width="80"> | 2-SPACE-UP-2.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Motor4-7 Cable Fixing | <img src="./Metal_Parts/images/Motor4_Cable_Fixing.png" width="80"> | 1-O-CLIP.step | Aluminum Alloy 5052 | 4 | CNC | Seeedstudio ships this part as a single CNC-machined metal component integrated with another part, which drives up manufacturing costs. If you reproduce the hardware on your own, you can 3D-print this part with ABS material and install M2 nuts at the positions marked by red arrows. |
-| Motor4 Back Cable | <img src="./Metal_Parts/images/02_Motor_Back_Spacer.png" width="80"> | 2-Motor_Back_Spacer.step | Aluminum Alloy 5052 | 1 | CNC |  |
-| Link4-5_L | <img src="./Metal_Parts/images/Link4-5_L.png" width="80"> | 2-LINK-4_5-L.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Link4-5_R | <img src="./Metal_Parts/images/Link4-5_R.png" width="80"> | 2-LINK-4_5-R.step | Aluminum Alloy 5052 | 1 | CNC | |
-| Link5 | <img src="./Metal_Parts/images/Link5.png" width="80"> | 2-RSM5-STATOR.step | Aluminum Alloy 5052 | 1 | CNC | |
-|Wrist_Connector_A | <img src="./Metal_Parts/images/Wrist_Connector_A.png" width="80"> | 2-RSM6-RORATOR-1.step | Aluminum Alloy 5052 | 1 | CNC |  |
-|Wrist_Connector_B | <img src="./Metal_Parts/images/Wrist_Connector_B.png" width="80"> | 2-RSM6-RORATOR-2.step | Aluminum Alloy 5052 | 1 | CNC |  |
-| Gripper Connector A | <img src="./Metal_Parts/images/02_Gripper_Connector_A.png" width="80"> | 2-M6-ROTOR.step  | Aluminum Alloy 5052 | 1 | CNC | |
-| Gripper Connector B | <img src="./Metal_Parts/images/02_Gripper_Connector_B.png" width="80"> | 2-M7-STATOR.step  | Aluminum Alloy 5052 | 1 | CNC | |
-| Gripper Slider Metal Bracket | <img src="./Metal_Parts/images/02_Slider_Bracket.png" width="80"> | 2-RAIL-BASE-1.step | Aluminum Alloy 5052 | 1 | CNC | Can be 3D printed in ABS with high infill, not recommended for long-term use |
-| Slider to Gripper Extension | <img src="./Metal_Parts/images/02_Slider_Extension.png" width="80"> | 2-SLIDER-FIX.step | Aluminum Alloy 5052 | 2 | CNC | |
-| Rack | <img src="./Metal_Parts/images/Rack.png" width="80"> | 2-RACK-1M.step | Aluminum Alloy 5052 | 2 | CNC | |
-
+**[The machined parts of the arm](./arm.md)** are every `cnc/*` line of it, in
+aluminium 5052, each with its tolerance and finish. Market reference price:
+**~$250**, varying with the price of aluminium, the tolerances asked for and the
+lead time.
 
 ### 🧩 Machining Specifications
 - Key dimension tolerance: ±0.02 mm GB/T1840-M
 - Surface finish: Anodizing / Sandblasting
 - Mating parts recommended: H7 / interference fit
+
+**Four of these plates have generated machining routes.** They are declared as
+machine jobs as well as parts, and
+`pc cam -p -P //pub/robotics/rebot/devarm/b601-rs -O routes` writes the G-code.
+Only four, because most of this arm's metal is not plate: the joint discs are
+turned, the rotators are cut from bar, and a 2.5D outline route is not what makes
+any of them. See [PARTCAD.md](../../PARTCAD.md) and the comment in `partcad.yaml`.
+
 ---
 
 ## 🛒 Purchased Parts (Standard Parts)
+
+*What* to buy and *how many* is in the generated list — every `purchased/*` line
+of [arm.md](./arm.md) and [power-supply.md](./power-supply.md) carries the vendor
+and the exact SKU, and each one has a shape, so the parts are in the model for
+fit and collision checking as well as in the parts list.
+
+The table below is kept for the two things the generated one cannot yet carry: a
+reference price and a link to the offer. Prices go stale the way any hand-written
+table does, so treat them as an order of magnitude rather than a quote.
 
 > [!WARNING]
 > Since everyone will need to assemble and tighten the screws themselves, standard hex socket screws have been selected. After prolonged operation, the screws may loosen, which will affect the precision of the robotic arm. For this reason, you are required to purchase additional hot melt glue to perform thread locking on the screws at each joint.
@@ -180,13 +186,8 @@ The robotic arm is shipped without a power supply by default. You may connect yo
 | 304 Stainless Steel Phillips Pan Head Screw | M3x8 | 2 | $0.32 | / | / |
 | Hex Nut | M3x2.5 | 2 | 2.10 CNY | / | / |
 
-Printed Parts BOM:
-
-| Name | Image | Quantity | Notes |
-| ------ | ---- | --- | ---- |
-| [Front Shell](./3D_Printed_Parts/RS-power-Top%20Cover.stp) | <img src="./3D_Printed_Parts/images/RS-power-Top Cover.png" width="80"> | 1 | PLA 0.4 nozzle, 0.2 layer height, 30% infill |
-| [Rear Shell](./3D_Printed_Parts/RS-power-Bottom%20Cover.stp) | <img src="./3D_Printed_Parts/images/RS-power-Bottom Cover.png" width="80"> | 1 | PLA 0.4 nozzle, 0.2 layer height, 30% infill |
-| [Front Shell (Sliding Cover)](./3D_Printed_Parts/RS-power-Top%20Cover-Sliding%20Cover.stp) | <img src="./3D_Printed_Parts/images/RS-power-Top Cover-Sliding Cover.png" width="80"> | 1 | PLA 0.4 nozzle, 0.2 layer height, 30% infill |
+Printed Parts BOM: the three printed shells are the `printed/psu-*` lines of
+[power-supply.md](./power-supply.md), with their material and print settings.
 
 #### Power Supply Assembly
 

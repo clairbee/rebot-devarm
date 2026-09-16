@@ -58,6 +58,7 @@ jobs:
           set -e
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm power-supply
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs arm
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs power-supply
 
       - name: Regenerate the BOM documents
@@ -65,6 +66,7 @@ jobs:
           set -e
           pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm arm
           pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm power-supply
+          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs arm
           pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs power-supply
 
       - name: Fail if a generated document is out of date
