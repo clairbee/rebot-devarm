@@ -19,6 +19,7 @@ on:
       - "hardware/**/partcad.yaml"
       - "hardware/**/*.assy"
       - "hardware/**/*.md"
+      - "tools/*.py"
       - ".github/workflows/partcad.yml"
   push:
     branches:
@@ -45,7 +46,7 @@ jobs:
         # The floor the packages declare. Kept as a floor rather than a pin so
         # that a release with a fix lands here without an edit; if a release ever
         # breaks this, pin it here and say why.
-        run: pip install "partcad>=0.8.80"
+        run: pip install "partcad>=0.8.124"
 
       - name: Fetch what the packages depend on
         run: pc --no-ansi install
@@ -53,27 +54,39 @@ jobs:
       - name: Lint the configuration and the ASSY files
         run: pc --no-ansi lint
 
+      - name: Check that the arms still transcribe the released assemblies
+        # Both arm.assy files and both gripper.assy files are generated from the
+        # released STEP by tools/assy_from_reference.py. Regenerating them here is
+        # what keeps a hand edit - or a drifted part name - from surviving: the
+        # generator refuses to place a component whose part this package does not
+        # declare, and the diff check below catches anything it wrote differently.
+        run: python3 tools/assy_from_reference.py b601-dm b601-rs
+
       - name: Print the bills of materials
         run: |
           set -e
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm gripper
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm power-supply
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs arm
+          pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs gripper
           pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-rs power-supply
 
-      - name: Regenerate the BOM documents
+      - name: Regenerate every generated document
+        # Each package's own readme as well as its assemblies': the folder readmes
+        # are 'render: readme:' output too, and the prose in them lives in 'docs:'
+        # in partcad.yaml.
         run: |
           set -e
-          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm arm
-          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-dm power-supply
-          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs arm
-          pc --no-ansi render -t readme -a -P //pub/robotics/rebot/devarm/b601-rs power-supply
+          pc --no-ansi render -t readme -P //pub/robotics/rebot/devarm/b601-dm
+          pc --no-ansi render -t readme -P //pub/robotics/rebot/devarm/b601-rs
 
-      - name: Fail if a generated document is out of date
+      - name: Fail if a generated document or assembly is out of date
         run: |
-          if ! git diff --exit-code -- '*.md'; then
+          if ! git diff --exit-code -- '*.md' '*.assy'; then
             echo
-            echo "A generated bill of materials differs from the one checked in."
-            echo "Run the 'pc render' commands above and commit the result."
+            echo "A generated document or assembly differs from the one checked in."
+            echo "Run 'python3 tools/assy_from_reference.py b601-dm b601-rs' and the"
+            echo "'pc render' commands above, and commit the result."
             exit 1
           fi

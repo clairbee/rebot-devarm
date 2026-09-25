@@ -1,0 +1,33 @@
+# gripper
+
+The B601 DM gripper as the released assembly holds it (49 components)
+
+Package: `//pub/robotics/rebot/devarm/b601-dm`
+
+<img src="./doc/gripper.svg" alt="gripper" style="width: auto; height: auto; max-width: 200px; max-height: 200px;">
+
+## Parts
+
+### [//pub/robotics/rebot/devarm/b601-dm](README.md)
+
+| Part |  | Count | Material | Method | Process | Tolerance | Vendor | SKU | File | Description |
+| --- | --- | ---: | --- | --- | --- | ---: | --- | --- | --- | --- |
+| carriage-mgn9 | <img src="./doc/carriage-mgn9.svg" alt="carriage-mgn9" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 | stainless steel |  |  |  | amazon | B0D9QBQDKB | `vendor/carriage-mgn9c.step` | Alias to carriage/mgn9c from //pub/robotics/rebot/devarm/third_party |
+| finger | <img src="./doc/finger.svg" alt="finger" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 | ABS | additive |  | ±0.2 mm |  |  | `3D_Printed_Parts/01_Finger.step` | Gripper finger (x2); 0.4 mm nozzle, 0.2 mm layer height, 45% infill |
+| gear-connector | <img src="./doc/gear-connector.svg" alt="gear-connector" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | AL 5052 | subtractive | Anodized or sandblasted, H7 or interference fit on mating features | ±0.02 mm |  |  | `Metal_Parts/02_Gear_Connector.step` | Gear connector (x1) |
+| gear-m1-16t | <img src="./doc/gear-m1-16t.svg" alt="gear-m1-16t" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | steel |  |  |  | amazon | B0GDSR1LKM | `vendor/gear-m1-16t-b6.step` | Alias to gear/m1-16t-b6 from //pub/robotics/rebot/devarm/third_party |
+| rack | <img src="./doc/rack.svg" alt="rack" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 | AL 5052 | subtractive | Anodized or sandblasted, H7 or interference fit on mating features | ±0.02 mm |  |  | `Metal_Parts/02_Rack.step` | Rack (x2) |
+| rail-bracket | <img src="./doc/rail-bracket.svg" alt="rail-bracket" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | PLA | additive |  | ±0.2 mm |  |  | `3D_Printed_Parts/01_Rail_Bracket.step` | Gripper slider support bracket (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill |
+| rail-mgn9-170 | <img src="./doc/rail-mgn9-170.svg" alt="rail-mgn9-170" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | stainless steel |  |  |  | amazon | B0D54L45WM | `vendor/rail-mgn9-170.step` | Alias to rail/mgn9-170 from //pub/robotics/rebot/devarm/third_party |
+| screw-hm3-25 | <img src="./doc/screw-hm3-25.svg" alt="screw-hm3-25" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 6 | stainless steel |  |  |  | amazon | B0DJQFGRPQ (120 per pack) | `vendor/screw-hm3x25.step` | Alias to screw/hm3x25 from //pub/robotics/rebot/devarm/third_party |
+| screw-hm3-6 | <img src="./doc/screw-hm3-6.svg" alt="screw-hm3-6" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 4 | stainless steel |  |  |  | amazon | B0DJQG5YLF (120 per pack) | `vendor/screw-hm3x6.step` | Alias to screw/hm3x6 from //pub/robotics/rebot/devarm/third_party |
+| screw-ka3-12 | <img src="./doc/screw-ka3-12.svg" alt="screw-ka3-12" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 4 | steel |  |  |  | amazon | B01MXSS95N (100 per pack) | `vendor/screw-ka3x12.step` | Alias to screw/ka3x12 from //pub/robotics/rebot/devarm/third_party |
+| screw-km3-16 | <img src="./doc/screw-km3-16.svg" alt="screw-km3-16" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 8 | stainless steel |  |  |  | amazon | B01E6EIC2S | `vendor/screw-km3x16.step` | Alias to screw/km3x16 from //pub/robotics/rebot/devarm/third_party |
+| screw-km3-7 | <img src="./doc/screw-km3-7.svg" alt="screw-km3-7" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 12 | stainless steel |  |  |  | amazon | B01E6EIC2S | `vendor/screw-km3x7.step` | Alias to screw/km3x7 from //pub/robotics/rebot/devarm/third_party |
+| screw-m4x5-set | <img src="./doc/screw-m4x5-set.svg" alt="screw-m4x5-set" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 | steel |  |  |  |  |  | `vendor/screw-m4x5-set.step` | Alias to screw/m4x5-set from //pub/robotics/rebot/devarm/third_party |
+| slider-bracket | <img src="./doc/slider-bracket.svg" alt="slider-bracket" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | AL 5052 | subtractive | Anodized or sandblasted, H7 or interference fit on mating features | ±0.02 mm |  |  | `Metal_Parts/02_Slider_Bracket.step` | Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use |
+| slider-extension | <img src="./doc/slider-extension.svg" alt="slider-extension" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 | AL 5052 | subtractive | Anodized or sandblasted, H7 or interference fit on mating features | ±0.02 mm |  |  | `Metal_Parts/02_Slider_Extension.step` | Slider to gripper extension (x2) |
+
+<br/><br/>
+
+*Generated by [PartCAD](https://partcad.org/)*

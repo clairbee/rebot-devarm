@@ -1,380 +1,395 @@
-# Bill of materials of the reBot Arm B601 DM (Damiao DM43xx actuators).
+# Every part of the reBot Arm B601 DM (Damiao DM43xx actuators).
 #
-# Every entry below is one line of the BOM tables in ./readme.md. The readme
-# stays the human-facing document; this file is the machine-readable source of
-# truth that 'pc' reads to list, render, quote and (eventually) order the parts.
+# This file is the source of truth for the arm's parts list; ./README.md is
+# generated from it, and so are ./arm.md and ./power-supply.md.
 #
-# Naming convention:
-#   printed/*    - parts the user 3D prints  (readme: "3D Printed Parts")
-#   cnc/*        - parts the user has machined (readme: "CNC Machined Metal Parts")
-#   purchased/*  - catalog parts the user buys (readme: "Purchased Parts")
-#   accessory/*  - optional add-ons that are not part of the base arm
+# A name here is a name, and nothing else. What makes a part is its
+# 'manufacturing:' section, what it costs is its 'vendor:' and 'sku:', and
+# neither belongs in front of its name - so there are no 'printed/' or 'cnc/'
+# prefixes to keep in step with the declarations underneath them. The one place a
+# name says what a thing is for is '<part>-blank': the piece of plate a machined
+# part is cut from, which exists because 'method: subtractive' means "what is
+# left of something that existed first" and PartCAD asks what that was.
 #
 # Quantities are NOT stored here: in PartCAD a part is declared once and the
 # quantity comes from how many times an assembly places it. See ./arm.assy and
-# ./power-supply.assy. Until those assemblies are complete, the per-part 'desc'
-# carries the readme quantity in the "(xN)" suffix so that no data is lost.
+# ./power-supply.assy. Until those assemblies carry real placements, the per-part
+# 'desc' keeps the readme quantity in the "(xN)" suffix so that no data is lost.
 
 desc: reBot Arm B601 DM - Damiao DM43xx actuators
 url: https://github.com/clairbee/rebot-devarm/tree/main/hardware/reBot_B601_DM
 manufacturable: true
 
+# What ./README.md says above the generated parts list. The folder is a PartCAD
+# package - it holds the parts and the assemblies - so its readme is generated
+# from this file rather than hand-maintained beside it, and everything the
+# vendor's document said that is not a parts list is here.
+#
+# 'docs.intro' takes at most 5000 characters, which is why the two longest
+# sections of the old document are documents of their own under ./doc/ and linked
+# from here: what to buy and what it costs, and how the power supply goes
+# together.
 docs:
+  name: "\U0001F916 reBot Arm B601 DM - Open Source Hardware Specification"
   intro: |
-    Open source v1.1 of the B601 DM arm. The published BOM is the
-    minimal-cost reproduction of the design, not the Seeed shipping
-    configuration (see the declaration in readme.md).
+    <p align="center">
+      <img src="../../media/v1.1.png" alt="reBot-DevArm Banner">
+    </p>
+    <p align="center">
+      <strong>
+        <a href="./readme_zh.md">简体中文</a> &nbsp;|&nbsp;
+        <a href="./README.md">English</a> &nbsp;|&nbsp;
+        <a href="./readme_jp.md">日本語</a>&nbsp;|&nbsp;
+        <a href="./readme_fr.md">français</a>&nbsp;|&nbsp;
+        <a href="./readme_es.md">Español</a>
+      </strong>
+    </p>
+
+
+    | Date | Version | File Name | Changelog |
+    |----------|------|----------|------|
+    |  2026-03-31 | v1.0 |  reBot_B601_DM_v1.0_20260331.step  | Initial upload |
+    |  2026-04-25 | v1.1 |  reBot_B601_DM_v1.1_20260425.step  | Added Cable Restraint for the 3 end joint motors to prevent loosening and disconnection. Fixed Joint 1 model from 4310 to 4340P. Added CNC part 02_Base_Reinforcement_Part.step at the bottom to enhance base rigidity. |
+
+
+    This BOM is for the reBot Arm B601 DM robotic arm, which uses Damiao 43 series motors. The other version, reBot Arm B601 RS, uses RobStride motors; [see the BOM here](../reBot_B601_RS/README.md).
+
+    # 📦 File Structure
+    *   3D_Printed_Parts/: Step files for all 3D printed parts.
+    *   Metal_Parts/: Step files for all CNC machined metal parts.
+    *   Purchased_Parts/: Step files for all purchased components.
+    *   reBot_B601_DM_v1.1_20260415.step: Full robotic arm assembly file.
+
+    # 🛒[Gets All Parts](https://www.seeedstudio.com/reBot-Arm-B601-DM-Bundle.html)
+    - We offer five kit options:
+      - **Arm Body Motor Kit**: Includes only motors and wiring harnesses for the robotic arm.
+      - **Arm Body Structural Kit**: Includes only mechanical structural components.
+      - **Gripper Complete Kit**: Includes motors, wiring harnesses and structural components for the gripper.
+      - **Full Kit**: Includes the complete set of the robotic arm body and gripper.
+      - **Pre‑assembled Robotic Arm**: Fully assembled finished robotic arm.
+
+    ## 📊 Bill of Materials
+
+    > [!WARNING]
+    > Declaration: The published BOM does **not** represent the final shipping version from Seeed. This open-source v1.1 is optimized for developers to reproduce at minimal cost, with some non-essential details simplified.
+    > The final Seeed production version will include metal laser engraving for foolproofing, some 3D printed parts will be replaced with metal for durability, clearances and machining tolerances will be adjusted for factory variation (balancing precision and cost), and custom wiring (e.g., braided sleeve protection) will be added at extra cost. However, the mechanical structure remains identical.
+
+    **The parts list below is generated from this package.** Every part is declared
+    once in [partcad.yaml](./partcad.yaml), the arm is assembled out of those
+    declarations in [arm.assy](./arm.assy), and a quantity is nowhere typed in: it is
+    how many times the assembly places the part.
+
+    | Document | What it lists |
+    |---|---|
+    | [arm.md](./arm.md) | the whole arm: every part, with its picture, material, process, tolerance, file and count |
+    | [power-supply.md](./power-supply.md) | the power supply enclosure, the same way |
+    | [gripper.md](./gripper.md) | the gripper, whose slide is shared with the B601 RS arm |
+    | [doc/buying.md](./doc/buying.md) | the reference prices and the links to the offers |
+    | [doc/power-supply-assembly.md](./doc/power-supply-assembly.md) | the power supply assembly steps |
+
+    ### 🧩 Printing Recommendations
+    - Layer height: 0.2 mm
+    - Nozzle: 0.4 mm
+    - Supports: Add as needed
+    - Materials: High-temperature and load-bearing parts use ABS with 30–80% infill; may also use nylon or carbon-fiber reinforced materials. Cosmetic parts use PLA with 15% infill.
+
+    ---
+
+    ### 🧩 Machining Specifications
+    - Key dimension tolerance: ±0.02 mm GB/T1840-M
+    - Surface finish: Anodizing / Sandblasting
+    - Mating parts recommended: H7 / interference fit
+
+    **The routes are generated too.** Sixteen of these plates are declared as machine
+    jobs as well as parts, laid flat with the cutter that cuts them, and
+    `pc cam -p -P //pub/robotics/rebot/devarm/b601-dm -O routes` writes the G-code for
+    all sixteen — which is what makes "CNC" above a claim something checked rather
+    than a word. Read PARTCAD.md before sending any of it to a machine: the routes
+    cut the outline and the through holes, and nothing at another depth.
+
+    ---
+
+    Links 1, 2, 3 and 5 are machined **and** formed. They are `subtractive` parts in
+    the list below: the sheet metal step needs the flat blank as a part of its own,
+    and this repository does not have the blank's geometry yet - see
+    [PARTCAD.md](../../PARTCAD.md).
   usage: |
     ```shell
-    pc --no-ansi list parts
-    pc --no-ansi inspect power-supply
+    pc --no-ansi list parts -P //pub/robotics/rebot/devarm/b601-dm
+    pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
+    pc --no-ansi inspect -a -P //pub/robotics/rebot/devarm/b601-dm arm
+    pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
     ```
+
+# Who supplies the parts of this package: the two providers the root package
+# declares. 'suppliers:' is not inherited from a parent package, so each package
+# whose parts are meant to be bought or made names them for itself.
+suppliers:
+  //pub/robotics/rebot/devarm:reference-prices:
+  //pub/robotics/rebot/devarm:workshop:
 
 parts:
   ##############################################################################
   # 3D printed parts
   #
-  # Printing recommendations (readme.md): 0.2 mm layer height, 0.4 mm nozzle,
+  # Printing recommendations (README.md): 0.2 mm layer height, 0.4 mm nozzle,
   # supports as needed. Load-bearing parts in ABS at 30-80% infill (nylon or
   # carbon-fiber reinforced also work), cosmetic parts in PLA at 15%.
   ##############################################################################
-  printed/base-plate:
+  base-plate:
     type: step
     path: 3D_Printed_Parts/01_BASE_Plate.step
-    desc: Robotic arm base platform (x1)
+    desc: Robotic arm base platform (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/base-link:
+  base-link:
     type: step
     path: 3D_Printed_Parts/01_BASE_Link.step
-    desc: Robotic arm base link (x1)
+    desc: Robotic arm base link (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/upper-arm-filler-l:
+  upper-arm-filler-l:
     type: step
     path: 3D_Printed_Parts/01_Upper_Arm_Fuller_L.step
-    desc: Upper arm left filler (x1)
+    desc: Upper arm left filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/upper-arm-filler-r:
+  upper-arm-filler-r:
     type: step
     path: 3D_Printed_Parts/01_Upper_Arm_Fuller_R.step
-    desc: Upper arm right filler (x1)
+    desc: Upper arm right filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/upper-arm-filler-m:
+  upper-arm-filler-m:
     type: step
     path: 3D_Printed_Parts/01_Upper_Arm_Fuller_M.step
-    desc: Upper arm center filler (x1)
+    desc: Upper arm center filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/upper-arm-limit:
+  upper-arm-limit:
     type: step
     path: 3D_Printed_Parts/01_Upper_Arm_Limit.step
-    desc: Upper arm horizontal limit block (x1)
+    desc: Upper arm horizontal limit block (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/arm-handle:
+  arm-handle:
     type: step
     path: 3D_Printed_Parts/01_Arm_Handle.step
-    desc: Arm handle (x1)
+    desc: Arm handle (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/lower-arm-filler-l:
+  lower-arm-filler-l:
     type: step
     path: 3D_Printed_Parts/01_Lower_Arm_Filler_L.step
-    desc: Lower arm left filler (x1)
+    desc: Lower arm left filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/lower-arm-filler-r:
+  lower-arm-filler-r:
     type: step
     path: 3D_Printed_Parts/01_Lower_Arm_Filler_R.step
-    desc: Lower arm right filler (x1)
+    desc: Lower arm right filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/lower-arm-filler-m:
+  lower-arm-filler-m:
     type: step
     path: 3D_Printed_Parts/01_Lower_Arm_Filler_M.step
-    desc: Lower arm center filler (x1)
+    desc: Lower arm center filler (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/upper-arm-cover:
-    type: step
-    path: 3D_Printed_Parts/01_Upper_Arm_Cover.step
-    desc: Upper arm cover (x1)
-    manufacturing:
-      method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
-    tolerance: 0.2
-    properties:
-      material: //pub/std/manufacturing/material/plastic:pla
-      color: "#2E7D32"
-
-  printed/lower-arm-cover:
+  upper-arm-cover:
     type: step
     path: 3D_Printed_Parts/01_Lower_Arm_Cover.step
-    desc: Lower arm cover (x1)
+    desc: Upper arm cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+    # The file names are swapped in the release, and the released assembly is what
+    # says so: it places the product it calls "01_Lower_Arm_Cover" on the lower arm
+    # and the one it calls "01_Upper_Arm_Cover" on the upper, and the geometry
+    # published under each of those names is the other one's - their volumes match
+    # across exactly, 17896.0 and 10754/10776 mm^3. So each part here is declared
+    # from the file whose *geometry* belongs where the part goes, and the file names
+    # are left as the release publishes them. See ../../PARTCAD.md; the maintainers
+    # get to say which copy is authoritative.
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
 
-  printed/motor-cover:
+  lower-arm-cover:
+    type: step
+    path: 3D_Printed_Parts/01_Upper_Arm_Cover.step
+    desc: Lower arm cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
+    # See 'upper-arm-cover' above: the two files are swapped in the release.
+    manufacturing:
+      method: additive
+    tolerance: 0.2
+    properties:
+      material: //pub/std/manufacturing/material/plastic:pla
+      color: "#2E7D32"
+
+  motor-cover:
     type: step
     path: 3D_Printed_Parts/01_Motor_Cover.step
-    desc: Motor 5 protection cover (x1)
+    desc: Motor 5 protection cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/gripper-limit:
+  gripper-limit:
     type: step
     path: 3D_Printed_Parts/01_Lower_Arm_Limit.step
-    desc: Gripper horizontal limit (x1)
+    desc: Gripper horizontal limit (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
 
-  printed/rail-bracket:
+  rail-bracket:
     type: step
-    # NOTE: readme.md calls this file "01-Rail-Bracket.step"; the file in the
+    # NOTE: README.md calls this file "01-Rail-Bracket.step"; the file in the
     # repository is "01_Rail_Bracket.step".
     path: 3D_Printed_Parts/01_Rail_Bracket.step
-    desc: Gripper slider support bracket (x1)
+    desc: Gripper slider support bracket (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
 
-  printed/finger:
+  finger:
     type: step
     path: 3D_Printed_Parts/01_Finger.step
-    desc: Gripper finger (x2)
+    desc: Gripper finger (x2); 0.4 mm nozzle, 0.2 mm layer height, 45% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 45%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/joint5-cable-restraint-a:
+  joint5-cable-restraint-a:
     type: step
     path: 3D_Printed_Parts/01_Joint5_Cable Restraint_A.step
-    desc: Motor 5 cable restraint (x1)
+    desc: Motor 5 cable restraint (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 15%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
       color: "#2E7D32"
 
-  printed/joint6-7-cable-restraint-a:
+  joint6-7-cable-restraint-a:
     type: step
     path: 3D_Printed_Parts/01_Joint6_7_Cable Restraint_A.step
-    desc: Motor 6 & 7 cable restraint A (x2)
+    desc: Motor 6 & 7 cable restraint A (x2); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/joint6-7-cable-restraint-b:
+  joint6-7-cable-restraint-b:
     type: step
     path: 3D_Printed_Parts/01_Joint6_7_Cable Restraint_B.step
-    desc: Motor 6 & 7 cable restraint B (x2)
+    desc: Motor 6 & 7 cable restraint B (x2); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
-  printed/motor1-harness-clip:
+  motor1-harness-clip:
     type: step
     path: 3D_Printed_Parts/DM_Motor1_wiring_harness_clip.stp
-    desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended)
+    desc: Wiring harness clip for the two sides of motor 1 (x2, optional but recommended); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:abs
       color: "#1A1A1A"
 
   # Power supply enclosure
-  printed/psu-front-cover:
+  psu-front-cover:
     type: step
     path: 3D_Printed_Parts/DM-power-Top Cover.stp
-    desc: Power supply front cover (x1)
+    desc: Power supply front cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/psu-rear-cover:
+  psu-rear-cover:
     type: step
     path: 3D_Printed_Parts/DM-power-Bottom Cover.stp
-    desc: Power supply rear cover (x1)
+    desc: Power supply rear cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
 
-  printed/psu-front-cover-slider:
+  psu-front-cover-slider:
     type: step
     path: 3D_Printed_Parts/DM-power-Top Cover-Sliding Cover.stp
-    desc: Power supply front cover slider (x1)
+    desc: Power supply front cover slider (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill
     manufacturing:
       method: additive
-      parameters:
-        nozzle: 0.4 mm
-        layer height: 0.2 mm
-        infill: 30%
     tolerance: 0.2
     properties:
       material: //pub/std/manufacturing/material/plastic:pla
@@ -382,7 +397,7 @@ parts:
   ##############################################################################
   # CNC machined metal parts
   #
-  # Machining specification (readme.md): key dimension tolerance +/-0.02 mm
+  # Machining specification (README.md): key dimension tolerance +/-0.02 mm
   # (GB/T1840-M), anodized or sandblasted finish, H7 / interference fit on
   # mating features.
   #
@@ -412,279 +427,711 @@ parts:
   #   'subtractive' step, with the forming step left for when there is a blank to
   #   point at. See PARTCAD.md, "Next steps".
   ##############################################################################
-  cnc/base-reinforcement:
+
+  base-reinforcement-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate base-reinforcement is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Base_Reinforcement_Part.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  base-reinforcement:
     type: step
     path: Metal_Parts/02_Base_Reinforcement_Part.step
     desc: Motor 1 bearing mount (x1) - can be printed in ABS at high infill to save cost
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: base-reinforcement-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Z
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/arm-yaw-limit:
+
+  arm-yaw-limit-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate arm-yaw-limit is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Arm_Yaw_Limit.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  arm-yaw-limit:
     type: step
     path: Metal_Parts/02_Arm_Yaw_Limit.step
     desc: Motor 1 rotation axis, yaw angle motion limit (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: arm-yaw-limit-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -Z
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/motor-front-spacer:
+
+  motor-front-spacer-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate motor-front-spacer is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Motor_Front_Spacer.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  motor-front-spacer:
     type: step
     path: Metal_Parts/02_Motor_Front_Spacer.step
     desc: Motor 2-5 front spacer (x4) - can be printed in ABS at 30% infill
+    # Where it bolts to the motor, measured off this file: the six M3 clearance
+    # holes (r=1.6) on a 13.5 circle open onto the z=-56.5 face, and the part
+    # extends from there towards +Z. See //pub/robotics/rebot/devarm/third_party.
+    implements:
+      //pub/robotics/rebot/devarm/third_party:actuator/dm43xx-mounted:
+        motor: [[0, 0, -56.5], [0, 0, 1], 0]
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: motor-front-spacer-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Z
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/motor-back-spacer:
+
+  motor-back-spacer-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate motor-back-spacer is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Motor_Back_Spacer.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  motor-back-spacer:
     type: step
     path: Metal_Parts/02_Motor_Back_Spacer.step
     desc: Motor 2-4 rear spacer (x3)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: motor-back-spacer-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/flange:
+
+  flange-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate flange is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_FLANGE.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  flange:
     type: step
     path: Metal_Parts/02_FLANGE.step
     desc: Motor 2-4 rear flange (x3)
+    # This part carries the same six-hole pattern as the front spacer - r=1.35 on
+    # the 13.5 circle around (y, z) = (-20, -93), opening onto x=21.625 with the
+    # part behind them towards -X - and it used to declare that pattern as
+    # 'actuator/dm43xx-mounted', on the reading that a part with the motor's bolt
+    # circle on it bolts to the motor.
+    #
+    # The released assembly says otherwise, and this is what removed the
+    # declaration. Working backwards from where the release puts each flange and
+    # each actuator, the motor-side frame this pattern would have to meet comes
+    # out 10.6 mm clear of the actuator model's own end face - repeatably, the same
+    # number for two flanges on two different DM4340Ps - where the front spacer's
+    # comes out exactly on it. So the flange does not sit on the actuator: it is
+    # the *rear* flange, as its own description says, and something 10.6 mm thick
+    # is between the two. Until that something is identified, the pattern is
+    # measured and the interface it belongs to is not this one.
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: flange-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/wrist-bracket:
+
+  wrist-bracket-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate wrist-bracket is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Wrist_Bracket.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  wrist-bracket:
     type: step
     path: Metal_Parts/02_Wrist_Bracket.step
     desc: Wrist motor 5 bracket (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: wrist-bracket-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -Y
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/gripper-connector-a:
+
+  gripper-connector-a-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate gripper-connector-a is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Gripper_Connector_A.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  gripper-connector-a:
     type: step
     path: Metal_Parts/02_Gripper_Connector_A.step
     desc: Gripper connector A (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: gripper-connector-a-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Y
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/gripper-connector-b:
+
+  gripper-connector-b-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate gripper-connector-b is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Gripper_Connector_B.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  gripper-connector-b:
     type: step
     path: Metal_Parts/02_Gripper_Connector_B.step
     desc: Gripper connector B (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: gripper-connector-b-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -Z
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/slider-bracket:
+
+  slider-bracket-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate slider-bracket is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Slider_Bracket.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  slider-bracket:
     type: step
     path: Metal_Parts/02_Slider_Bracket.step
     desc: Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: slider-bracket-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Y
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/slider-extension:
+
+  slider-extension-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate slider-extension is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Slider_Extension.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  slider-extension:
     type: step
     path: Metal_Parts/02_Slider_Extension.step
     desc: Slider to gripper extension (x2)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: slider-extension-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
 
-  cnc/lower-upper-link-l:
+  lower-upper-link-l-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate lower-upper-link-l is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Lower_Upper_Link_L.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  lower-upper-link-l:
     type: step
     path: Metal_Parts/02_Lower_Upper_Link_L.step
     desc: Upper-lower arm link, left (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: lower-upper-link-l-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/lower-upper-link-r:
+
+  lower-upper-link-r-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate lower-upper-link-r is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Lower_Upper_Link_R.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  lower-upper-link-r:
     type: step
     path: Metal_Parts/02_Lower_Upper_Link_R.step
     desc: Upper-lower arm link, right (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: lower-upper-link-r-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/lower-wrist-link-l:
+
+  lower-wrist-link-l-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate lower-wrist-link-l is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Lower_Wrist_Link_L.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  lower-wrist-link-l:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_L.step
     desc: Lower arm-wrist link, left (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: lower-wrist-link-l-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/lower-wrist-link-r:
+
+  lower-wrist-link-r-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate lower-wrist-link-r is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Lower_Wrist_Link_R.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  lower-wrist-link-r:
     type: step
     path: Metal_Parts/02_Lower_Wrist_Link_R.step
     desc: Lower arm-wrist link, right (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: lower-wrist-link-r-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -X
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/gear-connector:
+
+  gear-connector-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate gear-connector is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Gear_Connector.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  gear-connector:
     type: step
     path: Metal_Parts/02_Gear_Connector.step
     desc: Gear connector (x1)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: gear-connector-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Y
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/rack:
+
+  rack-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate rack is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Rack.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  rack:
     type: step
     # NOTE: "02-RACK.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/02_Rack.step
     desc: Rack (x2)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: rack-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: -Y
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/base-motor-shim:
+
+  base-motor-shim-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate base-motor-shim is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/02_Base_Motor_Shim.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  base-motor-shim:
     type: step
     path: Metal_Parts/02_Base_Motor_Shim.step
     desc: Base motor shim (quantity unknown - present in the repository and in the
-      images folder, but missing from the readme.md BOM table)
+      images folder, but missing from the README.md BOM table)
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: base-motor-shim-blank
+      cnc:
+        operation: profile
+        diameter: 2 mm
+        toolAxis: +Z
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
-  cnc/link1:
+
+  link1-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate link1 is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/03_Link1.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  link1:
     type: step
     # NOTE: "03-Link1.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link1.step
     desc: Link 1 (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: link1-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
 
-  cnc/link2:
+  link2-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate link2 is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/03_Link2.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  link2:
     type: step
     # NOTE: "03-Link2.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link2.step
     desc: Link 2 (x2) - CNC + sheet metal
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: link2-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
 
-  cnc/link3-l:
+  link3-l-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate link3-l is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/03_Link3_L.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  link3-l:
     type: step
     # NOTE: "03-Link3_L.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link3_L.step
     desc: Link 3 left (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: link3-l-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
 
-  cnc/link3-r:
+  link3-r-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate link3-r is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/03_Link3_R.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  link3-r:
     type: step
     # NOTE: "03-Link3_R.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link3_R.step
     desc: Link 3 right (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: link3-r-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
 
-  cnc/link5:
+  link5-blank:
+    type: build123d
+    path: src/stock_plate.py
+    desc: The 5052 plate link5 is cut from
+    # Not something this package asks anybody to supply: it is the piece the
+    # part above is cut out of, declared so that the cut can be checked. What
+    # a shop actually buys is a sheet with several of these nested on it.
+    manufacturable: false
+    parameters:
+      step:
+        type: string
+        default: Metal_Parts/03_Link5.step
+      margin: 5.0
+    properties:
+      material: //pub/robotics/rebot/devarm:aluminium-5052
+
+  link5:
     type: step
     # NOTE: "03-Link5.step" in the same folder is a duplicate of this file.
     path: Metal_Parts/03_Link5.step
     desc: Link 5 (x1) - CNC + sheet metal
     manufacturing:
       method: subtractive
-      parameters:
-        finish: anodized or sandblasted
-        fit: H7 or interference on mating features
+      source: link5-blank
+      desc: Anodized or sandblasted, H7 or interference fit on mating features
     tolerance: 0.02
     properties:
       material: //pub/robotics/rebot/devarm:aluminium-5052
@@ -695,89 +1142,62 @@ parts:
   # Modelled by enriching the parametric cq-warehouse parts from the public
   # PartCAD index, so that they carry real geometry and can be mated later.
   #
-  # readme.md names them in the vendor's shorthand:
+  # README.md names them in the vendor's shorthand:
   #   HM<d>-<l>  hex socket head cap screw  -> ISO 4762
   #   KM<d>*<l>  countersunk head screw     -> ISO 10642 (hex socket)
   #   KA<d>*<l>  self-tapping screw         -> no standard part available yet
   #
-  # TODO(data): confirm the drive type of the KM* screws. readme.md says "standard
+  # TODO(data): confirm the drive type of the KM* screws. README.md says "standard
   # hex socket screws have been selected" but links a Phillips countersunk product;
   # ISO 10642 (hex socket) is assumed here, ISO 7046 would be the Phillips one.
   ##############################################################################
-  purchased/screw-hm3-6:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+  screw-hm3-6:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/hm3x6
     desc: M3x6 hex socket head cap screw (x16+)
-    with:
-      size: M3-0.5
-      length: 6
 
-  purchased/screw-hm3-12:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+  screw-hm3-12:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/hm3x12
     desc: M3x12 hex socket head cap screw (x14+)
-    with:
-      size: M3-0.5
-      length: 12
 
-  purchased/screw-hm3-25:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
+  screw-hm3-25:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/hm3x25
     desc: M3x25 hex socket head cap screw (x14+)
-    with:
-      size: M3-0.5
-      length: 25
 
-  purchased/screw-hm4-75:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/socketheadcap-iso4762
-    desc: M4x75 hex socket head screw (x4+) - readme.md calls it a set screw
-    with:
-      size: M4-0.7
-      length: 75
+  screw-hm4-75:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/hm4x75
+    desc: M4x75 hex socket head screw (x4+) - README.md calls it a set screw
 
-  purchased/screw-km3-7:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+  screw-km3-7:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/km3x7
     desc: M3x7 countersunk head screw (x76+)
-    with:
-      size: M3-0.5
-      length: 7
 
-  purchased/screw-km3-8:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+  screw-km3-8:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/km3x8-micro
     desc: M3x8 socket micro profile head screw (x31+)
-    with:
-      size: M3-0.5
-      length: 8
 
-  purchased/screw-km3-9:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+  screw-km3-9:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/km3x9
     desc: M3x9 countersunk head screw (x31+)
-    with:
-      size: M3-0.5
-      length: 9
 
-  purchased/screw-km3-12:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+  screw-km3-12:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/km3x12
     desc: M3x12 countersunk head screw (x30+)
-    with:
-      size: M3-0.5
-      length: 12
 
-  purchased/screw-km3-16:
-    type: enrich
-    source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso10642
+  screw-km3-16:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/km3x16
     desc: M3x16 countersunk head screw (x34+)
-    with:
-      size: M3-0.5
-      length: 16
 
-  # Power supply enclosure fasteners (readme.md, "Consumables BOM")
-  purchased/screw-m4x6-countersunk:
+  # Power supply enclosure fasteners (README.md, "Consumables BOM")
+  screw-m4x6-countersunk:
     type: enrich
     source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
     desc: M4x6 304 stainless steel Phillips countersunk head screw (x6)
@@ -785,7 +1205,7 @@ parts:
       size: M4-0.7
       length: 6
 
-  purchased/screw-m3x8-countersunk:
+  screw-m3x8-countersunk:
     type: enrich
     source: //pub/std/metric/cqwarehouse:fastener/countersunk-iso7046
     desc: M3x8 304 stainless steel Phillips countersunk head screw (x2)
@@ -793,7 +1213,7 @@ parts:
       size: M3-0.5
       length: 8
 
-  purchased/screw-m3x8-pan:
+  screw-m3x8-pan:
     type: enrich
     # ISO 7045 is the Phillips pan head standard; cq-warehouse names it
     # "raised cheese head".
@@ -816,65 +1236,103 @@ parts:
   # which is where they are declared; declaring them on the alias itself has no
   # effect at all (a PartCAD bug - see PARTCAD.md), so writing them twice would
   # only be a second copy to keep in step.
-  purchased/actuator-dm4310:
+  actuator-dm4310:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:actuator/dm4310
     desc: Brushless actuator DM4310(V4) (x4, joints 4-7)
 
-  purchased/actuator-dm4340p:
+  actuator-dm4340p:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:actuator/dm4340p
     desc: Brushless actuator DM4340P(V4) (x3, joints 1-3)
 
-  purchased/bearing-6707zz:
+  bearing-6707zz:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:bearing/6707zz
     desc: Bearing 6707ZZ (x1, joint 1)
 
-  purchased/bearing-6803zz:
+  bearing-6803zz:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:bearing/6803zz
     desc: Bearing 6803ZZ (x3)
 
-  purchased/bearing-axk5578:
+  bearing-axk5578:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:bearing/axk5578
     desc: Thrust bearing AXK5578 (x1, joint 1)
 
-  purchased/rail-mgn9-170:
+  rail-mgn9-170:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:rail/mgn9-170
     desc: Linear rail MGN9-170mm (x1, gripper)
 
-  purchased/carriage-mgn9:
+  carriage-mgn9:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:carriage/mgn9c
     desc: Slider block MGN9 (x2, gripper)
 
-  purchased/pad-silicone:
+  pad-silicone:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:pad/silicone-30x9x2
     desc: Silicone pad 30x9x2mm (x1)
 
-  purchased/psu-lrs-350-24:
+  psu-lrs-350-24:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:psu/lrs-350-24
     desc: Power supply MeanWell LRS-350-24, 24V 14.6A (x1)
 
-  purchased/connector-xt60e:
+  connector-xt60e:
     type: alias
     source: //pub/robotics/rebot/devarm/third_party:connector/xt60e-female
     desc: Output port XT60E female + lug pigtail (x1)
 
+  # The parts the released assembly holds that nobody publishes a model of, taken
+  # out of that assembly itself rather than approximated - see
+  # ../../third_party/partcad.yaml, "Not envelopes". Between them they are 80 of
+  # this arm's 326 components: before they existed, arm.assy could place 246.
+  #
+  # The counts here are the released CAD's, which is the first time this package
+  # has had any: the readme gives one arm-wide minimum per fastener ("KA3*12mm,
+  # 72+"), and 72+ is not a number a joint's worth of screws can be ordered from.
+  screw-ka3-12:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/ka3x12
+    desc: KA3x12 self-tapping screw (x60; README.md says 72+)
+
+  screw-m4x5-set:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:screw/m4x5-set
+    desc: M4x5 set screw (x2); the released CAD calls it S-M4-5-JIMI and README.md does not list it
+
+  gear-m1-16t:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:gear/m1-16t-b6
+    desc: Module 1, 16 tooth, 6 mm bore gear - what drives the two gripper racks (x1)
+
+  pin-d3x8:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:pin/d3x8
+    desc: 3x8 mm dowel pin (x2)
+
+  pin-d4x7:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:pin/d4x7
+    desc: 4x7 mm dowel pin (x6)
+
+  pin-d4x10:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:pin/d4x10
+    desc: 4x10 mm dowel pin (x6)
+
+  pin-d4x14:
+    type: alias
+    source: //pub/robotics/rebot/devarm/third_party:pin/d4x14
+    desc: 4x14 mm dowel pin (x3)
+
   # Still without a shape, and so still out of the BOM. Each needs an envelope in
   # the third_party package, in this order of how much it would add:
   #
-  #   Gear                     module 1, boss type, 16 teeth, 6 mm bore    x1
-  #                            (//pub/std/metric/bosl2 generates exactly this -
-  #                            see PARTCAD.md for what stopped it here)
-  #   Screw                    KA3*12mm self-tapping                       x72+
   #   Hex nut                  M3x2.5                                      x2
-  #   Dowel pin                M4*8mm, M4*12mm                            several
   #   CAN-USB driver board                                                 x1
   #   3-in-1 IEC inlet socket  quick-connect, red switch, dual nuts        x1
   #   Power cord               US standard AC cable                        x1
@@ -894,42 +1352,47 @@ parts:
   ##############################################################################
   # Optional accessories
   #
-  # Present in the repository, not part of the base arm BOM in readme.md.
+  # Present in the repository, not part of the base arm BOM in README.md.
   ##############################################################################
-  accessory/d405-mount:
+  d405-mount:
     type: step
     path: 3D_Printed_Parts/D405_305_Mount.step
     desc: Intel RealSense D405/D305 camera mount
     manufacturing:
       method: additive
+    tolerance: 0.2
 
-  accessory/d435-gemini2-mount:
+  d435-gemini2-mount:
     type: step
     path: 3D_Printed_Parts/D435_Gemini2_Mount.step
     desc: Intel RealSense D435i / Orbbec Gemini 2 camera mount
     manufacturing:
       method: additive
+    tolerance: 0.2
 
-  accessory/uvc32-mount:
+  uvc32-mount:
     type: step
     path: 3D_Printed_Parts/UVC32_mount.step
     desc: UVC32 camera mount
     manufacturing:
       method: additive
+    tolerance: 0.2
 
-  accessory/soft-gripper-finger:
+  soft-gripper-finger:
     type: step
     path: 3D_Printed_Parts/Soft_Gripper_Finger.step
     desc: Soft gripper finger
     manufacturing:
       method: additive
+    tolerance: 0.2
 
-  accessory/soft-gripper-mount:
+  soft-gripper-mount:
     type: step
     path: 3D_Printed_Parts/Soft_Gripper_Mount.step
     desc: Soft gripper mount
     manufacturing:
       method: additive
+    tolerance: 0.2
 
 # What the shop cuts these plates on, once, for every part that declares a
 # 'cam:' section of its own. The numbers are a 3-axis router in 5052 aluminium
@@ -945,192 +1408,6 @@ parts:
 
 
 
-  ##############################################################################
-  # The machined plates, as jobs on a machine
-  #
-  # A 2.5D route is cut down Z, so a plate has to lie flat in XY for one to mean
-  # anything - and these plates are drawn in the orientation they have in the
-  # arm, which is not that. Each entry below is the same part turned flat: an
-  # alias with the 'offset' that lays it down and the 'cam:' section that says
-  # how it is cut. The parts themselves keep the orientation the assembly needs.
-  #
-  # Each is a second declaration of the same STEP file rather than an alias of
-  # the part: a 'cam:' section on an alias is dropped, so an alias cannot be
-  # "the same part as a job on a machine". See ../../PARTCAD.md.
-  #
-  # Which way *up* matters as much as flat. A route follows the section at the
-  # bottom of the cut, so the face carrying the pockets and the counterbores has
-  # to point at the spindle: laid the other way up, the route follows the
-  # pocket floor and cuts the part in half. Where the two faces differ, the
-  # 'offset' below is the one that puts the widest section down - which is also
-  # the physical truth about how the part is held. 'pc cam' says so out loud
-  # ("the outline changes over the depth of the cut ... this route follows the
-  # one at the bottom"), and that warning is still there for every part with a
-  # pocket in it: the outline cut is right, and the pockets are a second
-  # operation these routes do not carry. See ../../PARTCAD.md.
-  #
-  # 'pc cam -p' writes the routes; 'pc test' fails any of these whose section
-  # cannot produce one, which is what makes 'method: subtractive' on the part a
-  # claim somebody checked. The cutter is 2 mm because the M3 clearance holes are
-  # 3.2 mm and a profile cut goes around the inside of every hole.
-  ##############################################################################
-  cam/base-reinforcement:
-    type: step
-    path: Metal_Parts/02_Base_Reinforcement_Part.step
-    desc: Motor 1 bearing mount, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], 180]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/arm-yaw-limit:
-    type: step
-    path: Metal_Parts/02_Arm_Yaw_Limit.step
-    desc: Motor 1 rotation axis, yaw angle motion limit, laid flat for the machine
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/motor-front-spacer:
-    type: step
-    path: Metal_Parts/02_Motor_Front_Spacer.step
-    desc: Motor 2-5 front spacer, laid flat for the machine
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/motor-back-spacer:
-    type: step
-    path: Metal_Parts/02_Motor_Back_Spacer.step
-    desc: Motor 2-4 rear spacer, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/flange:
-    type: step
-    path: Metal_Parts/02_FLANGE.step
-    desc: Motor 2-4 rear flange, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], 90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/wrist-bracket:
-    type: step
-    path: Metal_Parts/02_Wrist_Bracket.step
-    desc: Wrist motor 5 bracket, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], 90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/gripper-connector-a:
-    type: step
-    path: Metal_Parts/02_Gripper_Connector_A.step
-    desc: Gripper connector A, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/gripper-connector-b:
-    type: step
-    path: Metal_Parts/02_Gripper_Connector_B.step
-    desc: Gripper connector B, laid flat for the machine
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/slider-bracket:
-    type: step
-    path: Metal_Parts/02_Slider_Bracket.step
-    desc: Gripper slider metal bracket, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/lower-upper-link-l:
-    type: step
-    path: Metal_Parts/02_Lower_Upper_Link_L.step
-    desc: Upper-lower arm link, left, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], 90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/lower-upper-link-r:
-    type: step
-    path: Metal_Parts/02_Lower_Upper_Link_R.step
-    desc: Upper-lower arm link, right, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/lower-wrist-link-l:
-    type: step
-    path: Metal_Parts/02_Lower_Wrist_Link_L.step
-    desc: Lower arm-wrist link, left, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], 90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/lower-wrist-link-r:
-    type: step
-    path: Metal_Parts/02_Lower_Wrist_Link_R.step
-    desc: Lower arm-wrist link, right, laid flat for the machine
-    offset: [[0, 0, 0], [0, 1, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/gear-connector:
-    type: step
-    path: Metal_Parts/02_Gear_Connector.step
-    desc: Gear connector, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], -90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/rack:
-    type: step
-    path: Metal_Parts/02_Rack.step
-    desc: Rack, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], 90]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
-  cam/base-motor-shim:
-    type: step
-    path: Metal_Parts/02_Base_Motor_Shim.step
-    desc: Base motor shim, laid flat for the machine
-    offset: [[0, 0, 0], [1, 0, 0], 180]
-    tolerance: 0.02
-    cam:
-      operation: profile
-      tool: 2 mm
-
 # A projection of every object, next to the package. The generated bills of
 # materials show each line's picture from these, which is the column a reader of
 # a parts list looks at first; SVG so that a diff is a diff and the files stay
@@ -1138,6 +1415,15 @@ parts:
 render:
   svg:
     prefix: doc/
+
+  # The package document: README.md, and not configurably so. 'path:' under a
+  # 'render:' file type is the path of an *implementation* of that file type, not
+  # the output name - setting it to 'readme.md' made PartCAD try to run this
+  # folder's readme as the readme renderer, which fails on the first part number
+  # in it ("leading zeros in decimal integer literals are not permitted"). So this
+  # folder's readme was renamed from readme.md to README.md, which is the name
+  # PartCAD writes. See ../../PARTCAD.md.
+  readme:
 
 cam:
   gcode:
@@ -1149,9 +1435,38 @@ cam:
     direction: climb
 
 assemblies:
+  # Not a part of the arm: the check that the motor mounting interface is where
+  # the holes are. See ./check-motor-mount.assy.
+  check/motor-mount:
+    type: assy
+    path: check-motor-mount.assy
+    desc: Two parts mated to a DM4340P output face, to prove the interface
+    manufacturable: false
+
+  # There is no shared 'gripper/slide' sub-assembly, and the released assemblies
+  # are why. Both arms grip with the same parts - the racks, the slider bracket,
+  # the two extensions, the gear connector, the rail, its two carriages and the
+  # gear are one part each, declared here and aliased into the RS package - but
+  # the two releases do not place them to the same numbers. Measured from the
+  # slider bracket, the two agree on every one of these parts in X and differ in
+  # Z: the carriages are at +/-14.3 mm here and +/-14.8 in the RS release, the
+  # racks at +/-4.175 and +/-4.125, the extensions at +/-0.119 and +/-0.069. One
+  # sub-assembly with one set of placements would therefore be wrong for one of
+  # the two arms, so each arm has its own gripper over one set of parts. The two
+  # groups are not the same set of parts either - the RS release puts that arm's
+  # wrist motor in its gripper, and this one keeps it in link 6. See
+  # ../../PARTCAD.md.
+  gripper:
+    type: assy
+    path: gripper.assy
+    desc: The B601 DM gripper as the released assembly holds it (49 components)
+    manufacturable: true
+    render:
+      readme:
+
   power-supply:
     type: assy
-    desc: Power supply enclosure, assembled per readme.md "Power Supply Assembly"
+    desc: Power supply enclosure, assembled per README.md "Power Supply Assembly"
     manufacturable: true
     # The bill of materials as markdown, so a change to it is a diff.
     render:
@@ -1165,16 +1480,16 @@ assemblies:
     render:
       readme:
 
-  # The released full-arm STEP file, read as an assembly: PartCAD takes the
-  # component tree out of the file, names a part after each component and
-  # recognizes the components that are the same geometry, so this is where the
-  # real placements and the geometry-derived quantities come from. It is the
-  # reference ./arm.assy is being built against, not a replacement for it: the
-  # ASSY is what says how the arm goes together, which a STEP file cannot.
-  reference/arm-v1.1:
-    type: step
-    path: reBot_B601_DM_v1.1_20260425.step
-    desc: Full arm assembly as released on 2026-04-25 (reference)
-    # Not manufacturable: it is somebody else's export, not a thing this package
-    # claims can be built from what it declares.
-    manufacturable: false
+  # There is no 'reference/arm' object any more, and the released STEP file it
+  # declared is read by ../../tools/assy_from_reference.py instead.
+  #
+  # PartCAD cannot read reBot_B601_DM_v1.1_20260425.step usefully. As
+  # 'type: step' it flattens to solids named '<component>_solid<n>', which is why
+  # the placements were never recovered from it that way - and it does not finish:
+  # 'pc render' of that object decomposes 296 of the file's 326 components into
+  # temporary STEP files and then stalls, on the same component every time, with
+  # the daemon idle and nothing said. See ../../PARTCAD.md.
+  #
+  # The generator reads the same file through OpenCASCADE's XCAF layer in about a
+  # minute, with every name and every transformation intact, which is where both
+  # this package's assemblies come from.

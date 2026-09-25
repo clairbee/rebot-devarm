@@ -15,7 +15,7 @@
 name: //pub/robotics/rebot/devarm
 desc: reBot DevArm - open source 7-DoF robotic arm for developers
 url: https://github.com/clairbee/rebot-devarm
-partcad: ">=0.8.91"
+partcad: ">=0.8.124"
 
 # The parts declared here are meant to be manufactured or purchased, not just
 # viewed. This makes the package visible to 'pc supply quote' and friends.
@@ -38,7 +38,7 @@ docs:
     pc --no-ansi list parts -r          # every part of every variant
     pc --no-ansi bom -P //pub/robotics/rebot/devarm/b601-dm arm
     pc --no-ansi render -t pdf -a power-supply -P //pub/robotics/rebot/devarm/b601-dm
-    pc --no-ansi inspect -a //pub/robotics/rebot/devarm/b601-dm:reference/arm-v1.1
+    pc --no-ansi inspect -a //pub/robotics/rebot/devarm/b601-dm:arm
     ```
 
 # The materials this robot is made of, for the ones no public catalogue
@@ -49,6 +49,53 @@ docs:
 #
 # Densities are g/mm^3, which is what PartCAD reads: a datasheet's g/cm^3
 # divided by 1000.
+##############################################################################
+# Who supplies this arm
+#
+# Two providers, because the arm is made two ways. The bought parts are a
+# catalogue with prices, which is a store; the printed and machined parts are a
+# capability, which is a manufacturer. Both are declared here rather than in the
+# two variant packages, because both arms buy from the same places and are made
+# by the same kind of shop.
+#
+# What they are for, beyond 'pc supply quote': 'pc test' asks of every part that
+# is meant to be made or bought whether anybody can supply it, and until these
+# existed the answer for every one of them was "No suppliers found". That is the
+# check doing its job - a parts list nobody can act on is not a parts list - and
+# it is answered by saying who supplies what, not by turning the check off.
+##############################################################################
+providers:
+  # The reference prices the readmes publish, as a price list.
+  reference-prices:
+    type: enrich
+    source: csv-price-list
+    with:
+      currency: USD
+      file: providers/price_list.csv
+
+  csv-price-list:
+    type: store
+    path: providers/price_list.py
+    abstract: true
+    parameters:
+      file:
+        type: string
+        default: providers/price_list.csv
+      currency:
+        type: string
+        default: USD
+
+  # A printer and a machine shop, as a statement of what they can make. It
+  # quotes nothing: see providers/workshop.py.
+  workshop:
+    type: manufacturer
+    path: providers/workshop.py
+
+# Both of them, for every part of both arms.
+suppliers:
+  reference-prices:
+  workshop:
+
 materials:
   aluminium-5052:
     formal: AL 5052

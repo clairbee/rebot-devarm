@@ -7,7 +7,7 @@
 <p align="center">
   <strong>
     <a href="./readme_zh.md">简体中文</a> &nbsp;|&nbsp;
-    <a href="./readme.md">English</a> &nbsp;|&nbsp;
+    <a href="./README.md">English</a> &nbsp;|&nbsp;
     <a href="./readme_jp.md">日本語</a>&nbsp;|&nbsp;
     <a href="./readme_fr.md">français</a>&nbsp;|&nbsp;
     <a href="./readme_es.md">Español</a>

@@ -53,6 +53,13 @@ docs:
     pc --no-ansi inspect //pub/robotics/rebot/devarm/third_party:bearing/6803zz
     ```
 
+# Who supplies the parts of this package: the two providers the root package
+# declares. 'suppliers:' is not inherited from a parent package, so each package
+# whose parts are meant to be bought or made names them for itself.
+suppliers:
+  //pub/robotics/rebot/devarm:reference-prices:
+  //pub/robotics/rebot/devarm:workshop:
+
 parts:
   ##############################################################################
   # Bearings
@@ -68,97 +75,88 @@ parts:
   # the part underneath are read - so an enriched bearing was a bearing nothing
   # could order. See PARTCAD.md.
   bearing/6707zz:
-    type: build123d
-    path: src/bearing_ball.py
+    type: step
+    path: vendor/bearing-6707zz.step
     desc: 6707ZZ shielded ball bearing, 35x44x5 mm (x1 in the DM arm, joint 1)
-    parameters:
-      bore: 35.0
-      od: 44.0
-      width: 5.0
     vendor: amazon
     sku: B0D6WBMW3F
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    # What this envelope is, and what it leaves out:
-    # Stated dimensions (35 mm bore, 44 mm outside diameter, 5 mm width) from the product listing,
-    # and confirmed by the released CAD, which has one solid of 45.3 x 44.8 x 5.0 mm where this
-    # bearing goes. The envelope has no balls, no raceway grooves and no seal lip, and its two rings
-    # are drawn as one solid, so it cannot be used to check anything that turns.
+    # The vendor's own model, out of the released DM assembly: 44.0 across the outer ring, 35.0
+    # bore, 5.0 wide, with the shield drawn. Not an envelope, so it is also the frame the
+    # release places this bearing in - which is what makes the placement in ../arm.assy exact.
 
   bearing/6803zz:
-    type: build123d
-    path: src/bearing_ball.py
+    type: step
+    path: vendor/bearing-6803zz.step
     desc: 6803ZZ shielded ball bearing, 17x26x5 mm (x3 in both arms)
-    parameters:
-      bore: 17.0
-      od: 26.0
-      width: 5.0
     vendor: amazon
     sku: B0D54JSWBZ
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    # What this envelope is, and what it leaves out:
-    # Stated dimensions (17 mm bore, 26 mm outside diameter, 5 mm width) from the product listing,
-    # and confirmed by the released CAD, which has exactly three solids of 26.0 x 26.0 x 5.0 mm. An
-    # envelope, as for the 6707ZZ.
+    # The vendor's own model, out of the released DM assembly: 26.0 across, 5.0 wide. The RS
+    # release models a different bearing under the same readme row - see 'bearing/f6803zz'.
+
+  bearing/f6803zz:
+    type: step
+    path: vendor/bearing-f6803zz.step
+    desc: F6803ZZ flanged shielded ball bearing, 17x26x5 mm with a 28 mm flange (x2 in the RS arm)
+    vendor: amazon
+    sku: B0D54JSWBZ
+    properties:
+      material: chrome steel (AISI 52100)
+      color: "#9AA3AA"
+    # The vendor's own model, out of the released RS assembly. Both readmes order a "6803ZZ" and the
+    # two releases model two different bearings for it: the DM release a plain 26 mm one, this one a
+    # flanged 28 mm one, whose volume is a quarter larger. The SKU is the row's own, which is a plain
+    # 6803ZZ - so either the RS arm needs a flanged bearing the readme does not order, or its CAD
+    # models the wrong part. See ../PARTCAD.md.
 
   bearing/axk5578:
-    type: build123d
-    path: src/bearing_ball.py
+    type: step
+    path: vendor/bearing-axk5578.step
     desc: AXK5578 thrust needle roller bearing, 55x78x3 mm (x1 in both arms)
-    parameters:
-      bore: 55.0
-      od: 78.0
-      width: 3.0
     vendor: amazon
     sku: B0B3M3RZGW
     properties:
       material: chrome steel (AISI 52100)
       color: "#9AA3AA"
-    # What this envelope is, and what it leaves out:
-    # Stated dimensions (55 mm bore, 78 mm outside diameter, 3 mm thickness) from the AXK5578
-    # designation. Drawn as the same annular envelope as a ball bearing, which it is not: a thrust
-    # needle bearing is a cage of rollers that is normally used between two washers (an AS5578
-    # pair). The readme orders no washers, but the released CAD has a 5 mm stack where this 3 mm
-    # bearing goes, which is this bearing plus two 1 mm washers - see PARTCAD.md.
+    # The vendor's own model, out of the released DM assembly, and the RS release holds the same
+    # solid in the same frame. It is 5.0 mm thick where the AXK5578 designation is 3 mm: the
+    # stack is this bearing plus the two AS5578 washers neither readme orders. Drawn 77.7 across
+    # rather than the nominal 78.
 
   ##############################################################################
   # Linear motion
   ##############################################################################
   rail/mgn9-170:
-    type: build123d
-    path: src/rail_mgn9.py
+    type: step
+    path: vendor/rail-mgn9-170.step
     desc: MGN9 linear rail, 170 mm (x1 in both arms)
-    parameters:
-      length: 170.0
     vendor: amazon
     sku: B0D54L45WM
     properties:
       material: stainless steel
       color: "#B8BEC4"
-    # What this envelope is, and what it leaves out:
-    # A 9 mm wide, 10 mm high rail section 170 mm long, which is the MGN9 standard profile and the
-    # length the readme names. Approximate in its detail: the real rail has ball grooves down both
-    # flanks and a row of counterbored mounting holes at 20 mm pitch, and this envelope has neither,
-    # so it says where the rail is and not how it is fixed down.
+    # The vendor's own model, out of the released DM assembly, and the RS release holds the same
+    # solid in the same frame: 9.0 x 6.5 x 170.0, running along its own +Z from the origin. The
+    # 6.5 mm height is the model's, not the MGN9 standard's 10 mm - see ../PARTCAD.md. This part
+    # is why the envelopes were replaced: placed by the release's transformation, the 170 mm
+    # envelope lay along X where the rail belongs along Z, 170 mm out.
 
   carriage/mgn9c:
-    type: build123d
-    path: src/carriage_mgn9c.py
+    type: step
+    path: vendor/carriage-mgn9c.step
     desc: MGN9C carriage block (x2 in both arms)
     vendor: amazon
     sku: B0D9QBQDKB
     properties:
       material: stainless steel
       color: "#B8BEC4"
-    # What this envelope is, and what it leaves out:
-    # The MGN9C block envelope - 20 mm wide, 39 mm long, 10 mm high, with the slot that straddles
-    # the rail - and the four M3 mounting holes on its top face at the standard 20 x 10 mm pitch.
-    # Approximate: the readme names only "MGN9", and the C and H blocks differ in length, so the
-    # length is the one a C block has. The end seals, the grease nipple and the ball circuit are
-    # left out.
+    # The vendor's own model, out of the released DM assembly, and the RS release holds the same
+    # solid in the same frame: 20.0 x 8.0 x 28.9.
 
   ##############################################################################
   # Actuators
@@ -170,87 +168,94 @@ parts:
   # from.
   ##############################################################################
   actuator/dm4310:
-    type: build123d
-    path: src/actuator_cylindrical.py
+    type: extrude
+    sketch: circle-57
+    depth: 69.466
     desc: Damiao DM4310(V4) actuator (x4 in the DM arm)
-    parameters:
-      diameter: 57.0
-      height: 57.0
-      output_diameter: 30.0
-      output_height: 4.0
+    # A cylinder, in the vendor model's own frame. The vendor's own solid is 25 MB
+    # and is a cylinder to everything downstream, so what is taken from it is its
+    # extent and its frame: 57.0 across, from z = 4.458 to z = 73.924 along its own
+    # Z. That frame is the half of it a placement needs - ../arm.assy places these
+    # by a transformation read off the same release, and a transformation only means
+    # what it says with the frame it was read from.
+    offset: [[0, 0, 4.458], [0, 0, 1], 0]
+    implements:
+      # Not asserted: derived. The release places four of these and four front
+      # spacers on them; the spacer's own port was measured off the spacer's own
+      # file, so the motor's port is what the two placements leave - and two
+      # independent spacers on two different actuators give the same frame to the
+      # third decimal. +Z looks out of the motor, along the model's -Z.
+      actuator/dm43xx-output:
+        output: [[0, 0, 50.5], [1, 0, 0], 180]
     vendor: seeedstudio
     sku: DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # What this envelope is, and what it leaves out:
-    # A cylinder 57 mm across and 57 mm tall with a 30 mm output boss. Measured rather than quoted:
-    # the released full-arm STEP holds four identical solids of 69.5 x 57.0 x 57.0 mm, which is the
-    # DM4310's count in the BOM, and this cylinder is the round part of that envelope. The extra
-    # 12.5 mm of the measured box is the side connector, which is not modelled. TODO(data): the
-    # Seeed Studio listing says 56 x 56 x 46 mm for this actuator, which is smaller in every
-    # direction than what the CAD shows. One of the two is wrong and the vendor is the one to ask.
+    # What this envelope leaves out: the side connector, the output boss, the mounting holes. It is
+    # 69.5 mm long where the Seeed Studio listing says 46 mm and 57 across where the listing says
+    # 56 - TODO(data): one of the two is wrong, and the vendor is the one to ask.
+
 
   actuator/dm4340p:
-    type: build123d
-    path: src/actuator_cylindrical.py
+    type: extrude
+    sketch: circle-57
+    depth: 56.553
     desc: Damiao DM4340P(V4) actuator (x3 in the DM arm, joints 1-3)
-    parameters:
-      diameter: 57.0
-      height: 56.6
-      output_diameter: 34.0
-      output_height: 4.0
+    # As the DM4310 above, and drawn along its own Y rather than Z, which is how the
+    # released model has it: 57.0 across, from y = -11.008 to y = 45.545. '-90 about
+    # X' is what turns the extrusion's +Z into +Y.
+    offset: [[0, -11.008, 0], [1, 0, 0], -90]
+    implements:
+      # Derived the same way as the DM4310's, from two front spacers on two
+      # different actuators. The output face is the y = -11 end, and +Z looks out
+      # along the model's -Y.
+      actuator/dm43xx-output:
+        output: [[0, -11, 0], [1, 0, 0], 90]
     vendor: seeedstudio
     sku: DM4340P-Actuator-p-6663
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # What this envelope is, and what it leaves out:
-    # A cylinder 57 mm across and 56.6 mm tall with a 34 mm output boss. Measured the same way as
-    # the DM4310 above and from the same file - three identical solids of 57.0 x 57.0 x 56.6 mm,
-    # matching the three DM4340P actuators of the BOM - because the vendor publishes no dimensions
-    # at all for this one. Approximate in everything but its overall size.
+    # The vendor publishes no dimensions for this one at all, so the released model is the only
+    # source there is. Approximate in everything but its overall size and its frame.
+
 
   actuator/rs00:
-    type: build123d
-    path: src/actuator_cylindrical.py
+    type: extrude
+    sketch: circle-57
+    depth: 52.02
     desc: RobStride RS00 actuator (x4 in the RS arm)
-    parameters:
-      diameter: 57.0
-      height: 52.0
-      output_diameter: 30.0
-      output_height: 4.0
+    # 57.0 across, from z = -10.51 to z = 41.51 along its own Z, off the released RS
+    # assembly. No port yet: the RS arm has no part with a measured mating face to
+    # derive one from, the way the two Damiao actuators have.
+    offset: [[0, 0, -10.51], [0, 0, 1], 0]
     vendor: seeedstudio
     sku: Robostride-00-Actuator-p-6664
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # What this envelope is, and what it leaves out:
-    # A cylinder 57 mm across and 52 mm tall with a 30 mm output boss, measured off the released RS
-    # arm STEP - four identical solids of 57.1 x 57.0 x 52.0 mm, matching the four RS00 actuators of
-    # the BOM. RobStride publishes no dimensioned drawing, so the overall size is all this is right
-    # about.
+    # RobStride publishes no dimensioned drawing, so the overall size and the frame are all this is
+    # right about.
+
 
   actuator/rs06:
-    type: build123d
-    path: src/actuator_cylindrical.py
+    type: extrude
+    sketch: circle-82
+    depth: 50.52
     desc: RobStride RS06 actuator (x3 in the RS arm)
-    parameters:
-      diameter: 87.0
-      height: 50.5
-      output_diameter: 44.0
-      output_height: 5.0
+    # 82.0 across, from z = -16.01 to z = 34.51, off the released RS assembly. The
+    # three the release places are one product drawn three slightly different ways,
+    # between 84.5 and 87.3 mm across; this is the first of them, and the 2.5 mm the
+    # box is wider than the cylinder is a protrusion this envelope does not have.
+    offset: [[0, 0, -16.01], [0, 0, 1], 0]
     vendor: seeedstudio
     sku: Robostride-06-Actuator-p-6668
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # What this envelope is, and what it leaves out:
-    # A cylinder 87 mm across and 50.5 mm tall with a 44 mm output boss. Measured off the released
-    # RS arm STEP, where the three solids that match this actuator's BOM quantity are all 50.5 mm
-    # tall and between 84.5 and 87.3 mm across - they are drawn slightly differently from one
-    # another, and this envelope takes the largest of the three so that a clearance checked against
-    # it holds for all of them.
+    # As the RS00: the overall size and the frame, and nothing else.
+
 
   ##############################################################################
   # Power
@@ -299,16 +304,25 @@ parts:
   # it takes and the connectors are these parts.
   ##############################################################################
   connector/xt30-2x2-plug:
-    type: build123d
-    path: src/connector_xt30.py
+    type: step
+    path: vendor/connector-xt30-2x2.step
     desc: XT30 2+2 connector housing, one end of a motor harness
     properties:
       material: nylon
       color: "#F2C230"
-    # What this envelope is, and what it leaves out:
-    # The 2+2 XT30 housing as a 16 x 12 x 8 mm block with the two power bullets and two signal pins
-    # standing off one face. Approximate: taken from the XT30 footprint the photographs in the
-    # readme show, not from a datasheet - Amass publishes none for the 2+2 variant.
+    # The vendor's own model, out of the released RS assembly, which places twelve of these on
+    # the motors. It is the connector body; the wire is not part of it.
+
+  connector/xt30-2x2-socket:
+    type: step
+    path: vendor/connector-xt30-2x2-socket.step
+    desc: XT30 2+2 panel socket, the base end of a motor harness (x2 in the RS arm)
+    properties:
+      material: nylon
+      color: "#1A1A1A"
+    # The vendor's own model, out of the released RS assembly. The RS release models the two ends of
+    # a harness as two different parts, which is what they are; neither readme gives the socket a row
+    # of its own, so it carries no vendor or SKU.
 
   connector/xt60e-female:
     type: build123d
@@ -344,23 +358,349 @@ parts:
   # Miscellaneous
   ##############################################################################
   pad/silicone-30x9x2:
-    type: extrude
-    sketch: pad-30x9
-    depth: 2.0
+    type: step
+    path: vendor/pad-silicone-30x9x2.step
     desc: Self-adhesive silicone pad, 30 x 9 x 2 mm (x1 in both arms)
     vendor: amazon
     sku: B0F9KVYXFZ
     properties:
       material: silicone
       color: "#2E2E2E"
-    # What this envelope is: stated dimensions, and nothing about this part is more than its box.
+    # The vendor's own model, out of the released DM assembly, and the RS release holds the same
+    # solid in the same frame. Drawn at an angle in its own frame rather than as a box on an
+    # axis, which is why the box around it is not 30 x 9 x 2.
+
+  ##############################################################################
+  # The fasteners, as the releases model them
+  #
+  # These were an 'enrich' of //pub/std/metric/cqwarehouse each, which is the right
+  # way to declare an ISO fastener and the wrong way to place one here. 160 of the
+  # DM arm's 326 components and 111 of the RS arm's are screws, and every one of
+  # their placements is read off a release that placed *its* model: a generated ISO
+  # screw put there instead lands origin-on-origin, pointing the wrong way, its head
+  # somewhere else. So the geometry is the release's, and the standard each one is
+  # ordered against stays in its description and its SKU.
+  #
+  # All of them are drawn head at the origin running along their own +Y, which is
+  # why one file serves both arms for a screw both arms use. Where the two releases
+  # each model the same screw, the DM release's is the one taken: they differ by
+  # under three percent by volume, which is two models of one product rather than
+  # two products.
+  #
+  # The four countersunk M3 rows of both readmes link one product, an assortment,
+  # so all four carry that SKU. It is the readme's own answer rather than a checked
+  # one; see ../PARTCAD.md's data questions.
+  #
+  # Two of the names the releases use are not the size of the thing:
+  # 'HM3-26' measures 27.90 overall against a 2.90 head, so it is the M3x25 the
+  # readme orders and not an M3x26; 'KM3-8-XIAO' measures 7.00 overall, so it is not
+  # 8 mm long either. Both are declared at what they measure.
+  ##############################################################################
+  screw/hm3x6:
+    type: step
+    path: vendor/screw-hm3x6.step
+    desc: M3x6 hex socket head cap screw (x8 in the DM arm, x8+ in the RS arm)
+    vendor: amazon
+    sku: B0DJQG5YLF
+    count_per_sku: 120
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm3x8:
+    type: step
+    path: vendor/screw-hm3x8.step
+    desc: M3x8 hex socket head cap screw (x45 in the RS arm)
+    vendor: amazon
+    sku: B0DJQG5YLF
+    count_per_sku: 120
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm3x12:
+    type: step
+    path: vendor/screw-hm3x12.step
+    desc: M3x12 hex socket head cap screw (x7 in the DM arm)
+    vendor: amazon
+    sku: B0DJQGMQZM
+    count_per_sku: 120
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm3x25:
+    type: step
+    path: vendor/screw-hm3x25.step
+    desc: M3x25 hex socket head cap screw (x6 in the DM arm) - the release calls it HM3-26
+    vendor: amazon
+    sku: B0DJQFGRPQ
+    count_per_sku: 120
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm3x30:
+    type: step
+    path: vendor/screw-hm3x30.step
+    desc: M3x30 hex socket head cap screw (x8 in the RS arm)
+    vendor: amazon
+    sku: B0DJQFGRPQ
+    count_per_sku: 120
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm4x8:
+    type: step
+    path: vendor/screw-hm4x8.step
+    desc: M4x8 hex socket head cap screw (x6 in the RS arm) - README.md calls it a set screw
+    vendor: amazon
+    sku: B0DR1NX178
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm4x16:
+    type: step
+    path: vendor/screw-hm4x16.step
+    desc: M4x16 hex socket head cap screw (x18 in the RS arm) - README.md calls it a set screw
+    vendor: amazon
+    sku: B0DR1NX178
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm4x70:
+    type: step
+    path: vendor/screw-hm4x70.step
+    desc: M4x70 hex socket head cap screw (x4 in the RS arm) - README.md calls it a set screw
+    vendor: amazon
+    sku: B0DR1NX178
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/hm4x75:
+    type: step
+    path: vendor/screw-hm4x75.step
+    desc: M4x75 hex socket head cap screw (x4 in the DM arm) - README.md calls it a set screw
+    vendor: amazon
+    sku: B0DR1NX178
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/km3x7:
+    type: step
+    path: vendor/screw-km3x7.step
+    desc: M3x7 countersunk head screw (x64 in the DM arm, x58 in the RS arm)
+    vendor: amazon
+    sku: B01E6EIC2S
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/km3x8-micro:
+    type: step
+    path: vendor/screw-km3x8-micro.step
+    desc: M3 micro-profile countersunk screw, 7 mm long (x5 in the DM arm) - README.md calls it KM3x8
+    vendor: amazon
+    sku: B01MS60KSY
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/km3x9:
+    type: step
+    path: vendor/screw-km3x9.step
+    desc: M3x9 countersunk head screw (x34 in the DM arm; README.md orders 31+, which is three short)
+    vendor: amazon
+    sku: B01E6EIC2S
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/km3x12:
+    type: step
+    path: vendor/screw-km3x12.step
+    desc: M3x12 countersunk head screw (x22 in the DM arm)
+    vendor: amazon
+    sku: B01E6EIC2S
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  screw/km3x16:
+    type: step
+    path: vendor/screw-km3x16.step
+    desc: M3x16 countersunk head screw (x26 in the DM arm)
+    vendor: amazon
+    sku: B01E6EIC2S
+    properties:
+      material: stainless steel
+      color: "#C0C0C0"
+
+  ##############################################################################
+  # Not envelopes: the vendor's own geometry, out of the released assembly
+  #
+  # Every part above is an envelope this repository drew from a datasheet. These
+  # are not. They are the solids the designers worked against, taken out of
+  # hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260425.step by
+  # ../tools/extract_vendor_parts.py - one file per part, in the part's own
+  # coordinates - and each is exact to whatever the vendor or the designer modelled.
+  #
+  # This is the third source that this package's header lists, and for these seven
+  # it is the only one. Nobody publishes CAD for a KA3x12 self-tapping screw or a
+  # 4 mm dowel pin, '//pub/std/metric/cqwarehouse' has no self-tapping or
+  # set-screw profile, and the gear is the part PARTCAD.md records BOSL2 could not
+  # generate here. Until they existed, none of them was in any assembly or any
+  # bill of materials: 80 of the DM arm's 326 components and 49 of the RS arm's
+  # 263 were parts with no shape to place.
+  #
+  # Re-run the extractor when a release changes; do not edit the .step files.
+  ##############################################################################
+  gear/m1-16t-b6:
+    type: step
+    path: vendor/gear-m1-16t-b6.step
+    desc: Module 1 spur gear, 16 teeth, 6 mm bore, boss type (x1 in both arms)
+    vendor: amazon
+    sku: B0GDSR1LKM
+    # The extracted solid is 17.888 mm across the tips and 18.0 mm tall, which is
+    # a module 1, 16 tooth gear (pitch circle 16, tip circle 18 less a tip
+    # relief) with a boss. The readme's product link resolves to a listing whose
+    # slug says 15 teeth; the CAD is 16, and the readme's own specification says
+    # 16. Ordering off that link is a thing to check - see ../PARTCAD.md.
+    properties:
+      material: steel
+      color: "#8A8A8A"
+
+  screw/ka3x12:
+    type: step
+    path: vendor/screw-ka3x12.step
+    desc: KA3x12 Phillips pan head self-tapping screw (x60 in the DM arm, x34 in the RS arm)
+    vendor: amazon
+    sku: B01MXSS95N
+    count_per_sku: 100
+    # The most-used fastener in either arm and the one with no ISO profile to
+    # enrich from: a 6 mm head, 12 mm long, tapping its own thread into a printed
+    # or cast boss.
+    properties:
+      material: steel
+      color: "#C0C0C0"
+
+  screw/m4x5-set:
+    type: step
+    path: vendor/screw-m4x5-set.step
+    desc: M4x5 hex socket set screw (x2 in the DM arm)
+    # The released model calls it "S-M4-5-JIMI" and the readmes list no such
+    # line, so there is no product link for it. 4.0 mm across and 5.0 mm long
+    # with a socket and no head, which is a grub screw.
+    properties:
+      material: steel
+      color: "#4A4A4A"
+
+  # The dowel pins. The released assembly holds four sizes; the DM readme lists
+  # two ("M4*8mm" and "M4*12mm", quantity "Several"), and neither is one of them.
+  # The lengths below are the CAD's, measured off the extracted solids, because
+  # that is what has to fit the holes. One dowel-pin listing covers the three 4 mm
+  # sizes - it is the one the readme points at for both of its - and the 3 mm pin
+  # has no listing at all.
+  pin/d3x8:
+    type: step
+    path: vendor/pin-d3x8.step
+    desc: 3 x 8 mm dowel pin (x2 in the DM arm)
+    properties:
+      material: stainless-steel
+      color: "#B8BCC0"
+
+  pin/d4x7:
+    type: step
+    path: vendor/pin-d4x7.step
+    desc: 4 x 7 mm dowel pin (x6 in the DM arm)
+    vendor: amazon
+    sku: B0F6CWL4MP
+    properties:
+      material: stainless-steel
+      color: "#B8BCC0"
+
+  pin/d4x10:
+    type: step
+    path: vendor/pin-d4x10.step
+    desc: 4 x 10 mm dowel pin (x6 in the DM arm)
+    vendor: amazon
+    sku: B0F6CWL4MP
+    properties:
+      material: stainless-steel
+      color: "#B8BCC0"
+
+  pin/d4x14:
+    type: step
+    path: vendor/pin-d4x14.step
+    desc: 4 x 14 mm dowel pin (x3 in the DM arm)
+    vendor: amazon
+    sku: B0F6CWL4MP
+    properties:
+      material: stainless-steel
+      color: "#B8BCC0"
+
+##############################################################################
+# How a Damiao DM43xx actuator is bolted to
+#
+# Measured, not assumed. Two of the DM arm's machined parts carry the same
+# pattern - 02_Motor_Front_Spacer.step and 02_FLANGE.step - and reading their
+# cylindrical faces gives it exactly: six holes of radius 1.6 (front spacer) and
+# 1.35 (flange) on a circle of radius 13.5 at 60 degree spacing, around a bore of
+# radius 7. A 27 mm bolt circle fits inside the 30 mm output boss the envelope
+# already declared, which is the cross-check that this is the motor's face and
+# not something else.
+#
+# One port at the centre of the pattern rather than six, one per hole. What a
+# bolt circle fixes is the axis and the roll, and the roll of six holes at 60
+# degrees is any multiple of 60 - so the centre and the axis are the joint, and
+# six ports would offer PartCAD a choice of which hole meets which, which is not
+# a choice anybody wants made for them. Six ports is what to write the day a
+# fastener has to be placed in one named hole.
+#
+# 'Z points out of the object it belongs to' is PartCAD's convention: the
+# direction a part travels along when it is connected through that port. So the
+# motor's port looks away from the motor, and the port on whatever bolts to it
+# looks into that part - and mating them lands the two faces together.
+##############################################################################
+interfaces:
+  actuator/dm43xx-output:
+    desc: >-
+      The output face of a Damiao DM43xx actuator: six M3 threads on a 27 mm bolt
+      circle around a 14 mm boss. Z points out of the motor.
+    ports:
+      face:
+        sketch: dm43xx-bolt-circle
+    mates:
+      actuator/dm43xx-mounted:
+
+  actuator/dm43xx-mounted:
+    desc: >-
+      The face of a part that bolts to a DM43xx output: the same six holes on the
+      same circle. Z points into the part.
+    ports:
+      face:
+        sketch: dm43xx-bolt-circle
 
 sketches:
-  pad-30x9:
+  # The bolt circle, so that a port drawn on a render is the size of the thing it
+  # names rather than a bare set of arrows.
+  dm43xx-bolt-circle:
     type: basic
-    rectangle:
-      side-x: 30.0
-      side-y: 9.0
+    circle: 13.5
+
+  # The actuator envelopes' sections, as the released models measure them.
+  circle-57:
+    type: basic
+    circle: 28.5
+
+  circle-82:
+    type: basic
+    circle: 41.0
 
 assemblies:
   cable/xt30-2x2-350:

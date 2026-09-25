@@ -1,0 +1,28 @@
+vendor,sku,count,price,note
+# The bought parts of both arms, as the readmes publish them: the vendor and the
+# product from the part's own declaration, the reference price from the readme
+# table. 'count' is how many packs the vendor has (a stand-in: nobody here knows
+# Amazon's stock), and 'price' is per pack.
+#
+# An empty price means the published BOM gives no price for that row. Those parts
+# are still available - the readme names the product - and a quote that includes
+# one refuses rather than guessing. See ../PARTCAD.md.
+seeedstudio,DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660,100,120.00,DM4310(V4) actuator
+seeedstudio,DM4340P-Actuator-p-6663,100,175.00,DM4340P(V4) actuator
+seeedstudio,Robostride-00-Actuator-p-6664,100,125.00,RobStride RS00 actuator
+seeedstudio,Robostride-06-Actuator-p-6668,100,210.00,RobStride RS06 actuator
+amazon,B0D6WBMW3F,100,13.00,6707ZZ bearing
+amazon,B0D54JSWBZ,100,13.00,6803ZZ bearing
+amazon,B0B3M3RZGW,100,12.00,AXK5578 thrust bearing
+amazon,B0D54L45WM,100,23.00,MGN9 rail 170 mm
+amazon,B0D9QBQDKB,100,10.00,MGN9C carriage
+amazon,B0F9KVYXFZ,100,10.00,30x9x2 mm silicone pad
+amazon,B013ETVO12,100,27.35,MeanWell LRS-350-24 power supply
+amazon,B0BV5XFYNS,100,,MeanWell LRS-600-48 power supply - the RS readme gives no price
+amazon,B0CQK1P1DP,100,9.99,XT60E-F panel connector
+amazon,B0DJQG5YLF,100,,M3x6 socket head cap screw - the readme prices no fastener
+amazon,B0DJQGMQZM,100,,M3x12 socket head cap screw
+amazon,B0DJQFGRPQ,100,,M3x25 socket head cap screw
+amazon,B0DR1NX178,100,,M4x75 socket head cap screw
+amazon,B01MXSS95N,100,,KA3x12 self-tapping screw
+amazon,B01MS60KSY,100,,M3x8 low-profile socket head screw

@@ -1,0 +1,35 @@
+# Does the motor mounting interface hold up?
+#
+# Nothing in this assembly is a part of the arm: it is the check the
+# '/pc:add-interfaces' skill asks for before an interface is used anywhere -
+# mate two parts through it and look at the result. A port is a coordinate frame
+# rather than geometry, so the only way to know whether it is where the feature
+# is is to put two parts together by it and see whether the faces meet.
+#
+# What should be true of the picture:
+#   * the spacer sits flat on the motor's output face, concentric with it;
+#   * it is not inside the motor, and there is no gap;
+#   * its port coincides with the motor's, +Z arrows opposed
+#     ('pc render -a -t png --with-internals check/motor-mount').
+#
+# Only the front spacer is mated here now. The flange was too, on the reading that
+# a part carrying the motor's bolt circle bolts to the motor - and the released
+# assembly says it does not: see 'flange' in ./partcad.yaml. What is left is the
+# one mate the release confirms, and the motor's port is derived from that release
+# rather than asserted, so this picture is a check on the arithmetic rather than on
+# a guess.
+
+links:
+  # The motor by its own name in the package that declares it, and not this
+  # package's alias of it: an alias does not carry the source's 'implements:', so
+  # its ports are empty and a 'connect:' naming them silently places nothing.
+  # See ../../PARTCAD.md.
+  - part: //pub/robotics/rebot/devarm/third_party:actuator/dm4340p
+    name: motor
+
+  - part: motor-front-spacer
+    name: spacer
+    connect:
+      with: //pub/robotics/rebot/devarm/third_party:actuator/dm43xx-mounted
+      name: motor
+      to: //pub/robotics/rebot/devarm/third_party:actuator/dm43xx-output
