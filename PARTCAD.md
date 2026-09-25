@@ -209,7 +209,9 @@ Done:
   rather than envelopes drawn from a datasheet, which is what makes a placement read
   off those releases mean anything. The four actuators are still envelopes, because
   their vendor models are 74 MB between them - but they now sit in the vendor's
-  frame, which is the half of it a placement needs.
+  frame, which is the half of it a placement needs. That shortcut has a measurable
+  price, and `pc test` charges it: the largest interference findings in this
+  repository are those four cylinders against their neighbours.
 * Geometry is verified against the release, not by eye, at three levels. Every part
   of the DM gripper was placed by PartCAD and compared against the released
   assembly's own box for it: worst corner 0.008 mm. The whole DM arm was exported
@@ -258,8 +260,10 @@ Not done - and why:
   are machined *and* formed, which `method: sheet_metal` can express, but the
   flat blank's geometry does not exist and unfolding the finished part is a CAM
   operation this repository cannot perform.
-* **`pc test` is not green**, and what is left is worth reading rather than
-  fixing: see "What `pc test` finds".
+* **`pc test` is not green** - 1850 failures, which is what an arm with real
+  placements in it costs a suite of geometric checks that previously had nothing to
+  measure. Most of it is worth reading rather than fixing: see "What `pc test`
+  finds".
 
 ## What the two arms share
 
@@ -457,57 +461,69 @@ Six changes, each found by using it on this repository:
 
 ### What `pc test` finds
 
-Not green, and the three things left are worth reading:
+`pc test -r` over the whole tree reports **1850 failures**: 994 interference, 728
+connectivity, 62 cam, 22 manufacturability. That is not a regression - it is the
+first run with an arm in it. Over an assembly at the identity location the
+geometric checks had nothing to say; now they do, and what they say is worth
+reading one group at a time.
 
-1. **A subtractive part that PartCAD cannot route fails the `cam` check.** Naming
-   no machine means a CNC router, so every `subtractive` part is asked for a 2.5D
-   route - and about 25 parts across the two arms are genuinely subtractive and
-   genuinely not 2.5D: turned discs, parts cut from bar, machined-and-formed
-   links. They fail with `No 'diameter' is configured`, which points at a
-   declaration that would not help if it were there.
+1. **Connectivity, 728: every link of both arms placed by coordinates.** The check
+   is right, it is the repository's own open item, and it is what "What it would
+   take to drop `location:`" is about. One failure per link, so the number is the
+   size of the arms rather than the size of the problem.
+
+2. **Interference, 994, and three quarters of it is expected.** A screw in a tapped
+   hole shares volume with the part it is screwed into, and so does a dowel pin in
+   its bore and a bearing in an interference fit; the released assembly models all
+   three the way a designer does. 646 of the 994 are a fastener against the thing it
+   fastens and 68 are two fasteners meeting in a joint. Separating those from real
+   clashes needs the joints declared: a `connect:` through a threaded interface is
+   what would let PartCAD know that an overlap there is the point.
+
+   Of the 281 that are structure against structure, the largest are the **four
+   actuator envelopes** - `actuator-dm4310` against another `actuator-dm4310` by
+   30534 mm³, `actuator-rs06` against `base-link` by 14815. Those are the parts kept
+   as cylinders rather than taken out of the release (74 MB between them), and a
+   full-diameter cylinder swallows the steps and recesses the real motor has. So the
+   biggest interference findings in this repository are a measure of that trade
+   rather than of the arm, and they are the argument for paying the 74 MB after all.
+
+   The rest are in the power supply enclosure, which is the one assembly here whose
+   placements are still hand-written guesses rather than a release's.
+
+3. **CAM, 62: a subtractive part that PartCAD cannot route fails the check.**
+   Naming no machine means a CNC router, so every `subtractive` part is asked for a
+   2.5D route - and the parts that fail are genuinely subtractive and genuinely not
+   2.5D: turned discs, parts cut from bar, the machined-and-formed links. They fail
+   with `No 'diameter' is configured`, which points at a declaration that would not
+   help if it were there.
 
    What would fix it: the check applying only where a machine is *named*. "Naming
    none means CNC" is a sensible default for a route somebody asked for, and a
    different thing from asking for one.
 
-2. **The fasteners the published BOM prices nowhere cannot be quoted.** Every
-   fastener of both arms now carries the vendor and SKU its own readme row links,
-   which closed the "can be neither bought nor made" failures this check used to
-   report for most of the RS package. What is left is the price: no fastener row in
-   either readme carries one, so `pc supply quote` for a whole arm refuses rather
-   than under-counting. That is the right answer to a gap in the published data -
-   see the data questions at the end.
+4. **Manufacturability, 22, and almost all of it is one honest gap.** Six parts
+   can be neither bought nor made: the three power-supply-enclosure fasteners whose
+   readme rows carry "/" where the link should be, the M4x5 set screw the readme
+   does not list at all, the 3 mm dowel pin with no listing, and the XT30 connector
+   body, which is only sold as part of a harness. Every other fastener of both arms
+   now carries the vendor and SKU its own readme row links. The rest of the 22 are
+   the arms and the grippers reporting that they reference one of those parts.
 
-   Two of the readmes' links point at a product of a different size (the DM one
-   links an M3x12 product for four KM3 lengths, the RS one the M4x75 product for
-   M4x8, M4x16 and M4x70). Those SKUs are recorded as published rather than
-   silently improved, and flagged as data questions: a generated BOM that quietly
-   corrects its source is worse than one that carries the source's own answer.
+   This check earned its keep twice over this round: it is what found five
+   accessory mounts with no tolerance and four countersunk screws whose SKU I had
+   wrongly left out, both fixed here.
 
-3. **A cached verdict loses its reason, and survives a change that should
+5. **A cached verdict loses its reason, and survives a change that should
    invalidate it.** A second run reports `Failed test result loaded from cache`
    instead of what failed - which also happens *within* one run, for an object
-   tested twice, so a package's output is mostly that sentence. And the key does
-   not cover the declaration: changing a part from `alias` to `enrich` - which
-   changes the verdict - produced the cached one.
+   tested twice, so a package's output is mostly that sentence. And the key does not
+   cover the declaration: changing a part from `alias` to `enrich` - which changes
+   the verdict - produced the cached one.
 
-4. **Now that the placements are real, the connectivity and interference checks
-   have something to say.** They had nothing to report about an arm whose every
-   part sat at the origin except that every part sat at the origin. What they report
-   now:
-
-   * **Connectivity**: every link of both arms, 588 of them, is "placed by
-     coordinates, which says where it ends up but not what holds it there". That is
-     the check stating the repository's own open item, once per part, and it is the
-     thing "What it would take to drop `location:`" is about.
-   * **Interference**: worth reading one at a time rather than silencing. A screw
-     in a tapped hole shares volume with the part it is screwed into, and so does a
-     dowel pin in its bore and a bearing in an interference fit - the released
-     assembly models all three the way a designer does, as solids that overlap by
-     the thread or the press fit. So an interference report here is three different
-     findings wearing one name, and separating them needs the joints declared: a
-     `connect:` through a threaded interface is what would let PartCAD know that an
-     overlap there is the point rather than a mistake.
+Two families of failure that were here last round are **gone**, both fixed upstream
+from this repository's data: an aliased machined part no longer fails for having no
+tolerance, and no longer fails for its blank being looked up in the wrong package.
 
 ## What it would take to drop `location:`
 
@@ -800,8 +816,12 @@ In the order that unblocks the most work here:
   `connect:` from replacing `location:` wholesale is blocker 1 - an alias carries no
   ports, and every purchased part is aliased - plus the same derivation for the
   other joint families, which is now a script rather than a research project.
-* **"See if `pc test` finds any issues."** It does, and they are worth reading
-  rather than silencing - see "What `pc test` finds".
+* **"See if `pc test` finds any issues."** 1850 of them, and they are worth reading
+  rather than silencing - see "What `pc test` finds". Two findings changed this
+  repository: five accessory mounts had no manufacturing tolerance and four
+  countersunk screws had no SKU their readme in fact publishes. Two more changed
+  PartCAD. And the largest group of geometric findings turns out to measure the one
+  shortcut taken here - the four actuator envelopes - rather than the arm.
 * **CAM.** Noted as a conversation for later. What is here now: twenty plates
   produce G-code with the machine declared on the part rather than in a duplicate
   of it, and the routes still cut the outline and the through holes and nothing
