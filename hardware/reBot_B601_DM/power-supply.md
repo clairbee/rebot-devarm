@@ -12,14 +12,14 @@ Package: `//pub/robotics/rebot/devarm/b601-dm`
 
 | Part |  | Count | Material | Method | Tolerance | Vendor | SKU | File | Description |
 | --- | --- | ---: | --- | --- | ---: | --- | --- | --- | --- |
-| connector-xt60e | <img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | nylon |  |  | amazon | B0CQK1P1DP | `src/connector_xt60e.py` | Alias to connector/xt60e-female from //pub/robotics/rebot/devarm/third_party |
+| connector-xt60e | <img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | nylon |  |  | amazon | B0CQK1P1DP | `src/connector_xt60e.py` | Output port XT60E female + lug pigtail (x1) |
 | psu-front-cover | <img src="./doc/psu-front-cover.svg" alt="psu-front-cover" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | PLA | additive | ±0.2 mm |  |  | `3D_Printed_Parts/DM-power-Top Cover.stp` | Power supply front cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill |
 | psu-front-cover-slider | <img src="./doc/psu-front-cover-slider.svg" alt="psu-front-cover-slider" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | PLA | additive | ±0.2 mm |  |  | `3D_Printed_Parts/DM-power-Top Cover-Sliding Cover.stp` | Power supply front cover slider (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill |
-| psu-lrs-350-24 | <img src="./doc/psu-lrs-350-24.svg" alt="psu-lrs-350-24" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | galvanized steel |  |  | amazon | B013ETVO12 | `src/psu_enclosed.py` | Alias to psu/lrs-350-24 from //pub/robotics/rebot/devarm/third_party |
+| psu-lrs-350-24 | <img src="./doc/psu-lrs-350-24.svg" alt="psu-lrs-350-24" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | galvanized steel |  |  | amazon | B013ETVO12 | `src/psu_enclosed.py` | Power supply MeanWell LRS-350-24, 24V 14.6A (x1) |
 | psu-rear-cover | <img src="./doc/psu-rear-cover.svg" alt="psu-rear-cover" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 1 | PLA | additive | ±0.2 mm |  |  | `3D_Printed_Parts/DM-power-Bottom Cover.stp` | Power supply rear cover (x1); 0.4 mm nozzle, 0.2 mm layer height, 30% infill |
-| screw-m3x8-countersunk | <img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 |  |  |  |  |  |  | Alias to fastener/countersunk-iso7046;length=8,size=M3-0.5 from //pub/std/metric/cqwarehouse |
-| screw-m3x8-pan | <img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 |  |  |  |  |  |  | Alias to fastener/raisedcheesehead-iso7045;length=8,size=M3-0.5 from //pub/std/metric/cqwarehouse |
-| screw-m4x6-countersunk | <img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 6 |  |  |  |  |  |  | Alias to fastener/countersunk-iso7046;length=6,size=M4-0.7 from //pub/std/metric/cqwarehouse |
+| screw-m3x8-countersunk | <img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 |  |  |  |  |  |  | M3x8 304 stainless steel Phillips countersunk head screw (x2) |
+| screw-m3x8-pan | <img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 2 |  |  |  |  |  |  | M3x8 304 stainless steel Phillips pan head screw (x2) |
+| screw-m4x6-countersunk | <img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 96px; max-height: 96px;"> | 6 |  |  |  |  |  |  | M4x6 304 stainless steel Phillips countersunk head screw (x6) |
 
 <br/><br/>
 

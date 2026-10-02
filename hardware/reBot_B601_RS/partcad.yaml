@@ -292,9 +292,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate motor1-bearing-mount is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -322,9 +329,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link1-metal-l is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -350,9 +364,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link1-metal-r is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -378,9 +399,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate joint-disc is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -406,9 +434,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate rs06-front-extension is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -434,9 +469,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate rs06-back-extension is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -462,9 +504,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link2 is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -490,9 +539,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate upper-limit-l is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -518,9 +574,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate upper-limit-r is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -546,9 +609,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate lower-upper-link-l is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -574,9 +644,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate lower-upper-link-r is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -602,9 +679,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link3-metal-l is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -630,9 +714,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link3-metal-r is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -658,9 +749,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link3-connector is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -686,9 +784,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate motor-cable-clip is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -714,9 +819,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate motor-back-spacer is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -730,9 +842,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link4-5-l is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -758,9 +877,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link4-5-r is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -786,9 +912,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate link5 is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -814,9 +947,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate wrist-connector-a is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -842,9 +982,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate wrist-connector-b is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -870,9 +1017,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate gripper-connector-a is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -894,9 +1048,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate slider-bracket is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -910,9 +1071,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate slider-extension is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -926,9 +1094,16 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate rack is cut from
-    # Not something this package asks anybody to supply: it is the piece the
-    # part above is cut out of, declared so that the cut can be checked. What
-    # a shop actually buys is a sheet with several of these nested on it.
+    # 'manufacturable: false' because nobody is asked to make a blank - it is the
+    # piece the part above is cut out of, declared so that the cut can be checked,
+    # and what a shop actually buys is a sheet with several of these nested on it.
+    #
+    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
+    # this, and the flag does not exempt it: 'pc test' fails every blank with
+    # "Cannot be purchased or manufactured". The question is a fair one and this
+    # repository cannot answer it - the readme prices all the machined parts at
+    # ~$250 together, material and machining in one figure, and names no metals
+    # supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -948,6 +1123,7 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate base-motor-plate is cut from
+    # See the other blanks above for what this flag does and does not exempt.
     manufacturable: false
     parameters:
       step:
@@ -973,6 +1149,7 @@ parts:
     type: build123d
     path: src/stock_plate.py
     desc: The 5052 plate motor4-stator-spacer is cut from
+    # See the other blanks above for what this flag does and does not exempt.
     manufacturable: false
     parameters:
       step:

@@ -15,9 +15,10 @@
 # object its own process and its own timeout - so one object that hangs costs its
 # timeout instead of the rest of the run.
 #
-# The two arms are the objects that genuinely cannot be drawn: an assembly's
-# projection needs its shape built, and a build with a sub-assembly to stage first
-# does not return. They are attempted last, and a failure there is expected.
+# The two arms are the hard case rather than an impossible one: 326 parts, a
+# sub-assembly to stage first, and a build that from a cold cache stops making
+# progress rather than finishing. They are attempted last, after everything they
+# contain has been drawn and so cached, and each object gets two attempts.
 #
 # Usage, from the repository root:
 #
@@ -49,18 +50,25 @@ dir_of() {
 
 render() { # <package> <object> [-a]
 	local package="$1" object="$2" assembly="${3:-}"
-	local target
+	local target attempt
 	target="$(dir_of "$package")/doc/$object.svg"
 	if [ "$ALL" = false ] && [ -f "$target" ]; then
 		return 0
 	fi
-	# shellcheck disable=SC2086 # $assembly is a single optional flag
-	if timeout "$TIMEOUT_PER_OBJECT" "$PC" --no-ansi render -t svg $assembly -p \
-		-P "//pub/robotics/rebot/devarm/$package" "$object" >/dev/null 2>&1; then
-		echo "  drawn    $package:$object"
-	else
-		echo "  FAILED   $package:$object"
-	fi
+	# Twice, because the failure this script exists for is a build that stops
+	# making progress from a cold cache (../PARTCAD.md, "A build stops making
+	# progress"): whatever the first attempt did manage to build is cached, so a
+	# second one starts from further along. An arm needs it; nothing else does.
+	for attempt in 1 2; do
+		# shellcheck disable=SC2086 # $assembly is a single optional flag
+		if timeout "$TIMEOUT_PER_OBJECT" "$PC" --no-ansi render -t svg $assembly \
+			-P "//pub/robotics/rebot/devarm/$package" "$object" >/dev/null 2>&1; then
+			[ "$attempt" = 1 ] && echo "  drawn    $package:$object" ||
+				echo "  drawn    $package:$object (on the second attempt)"
+			return 0
+		fi
+	done
+	echo "  FAILED   $package:$object"
 }
 
 for package in $PACKAGES; do

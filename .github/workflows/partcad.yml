@@ -46,7 +46,7 @@ jobs:
         # The floor the packages declare. Kept as a floor rather than a pin so
         # that a release with a fix lands here without an edit; if a release ever
         # breaks this, pin it here and say why.
-        run: pip install "partcad>=0.8.124"
+        run: pip install "partcad>=0.8.136"
 
       - name: Fetch what the packages depend on
         run: pc --no-ansi install

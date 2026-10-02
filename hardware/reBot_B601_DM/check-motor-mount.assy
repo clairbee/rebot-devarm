@@ -20,11 +20,13 @@
 # a guess.
 
 links:
-  # The motor by its own name in the package that declares it, and not this
-  # package's alias of it: an alias does not carry the source's 'implements:', so
-  # its ports are empty and a 'connect:' naming them silently places nothing.
-  # See ../../PARTCAD.md.
-  - part: //pub/robotics/rebot/devarm/third_party:actuator/dm4340p
+  # The motor by this package's own name for it. It used to have to be named in
+  # the package that declares it, because an alias carried none of its source's
+  # 'implements:' and a 'connect:' naming those ports silently placed nothing -
+  # which is what made this check unlike anything an arm assembly could do. PartCAD
+  # 0.8.130 fixed that, so the alias is what is named here, and this assembly is
+  # now the shape an arm's own 'connect:' would take.
+  - part: actuator-dm4340p
     name: motor
 
   - part: motor-front-spacer

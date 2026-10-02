@@ -30,7 +30,7 @@ tools/check_parts_against_release.py      is each part file the solid the releas
 .github/workflows/partcad.yml             lints, and keeps the generated documents honest
 ```
 
-Requires PartCAD **0.8.124** or newer.
+Requires PartCAD **0.8.136** or newer.
 
 **Every markdown document in the two hardware folders is generated except two.**
 A folder that holds parts and assemblies is a PartCAD package, and its readme is
@@ -82,7 +82,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 # the machining routes of every plate whose 'manufacturing:' names a machine
 mkdir -p /tmp/routes
-pc --no-ansi cam -p -O /tmp/routes -P //pub/robotics/rebot/devarm/b601-dm
+pc --no-ansi cam -O /tmp/routes -P //pub/robotics/rebot/devarm/b601-dm
 
 # what a part says about how it is made, and whether it holds up
 pc --no-ansi info //pub/robotics/rebot/devarm/b601-dm:flange
@@ -94,12 +94,9 @@ pc --no-ansi render -a -t png --view iso -O /tmp/out \
 
 # a shape, in the viewer or as a file
 pc --no-ansi inspect //pub/robotics/rebot/devarm/third_party:actuator/dm4310
-pc --no-ansi export -t stl -p -O /tmp/out \
+pc --no-ansi export -t stl -O /tmp/out \
     //pub/robotics/rebot/devarm/b601-dm:base-plate
 ```
-
-`-p` on `export`, `render` and `cam` creates the directory a slash-named object
-implies; it does not create the `-O` directory itself.
 
 Pass `--no-ansi` whenever the output is parsed by a script or an agent, and note
 that it routes the logs to stderr. If a change to a `partcad.yaml` does not seem to
@@ -145,10 +142,13 @@ should need.
 * **A purchased part's shape is the vendor's own, out of the released assembly**,
   written to `third_party/vendor/` by `tools/extract_vendor_parts.py`. That is not
   a preference, it is what makes a placement read off that release mean anything -
-  see "What it would take to drop `location:`". Two exceptions: the four actuators,
-  whose vendor models are 74 MB between them, are cylinders in the vendor's frame;
-  and the three power-supply-enclosure fasteners the releases do not model, which
-  are `type: enrich` of the parametric cq-warehouse parts in the public index.
+  see "What it would take to drop `location:`". The size of such a file is not a
+  reason to substitute an envelope for it; it is a reason for the package holding it
+  to become a package of its own, which is what `//pub/electronics/sbcs/intel` is.
+  The exceptions are the four parts no release models - the two power supplies, the
+  XT60E connector and the wire - which are envelopes in `third_party/src/`, and the
+  three power-supply-enclosure fasteners, which are `type: enrich` of the
+  parametric cq-warehouse parts in the public index.
 * **An assembly is generated, not written.** Both arms and both grippers come out
   of `tools/assy_from_reference.py`; the descriptions are the hand-written part and
   the generator carries them from the previous revision.
@@ -204,14 +204,26 @@ Done:
   two different actuators. The same arithmetic showed that the part which was
   declared to implement the other side of it does not: see "What it would take to
   drop `location:`".
-* **Every purchased part has the vendor's own geometry, or the vendor's own frame.**
-  30 declarations in `third_party/` are files taken out of the released assemblies
+* **Every purchased part the releases model has the vendor's own geometry.** 34
+  declarations in `third_party/` are files taken out of the released assemblies
   rather than envelopes drawn from a datasheet, which is what makes a placement read
-  off those releases mean anything. The four actuators are still envelopes, because
-  their vendor models are 74 MB between them - but they now sit in the vendor's
-  frame, which is the half of it a placement needs. That shortcut has a measurable
-  price, and `pc test` charges it: the largest interference findings in this
-  repository are those four cylinders against their neighbours.
+  off those releases mean anything at all - a transformation says where a model's
+  *origin* goes, so it is only correct for the model it was measured from.
+
+  The four actuators were held out of that for one round, on size: 17 to 25 MB each,
+  74 MB together. It cost them their geometry, and `pc test` charged for it - a
+  cylinder of the full diameter swallows the steps a real motor has, so two DM4310s
+  overlapped each other by 30534 mm³. They are vendor solids now, which is what
+  `//pub/electronics/sbcs/intel` does: that package is a repository of its own
+  holding one 27.8 MB `nuc12.step`, `type: step`, with its vendor, SKU and product
+  URL. The bytes live in the package that needs them, and `//pub/electronics/sbcs`
+  reaches them through a `dependencies:` entry rather than carrying them.
+
+  So `third_party/` is the package to split off the day this repository's size
+  matters - it already depends on neither arm while both arms depend on it, and
+  `vendor/` is 84 MB of a 434 MB working tree whose other 106 MB is the two releases
+  themselves. `third_party/README.md` says what that would take: one
+  `dependencies:` block.
 * Geometry is verified against the release, not by eye, at three levels. Every part
   of the DM gripper was placed by PartCAD and compared against the released
   assembly's own box for it: worst corner 0.008 mm. The whole DM arm was exported
@@ -221,24 +233,7 @@ Done:
   solid the release assembles under the same name
   (`tools/check_parts_against_release.py`).
 * **That last check found the release disagreeing with itself**, which is the kind
-  of thing this whole exercise is for. Eleven of the 71 part files that the releases
-  also assemble are not the solid they assemble:
-  - `01_Lower_Arm_Cover.step` and `01_Upper_Arm_Cover.step` are **swapped** - the
-    geometry published under each name is what the release assembles under the
-    other, their volumes matching across exactly (17896.0 against 10754/10776).
-    Each part here is declared from the file whose *geometry* belongs where the part
-    goes, and `tools/assy_from_reference.py` matches these two by the release's name
-    rather than by the file's.
-  - `01_BASE_Plate.step` is 14.00 mm thick where the release assembles one 14.75 mm
-    thick, offset 2 mm along its own axis. That is the 2 mm in the arm's bounding
-    box, and it is not something to correct here.
-  - `01_Upper_Arm_Limit.step` is 6.05 mm out of position and 1364 mm³ lighter.
-  - `01_Arm_Handle`, `01_Lower_Arm_Limit`, both `01_Joint6_7_Cable Restraint`s,
-    `01_Motor_Cover`, `02_Wrist_Bracket` and the RS `2-RSM-ROTOR-R` have the right
-    outline and between 4 and 2050 mm³ of difference inside it.
-
-  Nothing here decides which copy is authoritative; they are data questions at the
-  end of this file.
+  of thing this whole exercise is for. It has its own section below.
 * `pc lint` passes on every file.
 
 Not done - and why:
@@ -411,12 +406,116 @@ to, read off two machined parts that carry it (six holes on a circle of radius
 the envelope already declared. It is an interface now - see "What it would take
 to drop `location:`".
 
+## Where the release disagrees with itself
+
+Each arm is published as one download, and that download holds **two different
+kinds of thing**:
+
+1. **One file per part**, under `3D_Printed_Parts/` and `Metal_Parts/`. This is
+   what every part of these packages is declared from, and what somebody prints or
+   sends to a shop.
+2. **One file for the whole arm** - `reBot_B601_DM_v1.1_20260425.step` - which is
+   an assembly holding *its own copy* of each of those solids, plus the placement
+   of every one of them.
+
+Nothing had ever compared the two, because until this round nothing needed to. Now
+both matter at once: `arm.assy` takes its **placements** from (2) and its
+**geometry** from (1), so a part whose two copies differ is a part placed where the
+assembly says with geometry that belongs somewhere else.
+`tools/check_parts_against_release.py` compares them part by part, by bounding box
+and by volume. 71 part files are also assembled. **Eleven of them differ.**
+
+### Two files are swapped
+
+The release assembles a product it calls `01_Lower_Arm_Cover` on the lower arm
+(z 109.200..136.929) and one it calls `01_Upper_Arm_Cover` on the upper
+(z 170.860..195.800). The published files are the other way round:
+
+| | vertices | volume | identical to |
+|---|---|---|---|
+| released `01_Lower_Arm_Cover` | 1848 | 17896.0 mm³ | published `01_Upper_Arm_Cover.step` |
+| published `01_Upper_Arm_Cover.step` | 1848 | 17896.0 mm³ | released `01_Lower_Arm_Cover` |
+| released `01_Upper_Arm_Cover` | 1644 | 10754.0 mm³ | — |
+| published `01_Lower_Arm_Cover.step` | 1644 | 10776.0 mm³ | — (22 mm³ apart) |
+
+One of those pairs is **vertex for vertex identical** - all 1848, compared relative
+to each shape's own bounding-box corner so that neither frame matters. That is not
+a coincidence of volume; it is the same solid. The other pair is the same part one
+revision apart.
+
+So the two file names are swapped. Left alone it would put the upper cover where
+the lower belongs and the lower where the upper belongs - and since the two are a
+similar size, nothing about the result looks wrong. Each part here is therefore
+declared from the file whose *geometry* belongs where the part goes, and
+`tools/assy_from_reference.py` matches these two by the release's name rather than
+by the file's.
+
+### One is why the assembled arm is 2 mm bigger than the release
+
+| | thickness | z | volume |
+|---|---|---|---|
+| released `01_BASE_Plate` | 14.75 mm | -17.300..-3.300 | 385497.2 mm³ |
+| published `01_BASE_Plate.step` | 14.00 mm | -15.300..-1.300 | 388611.0 mm³ |
+
+0.75 mm thinner, 2 mm along its own axis, 3114 mm³ apart. That is the whole of the
+difference between the arm PartCAD builds (z 1.300..285.500) and the release
+(z 3.300..285.500): the other five extreme faces agree exactly. It is not corrected
+here, because correcting it would mean choosing which copy is right.
+
+What it means for a builder: printing the published file gives a base plate that is
+not the plate the released assembly was put together with.
+
+### Eight differ inside the same outline
+
+Same bounding box, different volume - which reads as a revision: a fillet added, a
+hole moved, a boss changed.
+
+| part file | difference |
+|---|---|
+| `02_Wrist_Bracket.step` | 680.7 mm³ |
+| `01_Arm_Handle.step` | 406.6 mm³ |
+| `01_Joint6_7_Cable Restraint_A.step` | 169.5 mm³ |
+| `01_Lower_Arm_Limit.step` | 117.7 mm³ |
+| `01_Joint6_7_Cable Restraint_B.step` | 18.4 mm³ |
+| `01_Motor_Cover.step` | 4.0 mm³ |
+| RS `2-RSM-ROTOR-R.step` | 2049.7 mm³ |
+| `01_Upper_Arm_Limit.step` | 1364.2 mm³, and 6.05 mm out of position |
+
+### What to do about it
+
+Nothing here decides which copy is authoritative - that is a question for whoever
+publishes the release, and it is in the data questions at the end of this file. What
+has changed is that the question is now **answerable in a minute** rather than
+invisible: the check is a script, so the next release can be audited before anybody
+builds from it.
+
+The two most likely explanations, and they are not exclusive: the part files and
+the assembly were exported at different times, so one set is stale; or the covers
+were renamed at some point and the assembly kept the old names. The covers are the
+one case where the evidence settles it - the geometry says which is which, and the
+release's own placements agree with the geometry.
+
 ## What has landed since the last round
 
-Between 0.8.91 and 0.8.124 the manufacturing side of PartCAD was rebuilt, and
-most of what this repository had to say about it is now expressible:
+Between 0.8.124 and 0.8.136, four things this repository had reported as blockers
+were fixed, and two of them are why this round reached as far as it did:
 
-| Was | Now (0.8.124) |
+| Was | Now (0.8.136) |
+|---|---|
+| **An alias carried none of its source's `implements:`**, so every purchased part was unmatable through the name its arm uses for it - and no joint against a motor could be written in an arm assembly at all | 0.8.130 gives an alias its source's ports. `check/motor-mount` names this package's own `actuator-dm4340p` now, and the mate lands the spacer's face on the motor's output face to three decimals |
+| A cached shape outlived the `.assy` that produced it, so a render or an export showed the old one with nothing said about it | 0.8.132 keys a composite on its inputs. Two of this round's geometric checks were wrong once because of the old behaviour |
+| `pc render`/`pc export` needed `-p` to create the directory a slash-named object implies | 0.8.125 always creates it, and the flag is gone. This repository's commands and `tools/render-drawings.sh` no longer pass it |
+| A part could not name the offer it is bought from | It always could - `url:` is in the schema beside `vendor`/`sku`, and `//pub/electronics/sbcs/intel` uses it for the product page. What is still missing is a column for it in the generated parts list |
+
+0.8.127 also changed something this repository has to answer for rather than
+benefit from: a made part's **stock is procured** now, so `pc test` asks who
+supplies each of the 49 blanks. That is a fairer question than it used to ask, and
+the answer is a gap in the published data - see blocker 11.
+
+Between 0.8.91 and 0.8.124 the manufacturing side of PartCAD was rebuilt, and
+most of what this repository had to say about it became expressible:
+
+| Was | Now |
 |---|---|
 | A `cam:` section on the part, and no way to say what a subtractive part is cut *from* | The job moved into `manufacturing:`, beside the method it belongs to: `source:` names the blank, and `cnc:`/`laser:`/`drill:` names the machine. `pc test` checks that the part fits the blank and that the blank is bigger somewhere |
 | A plate had to be declared twice - once as a part, once laid flat as a machining job - because `cam:` on an alias was dropped | `toolAxis:` says which way the tool comes at the part, so the part carries its own machine. The 20 duplicate declarations are gone, and so is the `offset:` trick that laid each one flat |
@@ -452,7 +551,7 @@ Six changes, each found by using it on this repository:
    a lowercase readme, made PartCAD execute this repository's readme as the readme
    renderer and report "leading zeros in decimal integer literals are not permitted
    (readme.md, line 20)" for every object in the package. Line 20 held a part
-   number. See blocker 11 for what is still wanted: a way to set the name.
+   number. See blocker 8 for what is still wanted: a way to set the name.
 6. **The bill of materials carries what a published parts list carries** - the
    picture, the material, the method, the process, the tolerance, the vendor, the
    SKU and the file - which is the change this repository asked for last round,
@@ -602,31 +701,49 @@ measured against - or, better, for an assembly to. Nothing in a `location:` reco
 it, so substituting a shape silently moves every part placed relative to it, and the
 only symptom is a render that looks slightly wrong.
 
-**What is left before `connect:` can replace `location:`:**
+**The thing that was blocking it is fixed.** An alias carried none of its source's
+`implements:`, so its ports were empty and a `connect:` naming them silently placed
+nothing - and since every purchased part is aliased into the variant that uses it,
+no joint against a motor could be written in an arm assembly at all.
+PartCAD 0.8.130 fixed that, and `pc info` on this package's own
+`actuator-dm4340p` now reports the derived port:
 
-1. **An alias does not carry its source's ports** (blocker 1), and every purchased
-   part is aliased into the variant that uses it. Until that is fixed, a joint
-   against a motor can only be written by naming the part in the package that
-   declares it, which `check/motor-mount` does and an arm assembly cannot.
-2. **The other joints need the same derivation**, which is now a script rather than
-   a research project: for each machined part that meets a purchased one, measure
-   the pattern on the machined side and let the release supply the other. The four
-   front spacers are done; the bearings, the rail, the carriages and the racks are
-   the same shape of problem.
-3. **The mate has to be checked against the placement it replaces**, which is
-   exactly section 6 of the skill and is now possible: the release's transformation
-   is the answer the `connect:` has to reproduce.
+```
+Ports: {'interfaces': {'...:actuator/dm43xx-output': {'output': {'face': 'output-face'}}},
+        'ports': {'output-face': {'location': [[0.0, -11.0, 0.0], [1.0, 0.0, 0.0], 90.0], ...
+```
+
+`check/motor-mount` is the proof end to end. It used to have to name the actuator in
+the package that *declares* it, which is the one thing an arm assembly cannot do;
+it names this package's alias now, and the mate puts the spacer's face at y =
+-11.000 - the motor's output face, exactly, no gap and no overlap. So the chain is
+whole: a pattern measured off a machined part, a motor-side frame derived from the
+released assembly, a port on an alias, a `connect:` that lands where the release
+puts it.
+
+**What is left is the work rather than the blocker:**
+
+1. **The other joints need the same derivation.** It is a script now rather than a
+   research project: for each machined part that meets a purchased one, measure the
+   pattern on the machined side and let the release supply the other. The joint
+   families, in order of how many placements each would retire: a screw in a tapped
+   hole (271 across both arms), a bearing in its housing (6), a carriage on its rail
+   (4), a rack against the pinion (4).
+2. **A `connect:` has to name the node it connects to**, and the pairings cross the
+   link groups the releases are organized into - the Link1 front spacer bolts to an
+   actuator the release puts in Link2. Whether an ASSY node in one group can be
+   named from another is the next thing to find out; if it cannot, the groups have
+   to be reorganized around the joints rather than around the CAD's folders.
+3. **Each mate has to be checked against the placement it replaces**, which is
+   section 6 of the skill and is now straightforward: the release's transformation
+   is the answer the `connect:` has to reproduce, and
+   `tools/check_parts_against_release.py` is the shape such a check takes.
+
 ## Blockers
 
-1. **An `alias` does not carry the source's `implements:`, so it has no ports.**
-   `pc info` on the alias reports `{'interfaces': {}, 'ports': {}}` where the
-   source has both, and a `connect:` naming one of them drops the node without a
-   word - the assembly builds, one part short. Two of the three alias defects
-   this round found are fixed; this one is a design question rather than an
-   oversight, because an alias may carry an `offset:` and the ports would have to
-   move with it.
 
-2. **Nothing records which model a placement was measured against.** A
+
+1. **Nothing records which model a placement was measured against.** A
    `location:` is a transformation of a part's own origin, so it is only correct
    with the shape it was read from - and swapping that shape for another model of
    the same product silently moves the part. This round's arms are transcribed from
@@ -638,7 +755,8 @@ only symptom is a render that looks slightly wrong.
    for an assembly to declare the model its placements came from, so that
    substituting one is an error rather than a silent move.
 
-3. **A build stops making progress, and the daemon goes idle without saying
+
+2. **A build stops making progress, and the daemon goes idle without saying
    anything.** It is a cold-cache problem rather than anything about the objects,
    which is why it took so long to characterize - everything named below builds
    perfectly once the shapes it needs are in the cache:
@@ -658,10 +776,12 @@ only symptom is a render that looks slightly wrong.
    assembly would fail on a stopwatch even without this. `PC_DAEMON_IDLE_TIMEOUT=0`
    lifts that one.
 
-4. **A subtractive part that is not 2.5D cannot pass `pc test`** - see "What
+
+3. **A subtractive part that is not 2.5D cannot pass `pc test`** - see "What
    `pc test` finds".
 
-5. **A part's material is invisible to whoever would make it.** The supply path
+
+4. **A part's material is invisible to whoever would make it.** The supply path
    reads the `material` *object-type parameter*, which the types whose shape
    comes out of a file refuse; such a part states its material under
    `properties:` instead, and nothing reads it. So every `step` part warns "has
@@ -676,101 +796,113 @@ only symptom is a render that looks slightly wrong.
    `examples/produce_assembly_assy` fails the moment the material is read, for
    exactly that reason. Hence a report rather than a patch.
 
-6. **`manufacturing: desc:` is refused for every method but `subtractive`.** It
+
+5. **`manufacturing: desc:` is refused for every method but `subtractive`.** It
    is grouped with the keys that describe a cut, which is right for a route and
    leaves an additive part with nowhere to say how it is printed - so the nozzle,
    the layer height and the infill of 39 parts are prose in each part's `desc`,
    where the generated parts list shows them in the Description column rather
    than in the Process one.
 
-7. **A part cannot name the offer it is bought from.** `vendor` and `sku`
-   identify it, and the link in the readme is what a reader actually uses. This
-   round put the links in the price list (`providers/price_list.csv`), which is
-   where a price belongs; a `url:` beside `vendor`/`sku` would let the generated
-   parts list carry it and retire the last hand-written table in this repository.
 
-8. **A cached test verdict loses its reason and outlives the declaration** - see
+6. **A cached test verdict loses its reason and outlives the declaration** - see
    "What `pc test` finds".
 
-9. **A repository plugin's downloads do not go through the proxy** (unchanged,
+
+7. **A repository plugin's downloads do not go through the proxy** (unchanged,
    and not re-tested this round). `//pub/std/metric/bosl2` answers 403. It no
    longer matters for the bearings or the gear - those are the vendor's own solids
    now, which is a better answer than a generated one - but it is still what stops
    a parametric fastener catalogue from being usable here.
 
-10. **The shape cache outlives the assembly that produced it.** A `pc export` or
-    `pc render` of an assembly whose `.assy` has changed is served the old shape,
-    with nothing to say so; the whole of this round's geometric checking was wrong
-    once for exactly that reason, and the fix each time was `rm -rf
-    ~/.partcad/cache/shapes`. The declaration is in the key and the file the
-    declaration points at is not.
 
-11. **A package document's file name is not configurable.** `path:` under a
-    `render:` file type is the path of an *implementation* of that file type, so
-    `render: readme: path: readme.md` made PartCAD try to run this folder's readme
-    as the readme renderer. That half is fixed upstream this round - the path is
-    refused now, with a sentence saying what `path:` is - but the thing it was
-    reaching for still does not exist: what is configurable is `prefix`,
-    `extension` and `output_dir`, and the basename is `README.md`. So the DM
-    folder's `readme.md`, which was the vendor's spelling, is `README.md`. A
-    folder whose readme is lowercase is not unusual, and this one's was.
+8. **A package document's file name is not configurable.** `path:` under a
+   `render:` file type is the path of an *implementation* of that file type, so
+   `render: readme: path: readme.md` made PartCAD try to run this folder's readme
+   as the readme renderer. That half is fixed upstream this round - the path is
+   refused now, with a sentence saying what `path:` is - but the thing it was
+   reaching for still does not exist: what is configurable is `prefix`,
+   `extension` and `output_dir`, and the basename is `README.md`. So the DM
+   folder's `readme.md`, which was the vendor's spelling, is `README.md`. A
+   folder whose readme is lowercase is not unusual, and this one's was.
 
-12. **Importing a released STEP assembly does not finish.** Both arms' releases
-    were declared as `type: step` objects (`reference/arm-v1.1`,
-    `reference/arm-v1.0`) so that PartCAD could read the file the placements come
-    from. `pc render` of one decomposes 296 of the file's 326 components into
-    temporary STEP files and then stalls - on the same component every time, with
-    the daemon idle and nothing logged - so `pc render -P <package>` for the whole
-    package never finishes either. The two declarations are gone, and the file is
-    read by `tools/assy_from_reference.py` instead, which takes about a minute.
 
-13. **Telemetry retries an unreachable endpoint in the daemon's hot path.** Where
+9. **Importing a released STEP assembly does not finish.** Both arms' releases
+   were declared as `type: step` objects (`reference/arm-v1.1`,
+   `reference/arm-v1.0`) so that PartCAD could read the file the placements come
+   from. `pc render` of one decomposes 296 of the file's 326 components into
+   temporary STEP files and then stalls - on the same component every time, with
+   the daemon idle and nothing logged - so `pc render -P <package>` for the whole
+   package never finishes either. The two declarations are gone, and the file is
+   read by `tools/assy_from_reference.py` instead, which takes about a minute.
+
+
+10. **Telemetry retries an unreachable endpoint in the daemon's hot path.** Where
     outbound HTTPS is filtered - a CI runner, an agent sandbox - the daemon's log
     fills with `Tunnel connection failed: 403 Forbidden` retry rounds.
     `PC_TELEMETRY_TYPE=none` turns it off, and something that cannot reach its
     collector should stop trying by itself.
 
+11. **An object declared `manufacturable: false` is still required to be
+    procurable when another part names it as stock.** 0.8.127 procures a made
+    part's stock, which is a better question than `pc test` used to ask - a part
+    cut from something has to be cut from something somebody has. But the flag does
+    not exempt the stock from it, so all 49 blanks here now fail with "Cannot be
+    purchased or manufactured" about objects that say in the same breath that
+    nobody makes them. Either the flag should exempt a part from the supply
+    question, or it should be an error to name a `manufacturable: false` part as a
+    `source:` - the present state asks a question whose only truthful answer is the
+    flag that is already there.
+
+    What this repository would need to answer it properly is a metals supplier,
+    and the published data has none: the readme prices all the machined parts at
+    about $250 together, material and machining in one figure.
+
 ## Wish list
 
-In the order that unblocks the most work here:
+Three of last round's items are **done** in 0.8.136 and are the reason this round
+got as far as it did: ports on an alias (which is what lets an arm mate a purchased
+part through its own name for it), a cache key that covers the declaration, and a
+`url:` beside `vendor`/`sku` - which turns out to have been there all along, and is
+what `//pub/electronics/sbcs/intel` puts its product page in. What is left, in the
+order that unblocks the most work here:
 
-1. **Read a labelled STEP assembly into a package.** This is now the biggest one,
-   and it is not "help identifying solids" as this list said last round - it is
-   less work than that. Both releases here are STEP files with their product
-   structure intact: names, instance counts and transformations, all of it data.
-   Reading it took 120 lines of OCP against `STEPCAFControl_Reader` and XCAF
-   (`tools/assy_from_reference.py`), and it produced two complete assemblies,
-   every fastener count in both arms, and the grouping into base and links. What
-   PartCAD offers for the same file is `type: step`, which flattens it to solids
-   named `Link4:1_solid27`. A `pc import assembly` that emitted an `.assy` and a
-   part per component - or even a `pc bom` that listed the components by name with
-   their counts - would be the single most valuable thing in this list for any
-   repository whose CAD comes from somebody else's release.
-2. **Ports on an alias** (blocker 1). Without it, no purchased part can be mated
-   through the name the arm uses for it, and the arm is where the mating has to
-   happen.
-3. **Some record of which model a placement was measured against** (blocker 2).
-4. **An export that survives staging a sub-assembly, and a client that waits as
-   long as the daemon is working** (blocker 3).
-5. **The `cam` check applying only where a machine is named** (blocker 4), so
-   that "this part is machined" and "this part has a 2.5D route" stop being the
-   same statement.
+1. **Read a labelled STEP assembly into a package.** Still the biggest one. Both
+   releases here are STEP files with their product structure intact: names, instance
+   counts and transformations, all of it data. Reading it took 120 lines of OCP
+   against `STEPCAFControl_Reader` and XCAF (`tools/assy_from_reference.py`), and it
+   produced two complete assemblies, every fastener count in both arms, and the
+   grouping into base and links. What PartCAD offers for the same file is
+   `type: step`, which flattens it to solids named `Link4:1_solid27` - and does not
+   finish (blocker 9). A `pc import assembly` that emitted an `.assy` and a part per
+   component would be the single most valuable thing in this list for any repository
+   whose CAD comes from somebody else's release.
+2. **Show a part's `url:` in the generated parts list.** The field exists and the
+   schema takes it; `assembly._bom_line` does not read it and `BOM_COLUMNS` has no
+   column for it, so the one hand-written table left in this repository
+   (`doc/buying.md`, which is the product links) cannot be retired yet. A `Link`
+   cell in `partcad.document` is most of the work.
+3. **Some record of which model a placement was measured against** (blocker 1).
+4. **A build that says so when it stops** (blocker 2).
+5. **The `cam` check applying only where a machine is named** (blocker 3), so that
+   "this part is machined" and "this part has a 2.5D route" stop being the same
+   statement.
 6. **`properties.material` read by the supply path**, with the material-identity
-   question settled (blocker 5).
-7. **A place for an additive part's settings** (blocker 6), and **a `url:` beside
-   `vendor`/`sku`** (blocker 7).
-8. **A cache key that covers the declaration, and a cached failure that keeps its
-   reason** (blockers 8 and 10), **a field that sets a generated
-   document's file name** (blocker 11), and **an import of a big STEP assembly
-   that finishes** (blocker 12).
-9. **A public metals catalogue.** `//pub/std/manufacturing/material` publishes
+   question settled (blocker 4).
+7. **A `manufacturable: false` that exempts a part from the supply question, or an
+   error for naming one as stock** (blocker 11).
+8. **A place for an additive part's settings** (blocker 5).
+9. **A cached failure that keeps its reason** (blocker 6), **a field that sets a
+   generated document's file name** (blocker 8), and **an import of a big STEP
+   assembly that finishes** (blocker 9).
+10. **A public metals catalogue.** `//pub/std/manufacturing/material` publishes
    plastics; the alloys are catalogued here instead, which works and is the wrong
-   place for 5052 aluminium.
-10. **Somewhere for a step's own words and an image.** `doc/power-supply-assembly.md`
-   is the one document here that is neither generated nor data: twelve steps,
-   each with a photograph. The words belong on the ASSY node
-   (`description:`, which exists); the photograph has nowhere to go.
-11. **`pcbBasic`** is accepted by the schema and unknown to the loader.
+   place for 5052 aluminium. It would also give the 49 blanks a supplier.
+11. **Somewhere for a step's own words and an image.**
+   `doc/power-supply-assembly.md` is the one document here that is neither
+   generated nor data: twelve steps, each with a photograph. The words belong on
+   the ASSY node (`description:`, which exists); the photograph has nowhere to go.
+12. **`pcbBasic`** is accepted by the schema and unknown to the loader.
 
 ## Answers to the notes on this round
 
@@ -799,7 +931,7 @@ In the order that unblocks the most work here:
   the readme renderer - which broke every render in this repository until it was
   found. That half is fixed upstream this round; the name is still not settable, so
   the DM folder's `readme.md`, which was the vendor's spelling, is `README.md`. See
-  blocker 11.
+  blocker 8.
 * **"See if two robot designs can reuse more parts and subassemblies."** More
   parts, yes, and provably: the seven machined and printed ones from last round,
   plus most of the purchased ones - the thrust bearing, the rail, its carriages, the
@@ -813,9 +945,11 @@ In the order that unblocks the most work here:
   to drop `location:`". The skill's subject matter now applies, because the
   placements exist; its "do not predict a mate, try it" rule is what produced the
   two derived actuator ports and what falsified the flange's. What still stops
-  `connect:` from replacing `location:` wholesale is blocker 1 - an alias carries no
-  ports, and every purchased part is aliased - plus the same derivation for the
-  other joint families, which is now a script rather than a research project.
+  `connect:` from replacing `location:` wholesale is no longer a PartCAD blocker:
+  0.8.130 gave an alias its source's ports, which was the one thing in the way, and
+  `check/motor-mount` now proves the whole chain through this package's own name for
+  the motor. What is left is the same derivation for the other joint families and
+  one open question about naming a node across link groups.
 * **"See if `pc test` finds any issues."** 1850 of them, and they are worth reading
   rather than silencing - see "What `pc test` finds". Two findings changed this
   repository: five accessory mounts had no manufacturing tolerance and four
@@ -835,8 +969,8 @@ so what is left starts at what was the fourth.
 
 1. Derive the rest of the joints the way the two actuator ports were derived, and
    convert those placements to `connect:` with a `how:` on each. The recipe is in
-   "What it would take to drop `location:`", and it needs blocker 1 fixed first for
-   anything aliased. The joint families, in order of how many placements each would
+   "What it would take to drop `location:`", and nothing in PartCAD is in the way of
+   it any more. The joint families, in order of how many placements each would
    retire: a screw in a tapped hole (271 across both arms), a bearing in its housing
    (6), a carriage on its rail (4), a rack against the pinion (4).
 2. Find the 10.6 mm between a DM4340P and its rear flange, which is the one thing
@@ -927,11 +1061,13 @@ and every fastener count. Beyond those:
 * No fastener row in either readme carries a price, so a quote for a whole arm
   refuses rather than under-counting. What does a pack cost?
 * **Eleven published part files are not the solid the released assembly holds**
-  (`tools/check_parts_against_release.py`). Which copy is authoritative? The two
-  arm covers are the clearest: their geometries are swapped relative to their file
-  names, and the release's own placements say which is which. The base plate
-  differs by a whole 0.75 mm of thickness and 2 mm of position, which is a revision
-  rather than a mistake. The other eight differ only inside the same outline.
+  (`tools/check_parts_against_release.py`). Which copy is authoritative, and which
+  should the next release carry? The two arm covers are the clearest and the most
+  certain: `01_Upper_Arm_Cover.step` is the release's lower-arm cover vertex for
+  vertex, so the two file names are swapped. The base plate differs by 0.75 mm of
+  thickness and 2 mm of position, which reads as a revision rather than a mistake -
+  but it means a printed base plate is not the one the assembly was checked with.
+  The other eight differ only inside the same outline, between 4 and 2050 mm³.
 * RS: `2-RSM1-ROTOR-1.step` appears twice in the BOM, as "Motor 1 Bearing Mount"
   (x1) and as "Link1 Bottom Metal" (x3).
 * RS: `2-RSM1-STATOR-2.step` and `2-SPACE-M4-STATOR.step` are in the repository

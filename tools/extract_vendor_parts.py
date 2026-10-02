@@ -74,11 +74,18 @@ WANTED = {
         # origin-on-origin rather than face-on-face. The MGN9 rail was the
         # clearest case - 170 mm long, laid along X where the release has it
         # along Z, 170 mm out of place.
-        # Not the actuators. Their vendor models are 17 to 25 MB each, 74 MB for the
-        # four, which is not a thing to add to a git repository for a shape that is
-        # a cylinder to everything downstream. They stay envelopes - and the
-        # measurements above give those envelopes the vendor's own frame, which is
-        # the half of it that a placement needs.
+        # The actuators are 17 to 25 MB each, and they are here all the same. They
+        # were held out on size for one round, which cost the four of them their
+        # geometry: a cylinder of the full diameter swallows the steps a real motor
+        # has, so 'pc test' reported two DM4310s overlapping each other by 30534
+        # mm^3. The ecosystem's own answer to a large vendor solid is
+        # '//pub/electronics/sbcs/intel', which is a repository holding one 27.8 MB
+        # 'nuc12.step' declared as 'type: step' with its vendor, SKU and product
+        # URL - the bytes live in the package that needs them and nowhere else. So
+        # these do too; see ../third_party/README.md for what that means for this
+        # package's future.
+        "DM-J4310": "actuator-dm4310",
+        "DM-J4340P": "actuator-dm4340p",
         "6707ZZ": "bearing-6707zz",
         "6803ZZ": "bearing-6803zz",
         "AXK5578": "bearing-axk5578",
@@ -105,6 +112,8 @@ WANTED = {
         "9-XT30_2_2-V1": "connector-xt30-2x2",
         "9-SOCKET-XT30-2-2": "connector-xt30-2x2-socket",
         "6-BEARING-F6803ZZ-OD26ID17H5": "bearing-f6803zz",
+        "9-M-RS00": "actuator-rs00",
+        "9-M-RS06": "actuator-rs06",
         "7-HM3-8": "screw-hm3x8",
         "7-HM3-30": "screw-hm3x30",
         "7-HM4-8": "screw-hm4x8",

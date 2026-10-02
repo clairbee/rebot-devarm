@@ -15,7 +15,7 @@
 name: //pub/robotics/rebot/devarm
 desc: reBot DevArm - open source 7-DoF robotic arm for developers
 url: https://github.com/clairbee/rebot-devarm
-partcad: ">=0.8.124"
+partcad: ">=0.8.136"
 
 # The parts declared here are meant to be manufactured or purchased, not just
 # viewed. This makes the package visible to 'pc supply quote' and friends.

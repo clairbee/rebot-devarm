@@ -21,18 +21,23 @@
 #   at all the part is not declared: an invented figure is worse than a gap,
 #   because nothing downstream can tell it from a measured one.
 #
-# WHERE A BETTER SHAPE WOULD COME FROM, IN ORDER
+# WHERE EACH SHAPE COMES FROM, IN ORDER OF PREFERENCE
 #   1. The vendor's own STEP file, declared with 'fileFrom: url' + 'fileHash'.
-#      That is the whole of what this package should be, and none of these
-#      vendors publish one.
-#   2. A public PartCAD package: '//pub/std/metric/bosl2' generates parametric
+#      That would be the whole of this package, and none of these vendors
+#      publish one.
+#   2. The released full-arm STEP assembly, which carries the vendor geometry the
+#      designers actually worked against. This is where 34 of these parts come
+#      from: '../tools/extract_vendor_parts.py' writes each one out on its own,
+#      and they are the files under 'vendor/'. It is not only the best shape
+#      available, it is the only one a placement read off that same release is
+#      correct for - see ./README.md.
+#   3. A public PartCAD package: '//pub/std/metric/bosl2' generates parametric
 #      ball bearings, gears and threaded parts from BOSL2, and
-#      '//pub/std/metric/cqwarehouse' the ISO fasteners this repository already
-#      uses. A part these serve should be enriched from them rather than
-#      re-modelled here - see PARTCAD.md for what stopped the bearings and the
-#      gear from being declared that way today.
-#   3. The released full-arm STEP file, which carries the vendor geometry the
-#      designers actually worked against. See PARTCAD.md, "Next steps".
+#      '//pub/std/metric/cqwarehouse' the ISO fasteners. Three fasteners of the
+#      power supply enclosure are still enriched from the latter, because the
+#      releases do not model them; bosl2 cannot be fetched here at all (403).
+#   4. An envelope drawn here from a datasheet, which is what the four parts in
+#      'src/' are: the two power supplies, the XT60E connector and the wire.
 #
 # Vendor and SKU come from the product links in the two variant readmes, so an
 # Amazon ASIN is the SKU of vendor 'amazon' and a Seeed Studio product page id
@@ -168,17 +173,12 @@ parts:
   # from.
   ##############################################################################
   actuator/dm4310:
-    type: extrude
-    sketch: circle-57
-    depth: 69.466
+    type: step
+    path: vendor/actuator-dm4310.step
     desc: Damiao DM4310(V4) actuator (x4 in the DM arm)
-    # A cylinder, in the vendor model's own frame. The vendor's own solid is 25 MB
-    # and is a cylinder to everything downstream, so what is taken from it is its
-    # extent and its frame: 57.0 across, from z = 4.458 to z = 73.924 along its own
-    # Z. That frame is the half of it a placement needs - ../arm.assy places these
-    # by a transformation read off the same release, and a transformation only means
-    # what it says with the frame it was read from.
-    offset: [[0, 0, 4.458], [0, 0, 1], 0]
+    vendor: seeedstudio
+    sku: DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660
+    url: https://www.seeedstudio.com/DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660.html
     implements:
       # Not asserted: derived. The release places four of these and four front
       # spacers on them; the spacer's own port was measured off the spacer's own
@@ -187,74 +187,67 @@ parts:
       # third decimal. +Z looks out of the motor, along the model's -Z.
       actuator/dm43xx-output:
         output: [[0, 0, 50.5], [1, 0, 0], 180]
-    vendor: seeedstudio
-    sku: DIP-Servo-Motor-24V-120RPM-Brushless-98-9mm-4P-L56-W56-H46mm-p-6660
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # What this envelope leaves out: the side connector, the output boss, the mounting holes. It is
-    # 69.5 mm long where the Seeed Studio listing says 46 mm and 57 across where the listing says
-    # 56 - TODO(data): one of the two is wrong, and the vendor is the one to ask.
+    # The vendor's own solid, out of the released DM assembly: 57.0 across, 69.5
+    # along its own Z, with the side connector, the output boss and the mounting
+    # holes on it. TODO(data): the Seeed Studio listing says 56 x 56 x 46 mm, which
+    # is smaller in every direction than the model; the vendor is the one to ask.
+
 
 
   actuator/dm4340p:
-    type: extrude
-    sketch: circle-57
-    depth: 56.553
+    type: step
+    path: vendor/actuator-dm4340p.step
     desc: Damiao DM4340P(V4) actuator (x3 in the DM arm, joints 1-3)
-    # As the DM4310 above, and drawn along its own Y rather than Z, which is how the
-    # released model has it: 57.0 across, from y = -11.008 to y = 45.545. '-90 about
-    # X' is what turns the extrusion's +Z into +Y.
-    offset: [[0, -11.008, 0], [1, 0, 0], -90]
-    implements:
-      # Derived the same way as the DM4310's, from two front spacers on two
-      # different actuators. The output face is the y = -11 end, and +Z looks out
-      # along the model's -Y.
-      actuator/dm43xx-output:
-        output: [[0, -11, 0], [1, 0, 0], 90]
     vendor: seeedstudio
     sku: DM4340P-Actuator-p-6663
+    url: https://www.seeedstudio.com/DM4340P-Actuator-p-6663.html
+    implements:
+      # Derived the same way as the DM4310's, from two front spacers on two
+      # different actuators. This model's own axis is Y rather than Z, so the output
+      # face is at y = -11 and +Z looks out along the model's -Y.
+      actuator/dm43xx-output:
+        output: [[0, -11, 0], [1, 0, 0], 90]
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # The vendor publishes no dimensions for this one at all, so the released model is the only
-    # source there is. Approximate in everything but its overall size and its frame.
+    # The vendor's own solid, out of the released DM assembly: 57.0 across and 56.55
+    # long, drawn along its own Y. The vendor publishes no dimensions at all for it.
+
 
 
   actuator/rs00:
-    type: extrude
-    sketch: circle-57
-    depth: 52.02
+    type: step
+    path: vendor/actuator-rs00.step
     desc: RobStride RS00 actuator (x4 in the RS arm)
-    # 57.0 across, from z = -10.51 to z = 41.51 along its own Z, off the released RS
-    # assembly. No port yet: the RS arm has no part with a measured mating face to
-    # derive one from, the way the two Damiao actuators have.
-    offset: [[0, 0, -10.51], [0, 0, 1], 0]
     vendor: seeedstudio
     sku: Robostride-00-Actuator-p-6664
+    url: https://www.seeedstudio.com/Robostride-00-Actuator-p-6664.html
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # RobStride publishes no dimensioned drawing, so the overall size and the frame are all this is
-    # right about.
+    # The vendor's own solid, out of the released RS assembly: 57.0 across, 52.0
+    # along its own Z. No port yet - the RS arm has no part with a mating face read
+    # off its own file to derive one from, the way the two Damiao actuators have.
+
 
 
   actuator/rs06:
-    type: extrude
-    sketch: circle-82
-    depth: 50.52
+    type: step
+    path: vendor/actuator-rs06.step
     desc: RobStride RS06 actuator (x3 in the RS arm)
-    # 82.0 across, from z = -16.01 to z = 34.51, off the released RS assembly. The
-    # three the release places are one product drawn three slightly different ways,
-    # between 84.5 and 87.3 mm across; this is the first of them, and the 2.5 mm the
-    # box is wider than the cylinder is a protrusion this envelope does not have.
-    offset: [[0, 0, -16.01], [0, 0, 1], 0]
     vendor: seeedstudio
     sku: Robostride-06-Actuator-p-6668
+    url: https://www.seeedstudio.com/Robostride-06-Actuator-p-6668.html
     properties:
       material: aluminium alloy
       color: "#4A4A4A"
-    # As the RS00: the overall size and the frame, and nothing else.
+    # The vendor's own solid, out of the released RS assembly: 82.0 x 84.5 x 50.5.
+    # The three the release places are one product drawn three slightly different
+    # ways; this is the first of them.
+
 
 
   ##############################################################################
@@ -693,14 +686,6 @@ sketches:
     type: basic
     circle: 13.5
 
-  # The actuator envelopes' sections, as the released models measure them.
-  circle-57:
-    type: basic
-    circle: 28.5
-
-  circle-82:
-    type: basic
-    circle: 41.0
 
 assemblies:
   cable/xt30-2x2-350:
