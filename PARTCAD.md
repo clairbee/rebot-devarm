@@ -179,8 +179,11 @@ Done:
   screw, four dowel pins and an M4x5 set screw - are 80 of those 326, and they now
   have the vendor's own geometry rather than an envelope.
 * **Every markdown document but two is generated**, the folder readmes included,
-  and so is every drawing in them: a projection per part, and one for each assembly
-  whose shape can be built.
+  and so is every drawing in them: 204 projections, one per part and one per
+  assembly - **both arms included**, which is new. Every earlier round reported the
+  two 326-part arms as the drawings that would not render; they render in a couple
+  of minutes each once everything they contain has been drawn, which is what
+  `tools/render-drawings.sh` orders them for.
 * **Each machined part names its stock.** `method: subtractive` means "what is
   left of something that existed first", and PartCAD asks what that was: 49 blanks,
   22 in the DM package and 27 in the RS one, each derived from the part's own STEP
@@ -255,10 +258,11 @@ Not done - and why:
   are machined *and* formed, which `method: sheet_metal` can express, but the
   flat blank's geometry does not exist and unfolding the finished part is a CAM
   operation this repository cannot perform.
-* **`pc test` is not green** - 1850 failures, which is what an arm with real
+* **`pc test` is not green** - 1586 failures, which is what an arm with real
   placements in it costs a suite of geometric checks that previously had nothing to
   measure. Most of it is worth reading rather than fixing: see "What `pc test`
-  finds".
+  finds", where the one number that moved this round is interference, 994 down to
+  731, because the four actuators stopped being cylinders.
 
 ## What the two arms share
 
@@ -505,7 +509,9 @@ were fixed, and two of them are why this round reached as far as it did:
 | **An alias carried none of its source's `implements:`**, so every purchased part was unmatable through the name its arm uses for it - and no joint against a motor could be written in an arm assembly at all | 0.8.130 gives an alias its source's ports. `check/motor-mount` names this package's own `actuator-dm4340p` now, and the mate lands the spacer's face on the motor's output face to three decimals |
 | A cached shape outlived the `.assy` that produced it, so a render or an export showed the old one with nothing said about it | 0.8.132 keys a composite on its inputs. Two of this round's geometric checks were wrong once because of the old behaviour |
 | `pc render`/`pc export` needed `-p` to create the directory a slash-named object implies | 0.8.125 always creates it, and the flag is gone. This repository's commands and `tools/render-drawings.sh` no longer pass it |
-| A part could not name the offer it is bought from | It always could - `url:` is in the schema beside `vendor`/`sku`, and `//pub/electronics/sbcs/intel` uses it for the product page. What is still missing is a column for it in the generated parts list |
+| A generated readme linked every object's picture to a `<name>.<type>` file, whether or not such a file exists | Linked only where there is a file to follow. Both these folders are mostly aliases into `third_party/`, and an alias has no file of its own - so 30-odd links that resolved to nothing relative to the folder they were written in are gone from each readme |
+| An aliased part's row in a generated parts list read `Alias to gear/m1-16t-b6 from //pub/robotics/rebot/devarm/third_party` | It reads *"Module 1, 16 tooth, 6 mm bore gear - what drives the two gripper racks"*. Nearly every row of both arms is an alias into `third_party/` or into the other arm, so this is most of the rows, and it is the difference between a parts list a person can order from and a map of where the declarations live |
+| A part could not name the offer it is bought from | It always could - `url:` is in the schema beside `vendor`/`sku`, and `//pub/electronics/sbcs/intel` uses it for the product page. Nothing rendered it, which is contribution 7 below: a SKU in a generated list is now a link to the page the part is ordered from |
 
 0.8.127 also changed something this repository has to answer for rather than
 benefit from: a made part's **stock is procured** now, so `pc test` asks who
@@ -524,7 +530,7 @@ most of what this repository had to say about it became expressible:
 
 ### What this round contributed back to PartCAD
 
-Six changes, each found by using it on this repository:
+Eight changes, each found by using it on this repository:
 
 1. **An alias did not inherit its source's tolerance.** An `alias` is built by a
    factory that accepts no `tolerance:` field, so the field the source declared
@@ -557,40 +563,83 @@ Six changes, each found by using it on this repository:
    SKU and the file - which is the change this repository asked for last round,
    rebased onto the new `manufacturing:` and reading `manufacturing: desc:` where
    it used to read a section of its own.
+7. **A SKU in a generated parts list links to the page the part is ordered
+   from.** `url:` was already in the schema beside `vendor`/`sku` and already
+   used by `//pub/electronics/sbcs/intel`; nothing rendered it. The four
+   renderers now carry a link cell, so the generated list reaches the offer the
+   way the published markdown table it replaces did.
+8. **A solid with ten or more internal voids was reported as a surface
+   model.** The `shell` check reads a part's topology straight off the BREP
+   bytes - no CAD kernel, no sandbox - by finding each record's sub-shape list,
+   "the one line in a record that ends with `*`". That list is not always one
+   line: `TopTools_ShapeSet` writes ten references per line and wraps. A solid
+   is bounded by one shell per cavity as well as by its outer one, so eleven
+   cavities make eleven references, the list wraps, and reading only the closing
+   line saw one shell owned and called the other ten free. Two of this
+   repository's four actuators are exactly that - the RS00 is one solid bounded
+   by eleven shells - and both failed with *"The shape is a skin rather than a
+   body: 10 shell(s) that no solid bounds itself with"*, which is the opposite
+   of what they are. The whole list is read now, as the run of lines that ends
+   on the `*` and holds nothing but references; a fixture with eleven voids
+   keeps it honest.
+
+   Worth saying plainly, because it is the second time this round a check
+   earned its keep by being wrong: a false failure here is expensive in a
+   particular way. The verdict is cached, the message names a cause that cannot
+   be acted on, and the obvious response - re-export the vendor's STEP, sew the
+   faces, give up on the part - is work on geometry that was correct.
 
 ### What `pc test` finds
 
-`pc test -r` over the whole tree reports **1850 failures**: 994 interference, 728
-connectivity, 62 cam, 22 manufacturability. That is not a regression - it is the
-first run with an arm in it. Over an assembly at the identity location the
-geometric checks had nothing to say; now they do, and what they say is worth
-reading one group at a time.
+`pc test -r` over the whole tree, from an empty test cache, reports **1586
+failures**: 731 interference, 728 connectivity, 66 manufacturability, 61 cam. That
+is not a regression - it is a suite of geometric checks finally having something
+to measure, since over an assembly at the identity location they had nothing to
+say. What they say is worth reading one group at a time.
+
+The one number that **moved** this round is interference, from 994 to 731, and it
+moved because the four actuators stopped being cylinders. That is the whole of
+what paying the 74 MB bought, measured:
+
+| | before | after |
+|---|---|---|
+| interference findings | 994 | **731** |
+| of them involving an actuator | 291 | **141** |
+| largest structure-against-structure finding outside the power supply | 30534 mm³, `actuator-dm4310` against another `actuator-dm4310` | **662 mm³**, a flange against link 3's bracket |
+| `shell` findings | - | 8, then **0** (see contribution 8) |
 
 1. **Connectivity, 728: every link of both arms placed by coordinates.** The check
    is right, it is the repository's own open item, and it is what "What it would
    take to drop `location:`" is about. One failure per link, so the number is the
    size of the arms rather than the size of the problem.
 
-2. **Interference, 994, and three quarters of it is expected.** A screw in a tapped
+2. **Interference, 731, and nine tenths of it is expected.** A screw in a tapped
    hole shares volume with the part it is screwed into, and so does a dowel pin in
    its bore and a bearing in an interference fit; the released assembly models all
-   three the way a designer does. 646 of the 994 are a fastener against the thing it
-   fastens and 68 are two fasteners meeting in a joint. Separating those from real
+   three the way a designer does. 609 of the 731 are a fastener against the thing it
+   fastens and 45 are two fasteners meeting in a joint. Separating those from real
    clashes needs the joints declared: a `connect:` through a threaded interface is
    what would let PartCAD know that an overlap there is the point.
 
-   Of the 281 that are structure against structure, the largest are the **four
-   actuator envelopes** - `actuator-dm4310` against another `actuator-dm4310` by
-   30534 mm³, `actuator-rs06` against `base-link` by 14815. Those are the parts kept
-   as cylinders rather than taken out of the release (74 MB between them), and a
-   full-diameter cylinder swallows the steps and recesses the real motor has. So the
-   biggest interference findings in this repository are a measure of that trade
-   rather than of the arm, and they are the argument for paying the 74 MB after all.
+   That leaves **77 that are structure against structure**, and they are now a list
+   worth reading rather than a list of measurement artifacts. The five largest are
+   all in the **power supply enclosure** - 5900 to 11800 mm³ between the two cover
+   shells, the supply and the slider - which is the one assembly here whose
+   placements are hand-written guesses rather than a release's, so those five are
+   this repository's to answer for. Everything outside it is small: 662 mm³ for a
+   flange against link 3's bracket, 517 for link 2 against its own limit stop, 383
+   for a silicone pad against an arm limit. The actuators appear at 188 to 241 mm³,
+   against cable restraints and back extensions, which is the size an interference
+   fit is.
 
-   The rest are in the power supply enclosure, which is the one assembly here whose
-   placements are still hand-written guesses rather than a release's.
+   Last round the top of this list was `actuator-dm4310` against another
+   `actuator-dm4310` by 30534 mm³ and `actuator-rs06` against `base-link` by 14815 -
+   two full-diameter cylinders standing in for motors that have steps and recesses.
+   Those findings are gone, which is the point: the biggest numbers in a geometric
+   report should be about the design, and until this round they were about the
+   stand-ins.
 
-3. **CAM, 62: a subtractive part that PartCAD cannot route fails the check.**
+3. **CAM, 61: a subtractive part that PartCAD cannot route fails the check.**
    Naming no machine means a CNC router, so every `subtractive` part is asked for a
    2.5D route - and the parts that fail are genuinely subtractive and genuinely not
    2.5D: turned discs, parts cut from bar, the machined-and-formed links. They fail
@@ -601,28 +650,47 @@ reading one group at a time.
    none means CNC" is a sensible default for a route somebody asked for, and a
    different thing from asking for one.
 
-4. **Manufacturability, 22, and almost all of it is one honest gap.** Six parts
-   can be neither bought nor made: the three power-supply-enclosure fasteners whose
-   readme rows carry "/" where the link should be, the M4x5 set screw the readme
-   does not list at all, the 3 mm dowel pin with no listing, and the XT30 connector
-   body, which is only sold as part of a harness. Every other fastener of both arms
-   now carries the vendor and SKU its own readme row links. The rest of the 22 are
-   the arms and the grippers reporting that they reference one of those parts.
+4. **Manufacturability, 66, and only seven of them are a gap in the data.** Seven
+   parts can be neither bought nor made: three power-supply-enclosure fasteners
+   whose readme rows carry "/" where the link should be, two more whose listings are
+   missing, the M4x5 set screw the readme does not list at all, the 3 mm dowel pin
+   with no listing, and the two XT30 connector bodies, which are only sold as part
+   of a harness. Every other fastener of both arms carries the vendor and SKU its
+   own readme row links.
+
+   The remaining 47 lines are **not** seven parts' worth of cascade: they are 39
+   distinct parts, named by the six assemblies that contain them, and nearly all of
+   them failed the **CAM** check rather than anything to do with being obtainable.
+   An assembly's manufacturability check re-runs every check on each object of its
+   supply bill of materials and reports whatever failed as `Non-manufacturable part
+   '<name>' is referenced` - so a turned disc with no 2.5D route is reported to the
+   reader of a bill of materials as a part nobody can make. See blocker 11.
 
    This check earned its keep twice over this round: it is what found five
    accessory mounts with no tolerance and four countersunk screws whose SKU I had
    wrongly left out, both fixed here.
 
 5. **A cached verdict loses its reason, and survives a change that should
-   invalidate it.** A second run reports `Failed test result loaded from cache`
-   instead of what failed - which also happens *within* one run, for an object
-   tested twice, so a package's output is mostly that sentence. And the key does not
+   invalidate it.** 15 of this run's lines are `Failed test result loaded from
+   cache` instead of what failed - which happens *within* one run, for an object
+   tested twice, so a package's output is partly that sentence. And the key does not
    cover the declaration: changing a part from `alias` to `enrich` - which changes
    the verdict - produced the cached one.
 
-Two families of failure that were here last round are **gone**, both fixed upstream
-from this repository's data: an aliased machined part no longer fails for having no
-tolerance, and no longer fails for its blank being looked up in the wrong package.
+   **This cost a false finding in this file, and the correction is the useful
+   part.** Last round I reported that `manufacturable: false` fails to exempt a
+   blank from the supply question, and that all 49 blanks therefore failed with
+   "Cannot be purchased or manufactured". They do not. The flag works: every blank
+   passes, tested on its own and in a run with the test cache cleared. What I had
+   read was a cached failure from before the flag was added, and the message a
+   cached failure carries says nothing about when it was decided. A stale verdict
+   that reports a pass as a failure is how a tool gets a feature request it does
+   not need.
+
+Three families of failure that were here last round are **gone**, all three fixed
+upstream from this repository's data: an aliased machined part no longer fails for
+having no tolerance, nor for its blank being looked up in the wrong package, and a
+solid with ten or more internal cavities is no longer called a surface model.
 
 ## What it would take to drop `location:`
 
@@ -843,29 +911,51 @@ puts it.
     `PC_TELEMETRY_TYPE=none` turns it off, and something that cannot reach its
     collector should stop trying by itself.
 
-11. **An object declared `manufacturable: false` is still required to be
-    procurable when another part names it as stock.** 0.8.127 procures a made
-    part's stock, which is a better question than `pc test` used to ask - a part
-    cut from something has to be cut from something somebody has. But the flag does
-    not exempt the stock from it, so all 49 blanks here now fail with "Cannot be
-    purchased or manufactured" about objects that say in the same breath that
-    nobody makes them. Either the flag should exempt a part from the supply
-    question, or it should be an error to name a `manufacturable: false` part as a
-    `source:` - the present state asks a question whose only truthful answer is the
-    flag that is already there.
+11. **An assembly reports every failing part as "non-manufacturable", whatever
+    failed.** An assembly's manufacturability check re-runs *all* the checks on
+    each object of its supply bill of materials, and reports any failure as
+    `Non-manufacturable part '<name>' is referenced`. So the 47 such lines in this
+    round's run are 41 distinct parts that failed the **CAM** check, or - until
+    the fix above - the **shell** one. Both arms are therefore described as
+    containing parts nobody can make, about parts whose vendor, SKU and process
+    are all declared and whose actual complaint is that a 2.5D route could not be
+    generated for a turned disc.
 
-    What this repository would need to answer it properly is a metals supplier,
-    and the published data has none: the readme prices all the machined parts at
-    about $250 together, material and machining in one figure.
+    It is a reporting problem rather than a wrong verdict: the assembly *did*
+    fail, and a reader who goes looking finds the part's own failure. But the
+    sentence is the one a bill of materials is read for, and it names the one
+    thing that is not wrong. Naming the check that failed would be enough.
+
+    A correction to what this file said last round: the claim that
+    `manufacturable: false` does not exempt a blank from the supply question was
+    **wrong**. It does - all 49 blanks pass, tested on their own and in a cleared
+    cache. What produced the failures I reported was a stale cached verdict from
+    before the flag was added, which is blocker 6 and is the second time this
+    round it has cost a false finding.
+
+    What this repository still cannot answer is who supplies the *material*: the
+    readme prices all the machined parts at about $250 together, material and
+    machining in one figure, and names no metals supplier. That is a gap in the
+    published data, not in PartCAD.
 
 ## Wish list
 
-Three of last round's items are **done** in 0.8.136 and are the reason this round
-got as far as it did: ports on an alias (which is what lets an arm mate a purchased
-part through its own name for it), a cache key that covers the declaration, and a
+Four of last round's items are **done** and are the reason this round got as far as
+it did: ports on an alias (0.8.130, which is what lets an arm mate a purchased part
+through its own name for it), a cache key that covers the declaration (0.8.132), a
 `url:` beside `vendor`/`sku` - which turns out to have been there all along, and is
-what `//pub/electronics/sbcs/intel` puts its product page in. What is left, in the
-order that unblocks the most work here:
+what `//pub/electronics/sbcs/intel` puts its product page in - and a generated
+parts list that *shows* that `url:`, which is contribution 7 above.
+
+That last one takes half of `doc/buying.md`, the one hand-written table left in
+each variant package, and the half it takes is the half that goes stale: the link
+to the offer. What is left there is a reference price per part, which the
+generated list still has no column for - and arguably should not, since
+`providers/price_list.csv` and `pc supply quote` are the answer to "what does this
+cost" and a figure typed into a document is not. So `buying.md` shrinks rather
+than disappears, and the rows it keeps are the ones the readme prices by hand.
+
+What is left, in the order that unblocks the most work here:
 
 1. **Read a labelled STEP assembly into a package.** Still the biggest one. Both
    releases here are STEP files with their product structure intact: names, instance
@@ -877,21 +967,18 @@ order that unblocks the most work here:
    finish (blocker 9). A `pc import assembly` that emitted an `.assy` and a part per
    component would be the single most valuable thing in this list for any repository
    whose CAD comes from somebody else's release.
-2. **Show a part's `url:` in the generated parts list.** The field exists and the
-   schema takes it; `assembly._bom_line` does not read it and `BOM_COLUMNS` has no
-   column for it, so the one hand-written table left in this repository
-   (`doc/buying.md`, which is the product links) cannot be retired yet. A `Link`
-   cell in `partcad.document` is most of the work.
-3. **Some record of which model a placement was measured against** (blocker 1).
-4. **A build that says so when it stops** (blocker 2).
-5. **The `cam` check applying only where a machine is named** (blocker 3), so that
+2. **Some record of which model a placement was measured against** (blocker 1).
+3. **A build that says so when it stops** (blocker 2).
+4. **The `cam` check applying only where a machine is named** (blocker 3), so that
    "this part is machined" and "this part has a 2.5D route" stop being the same
-   statement.
-6. **`properties.material` read by the supply path**, with the material-identity
+   statement. It is worth two places in this list rather than one, because it is
+   also most of blocker 11: a part that fails only the CAM check is what an
+   assembly reports as non-manufacturable.
+5. **`properties.material` read by the supply path**, with the material-identity
    question settled (blocker 4).
-7. **A `manufacturable: false` that exempts a part from the supply question, or an
-   error for naming one as stock** (blocker 11).
-8. **A place for an additive part's settings** (blocker 5).
+6. **An assembly's manufacturability failure naming the check that failed**
+   (blocker 11).
+7. **A place for an additive part's settings** (blocker 5).
 9. **A cached failure that keeps its reason** (blocker 6), **a field that sets a
    generated document's file name** (blocker 8), and **an import of a big STEP
    assembly that finishes** (blocker 9).
@@ -906,6 +993,32 @@ order that unblocks the most work here:
 
 ## Answers to the notes on this round
 
+* **"I don't understand the release-disagrees-with-itself problem and need more
+  details."** It has a section of its own now - "Where the release disagrees with
+  itself" - which says what the two copies of each part *are*, why both matter at
+  once, and what each of the eleven differences is, with the evidence. The short
+  version: each arm ships one file per part **and** one file for the whole arm, the
+  second holding its own copy of every one of those solids. `arm.assy` takes its
+  placements from the assembly and its geometry from the part files, so a part whose
+  two copies differ is placed where the assembly says with geometry that belongs
+  somewhere else. Two cover file names are swapped (proved vertex for vertex, all
+  1848 of them), the base plate is 0.75 mm thinner in one copy than the other - which
+  is the entire reason the arm PartCAD builds is 2 mm taller than the release - and
+  eight more differ inside the same outline. `tools/check_parts_against_release.py`
+  is the check, so the next release can be audited before anybody builds from it.
+* **"For the 74 MB source files, see how it is dealt with for Intel SBCs in
+  `//pub/electronics`."** Read, and followed. `//pub/electronics/sbcs/intel` is a
+  repository of its own holding one 27.8 MB `nuc12.step` as `type: step` with a
+  vendor, an SKU and a product URL, which `//pub/electronics/sbcs` reaches through a
+  `dependencies:` entry rather than carrying. So the four actuators are vendor solids
+  too, and `third_party/README.md` now says what splitting that package off would
+  take - one `dependencies:` block - and why it is the one to split: 84 MB of a 434 MB
+  tree, depended on by both arms and depending on neither. My holding them out on
+  size was the wrong call, and "What `pc test` finds" measures what it cost.
+* **"Rebase on the latest changes in all involved repositories."** Done: PartCAD
+  0.8.124 to 0.8.136, three of this branch's own changes rebased onto the new
+  `manufacturing:` and document code, and this repository's floor moved to
+  `>=0.8.136`. "What has landed since the last round" is what that brought.
 * **"There is no need to change naming conventions for parts, definitely not by
   the manufacturing method."** Taken, and done: the four prefixes are gone and
   every part is named for what it is. The only name that still says something
@@ -950,12 +1063,15 @@ order that unblocks the most work here:
   `check/motor-mount` now proves the whole chain through this package's own name for
   the motor. What is left is the same derivation for the other joint families and
   one open question about naming a node across link groups.
-* **"See if `pc test` finds any issues."** 1850 of them, and they are worth reading
+* **"See if `pc test` finds any issues."** 1586 of them, and they are worth reading
   rather than silencing - see "What `pc test` finds". Two findings changed this
   repository: five accessory mounts had no manufacturing tolerance and four
-  countersunk screws had no SKU their readme in fact publishes. Two more changed
-  PartCAD. And the largest group of geometric findings turns out to measure the one
-  shortcut taken here - the four actuator envelopes - rather than the arm.
+  countersunk screws had no SKU their readme in fact publishes. Three more changed
+  PartCAD. And the largest group of geometric findings used to measure the one
+  shortcut taken here - the four actuator envelopes - rather than the arm; now that
+  the actuators are the vendor's own solids it does not, which took 263 interference
+  findings with it and left the five biggest in the one assembly whose placements
+  this repository guessed.
 * **CAM.** Noted as a conversation for later. What is here now: twenty plates
   produce G-code with the machine declared on the part rather than in a duplicate
   of it, and the routes still cut the outline and the through holes and nothing

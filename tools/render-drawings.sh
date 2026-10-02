@@ -18,7 +18,10 @@
 # The two arms are the hard case rather than an impossible one: 326 parts, a
 # sub-assembly to stage first, and a build that from a cold cache stops making
 # progress rather than finishing. They are attempted last, after everything they
-# contain has been drawn and so cached, and each object gets two attempts.
+# contain has been drawn and so cached, and each object gets two attempts. That
+# is enough: both arms draw now, where every earlier round reported them FAILED.
+# What changed is the cache being warm beneath them, which is why their place at
+# the end of this script is the point of it rather than a formality.
 #
 # Usage, from the repository root:
 #
@@ -71,10 +74,27 @@ render() { # <package> <object> [-a]
 	echo "  FAILED   $package:$object"
 }
 
+# `pc list parts` takes the package as its argument, and writes the list to
+# **stderr**: `--no-ansi` routes everything through plain `logging`, which is
+# stderr, where the ANSI renderer writes to stdout. Two ways to read nothing,
+# and this script has had both - it passed `-P`, which went away in 0.8.136, and
+# it dropped stderr. Either one empties the enumeration, and an empty
+# enumeration is silent: every part counts as already drawn because nothing was
+# named, and the script reports success having rendered not one file. So the list
+# is checked rather than trusted.
+list_parts() { # <package>
+	"$PC" --no-ansi list parts "//pub/robotics/rebot/devarm/$1" 2>&1 |
+		awk '/^\t/ {print $1}' | sed 's|.*:||'
+}
+
 for package in $PACKAGES; do
 	echo "$package: parts"
-	for object in $("$PC" --no-ansi list parts -P "//pub/robotics/rebot/devarm/$package" 2>/dev/null |
-		awk '/^\t/ {print $1}' | sed 's|.*:||'); do
+	objects="$(list_parts "$package")"
+	if [ -z "$objects" ]; then
+		echo "  ERROR    $package declares no parts - see the comment above list_parts" >&2
+		exit 1
+	fi
+	for object in $objects; do
 		render "$package" "$object"
 	done
 done
@@ -87,7 +107,7 @@ for spec in "b601-dm gripper" "b601-dm power-supply" "b601-dm check/motor-mount"
 	render "$1" "$2" -a
 done
 
-echo "the two arms, which are expected to fail - see the comment at the top"
+echo "the two arms, which need everything above them drawn first"
 for package in $PACKAGES; do
 	render "$package" arm -a
 done

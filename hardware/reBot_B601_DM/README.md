@@ -124,13 +124,13 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### actuator-dm4310 (alias to actuator/dm4310)
 <table><tr>
-<td valign=top><a href="actuator-dm4310.extrude"><img src="./doc/actuator-dm4310.svg" alt="actuator-dm4310" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/actuator-dm4310.svg" alt="actuator-dm4310" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Damiao DM4310(V4) actuator (x4 in the DM arm)</td>
 </tr></table>
 
 ### actuator-dm4340p (alias to actuator/dm4340p)
 <table><tr>
-<td valign=top><a href="actuator-dm4340p.extrude"><img src="./doc/actuator-dm4340p.svg" alt="actuator-dm4340p" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/actuator-dm4340p.svg" alt="actuator-dm4340p" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Damiao DM4340P(V4) actuator (x3 in the DM arm, joints 1-3)</td>
 </tr></table>
 
@@ -205,31 +205,31 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### bearing-6707zz (alias to bearing/6707zz)
 <table><tr>
-<td valign=top><a href="vendor/bearing-6707zz.step"><img src="./doc/bearing-6707zz.svg" alt="bearing-6707zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/bearing-6707zz.svg" alt="bearing-6707zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>6707ZZ shielded ball bearing, 35x44x5 mm (x1 in the DM arm, joint 1)</td>
 </tr></table>
 
 ### bearing-6803zz (alias to bearing/6803zz)
 <table><tr>
-<td valign=top><a href="vendor/bearing-6803zz.step"><img src="./doc/bearing-6803zz.svg" alt="bearing-6803zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/bearing-6803zz.svg" alt="bearing-6803zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>6803ZZ shielded ball bearing, 17x26x5 mm (x3 in both arms)</td>
 </tr></table>
 
 ### bearing-axk5578 (alias to bearing/axk5578)
 <table><tr>
-<td valign=top><a href="vendor/bearing-axk5578.step"><img src="./doc/bearing-axk5578.svg" alt="bearing-axk5578" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/bearing-axk5578.svg" alt="bearing-axk5578" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>AXK5578 thrust needle roller bearing, 55x78x3 mm (x1 in both arms)</td>
 </tr></table>
 
 ### carriage-mgn9 (alias to carriage/mgn9c)
 <table><tr>
-<td valign=top><a href="vendor/carriage-mgn9c.step"><img src="./doc/carriage-mgn9.svg" alt="carriage-mgn9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/carriage-mgn9.svg" alt="carriage-mgn9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MGN9C carriage block (x2 in both arms)</td>
 </tr></table>
 
 ### connector-xt60e (alias to connector/xt60e-female)
 <table><tr>
-<td valign=top><a href="src/connector_xt60e.py"><img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>XT60E-F panel-mount connector with lug pigtail (x1 in both arms)</td>
 </tr></table>
 
@@ -287,7 +287,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### gear-m1-16t (alias to gear/m1-16t-b6)
 <table><tr>
-<td valign=top><a href="vendor/gear-m1-16t-b6.step"><img src="./doc/gear-m1-16t.svg" alt="gear-m1-16t" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/gear-m1-16t.svg" alt="gear-m1-16t" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Module 1 spur gear, 16 teeth, 6 mm bore, boss type (x1 in both arms)</td>
 </tr></table>
 
@@ -574,31 +574,31 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### pad-silicone (alias to pad/silicone-30x9x2)
 <table><tr>
-<td valign=top><a href="vendor/pad-silicone-30x9x2.step"><img src="./doc/pad-silicone.svg" alt="pad-silicone" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pad-silicone.svg" alt="pad-silicone" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Self-adhesive silicone pad, 30 x 9 x 2 mm (x1 in both arms)</td>
 </tr></table>
 
 ### pin-d3x8 (alias to pin/d3x8)
 <table><tr>
-<td valign=top><a href="vendor/pin-d3x8.step"><img src="./doc/pin-d3x8.svg" alt="pin-d3x8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pin-d3x8.svg" alt="pin-d3x8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>3 x 8 mm dowel pin (x2 in the DM arm)</td>
 </tr></table>
 
 ### pin-d4x10 (alias to pin/d4x10)
 <table><tr>
-<td valign=top><a href="vendor/pin-d4x10.step"><img src="./doc/pin-d4x10.svg" alt="pin-d4x10" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pin-d4x10.svg" alt="pin-d4x10" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>4 x 10 mm dowel pin (x6 in the DM arm)</td>
 </tr></table>
 
 ### pin-d4x14 (alias to pin/d4x14)
 <table><tr>
-<td valign=top><a href="vendor/pin-d4x14.step"><img src="./doc/pin-d4x14.svg" alt="pin-d4x14" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pin-d4x14.svg" alt="pin-d4x14" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>4 x 14 mm dowel pin (x3 in the DM arm)</td>
 </tr></table>
 
 ### pin-d4x7 (alias to pin/d4x7)
 <table><tr>
-<td valign=top><a href="vendor/pin-d4x7.step"><img src="./doc/pin-d4x7.svg" alt="pin-d4x7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pin-d4x7.svg" alt="pin-d4x7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>4 x 7 mm dowel pin (x6 in the DM arm)</td>
 </tr></table>
 
@@ -616,7 +616,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### psu-lrs-350-24 (alias to psu/lrs-350-24)
 <table><tr>
-<td valign=top><a href="src/psu_enclosed.py"><img src="./doc/psu-lrs-350-24.svg" alt="psu-lrs-350-24" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/psu-lrs-350-24.svg" alt="psu-lrs-350-24" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MeanWell LRS-350-24 power supply, 24V 14.6A (x1, DM arm)</td>
 <td valign=top>Parameters:<br/><ul>
 <li>length: 215.0</li>
@@ -657,91 +657,91 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-dm:arm
 
 ### rail-mgn9-170 (alias to rail/mgn9-170)
 <table><tr>
-<td valign=top><a href="vendor/rail-mgn9-170.step"><img src="./doc/rail-mgn9-170.svg" alt="rail-mgn9-170" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/rail-mgn9-170.svg" alt="rail-mgn9-170" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MGN9 linear rail, 170 mm (x1 in both arms)</td>
 </tr></table>
 
 ### screw-hm3-12 (alias to screw/hm3x12)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x12.step"><img src="./doc/screw-hm3-12.svg" alt="screw-hm3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-12.svg" alt="screw-hm3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x12 hex socket head cap screw (x7 in the DM arm)</td>
 </tr></table>
 
 ### screw-hm3-25 (alias to screw/hm3x25)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x25.step"><img src="./doc/screw-hm3-25.svg" alt="screw-hm3-25" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-25.svg" alt="screw-hm3-25" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x25 hex socket head cap screw (x6 in the DM arm) - the release calls it HM3-26</td>
 </tr></table>
 
 ### screw-hm3-6 (alias to screw/hm3x6)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x6.step"><img src="./doc/screw-hm3-6.svg" alt="screw-hm3-6" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-6.svg" alt="screw-hm3-6" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x6 hex socket head cap screw (x8 in the DM arm, x8+ in the RS arm)</td>
 </tr></table>
 
 ### screw-hm4-75 (alias to screw/hm4x75)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm4x75.step"><img src="./doc/screw-hm4-75.svg" alt="screw-hm4-75" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm4-75.svg" alt="screw-hm4-75" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x75 hex socket head cap screw (x4 in the DM arm) - README.md calls it a set screw</td>
 </tr></table>
 
 ### screw-ka3-12 (alias to screw/ka3x12)
 <table><tr>
-<td valign=top><a href="vendor/screw-ka3x12.step"><img src="./doc/screw-ka3-12.svg" alt="screw-ka3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-ka3-12.svg" alt="screw-ka3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>KA3x12 Phillips pan head self-tapping screw (x60 in the DM arm, x34 in the RS arm)</td>
 </tr></table>
 
 ### screw-km3-12 (alias to screw/km3x12)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x12.step"><img src="./doc/screw-km3-12.svg" alt="screw-km3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-12.svg" alt="screw-km3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x12 countersunk head screw (x22 in the DM arm)</td>
 </tr></table>
 
 ### screw-km3-16 (alias to screw/km3x16)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x16.step"><img src="./doc/screw-km3-16.svg" alt="screw-km3-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-16.svg" alt="screw-km3-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x16 countersunk head screw (x26 in the DM arm)</td>
 </tr></table>
 
 ### screw-km3-7 (alias to screw/km3x7)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x7.step"><img src="./doc/screw-km3-7.svg" alt="screw-km3-7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-7.svg" alt="screw-km3-7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x7 countersunk head screw (x64 in the DM arm, x58 in the RS arm)</td>
 </tr></table>
 
 ### screw-km3-8 (alias to screw/km3x8-micro)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x8-micro.step"><img src="./doc/screw-km3-8.svg" alt="screw-km3-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-8.svg" alt="screw-km3-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3 micro-profile countersunk screw, 7 mm long (x5 in the DM arm) - README.md calls it KM3x8</td>
 </tr></table>
 
 ### screw-km3-9 (alias to screw/km3x9)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x9.step"><img src="./doc/screw-km3-9.svg" alt="screw-km3-9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-9.svg" alt="screw-km3-9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x9 countersunk head screw (x34 in the DM arm; README.md orders 31+, which is three short)</td>
 </tr></table>
 
 ### screw-m3x8-countersunk
 <table><tr>
-<td valign=top><a href="screw-m3x8-countersunk.enrich"><img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x8 304 stainless steel Phillips countersunk head screw (x2)</td>
 </tr></table>
 
 ### screw-m3x8-pan
 <table><tr>
-<td valign=top><a href="screw-m3x8-pan.enrich"><img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x8 304 stainless steel Phillips pan head screw (x2)</td>
 </tr></table>
 
 ### screw-m4x5-set (alias to screw/m4x5-set)
 <table><tr>
-<td valign=top><a href="vendor/screw-m4x5-set.step"><img src="./doc/screw-m4x5-set.svg" alt="screw-m4x5-set" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m4x5-set.svg" alt="screw-m4x5-set" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x5 hex socket set screw (x2 in the DM arm)</td>
 </tr></table>
 
 ### screw-m4x6-countersunk
 <table><tr>
-<td valign=top><a href="screw-m4x6-countersunk.enrich"><img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x6 304 stainless steel Phillips countersunk head screw (x6)</td>
 </tr></table>
 

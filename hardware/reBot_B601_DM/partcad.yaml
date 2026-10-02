@@ -436,12 +436,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -475,12 +474,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -514,12 +512,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -559,12 +556,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -598,12 +594,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -652,12 +647,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -691,12 +685,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -730,12 +723,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -769,12 +761,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -808,12 +799,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -843,12 +833,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -882,12 +871,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -921,12 +909,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -960,12 +947,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -999,12 +985,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1038,12 +1023,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1078,12 +1062,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1118,12 +1101,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1154,12 +1136,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1190,12 +1171,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1226,12 +1206,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:
@@ -1262,12 +1241,11 @@ parts:
     # piece the part above is cut out of, declared so that the cut can be checked,
     # and what a shop actually buys is a sheet with several of these nested on it.
     #
-    # PartCAD 0.8.127 procures a made part's stock, so it now asks who supplies
-    # this, and the flag does not exempt it: 'pc test' fails every blank with
-    # "Cannot be purchased or manufactured". The question is a fair one and this
-    # repository cannot answer it - the readme prices all the machined parts at
-    # ~$250 together, material and machining in one figure, and names no metals
-    # supplier. See ../../PARTCAD.md.
+    # 0.8.127 procures a made part's stock, so 'pc test' asks who supplies this,
+    # and the flag is what answers: a blank passes. What this repository cannot
+    # answer is who supplies the material - the readme prices all the machined
+    # parts at about $250 together, material and machining in one figure, and
+    # names no metals supplier. See ../../PARTCAD.md.
     manufacturable: false
     parameters:
       step:

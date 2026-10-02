@@ -231,6 +231,13 @@ parts:
     # The vendor's own solid, out of the released RS assembly: 57.0 across, 52.0
     # along its own Z. No port yet - the RS arm has no part with a mating face read
     # off its own file to derive one from, the way the two Damiao actuators have.
+    #
+    # One solid bounded by eleven shells - its outer surface and ten internal
+    # cavities, which is how a motor housing is modelled. PartCAD's 'shell' check
+    # read that as "10 shell(s) that no solid bounds itself with" and failed the
+    # part for being a surface model; it was the check misreading a wrapped BREP
+    # record, fixed upstream this round. Nothing is wrong with this file, and
+    # nothing here works around it. See ../PARTCAD.md.
 
 
 

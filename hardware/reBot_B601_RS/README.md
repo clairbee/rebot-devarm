@@ -114,13 +114,13 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### actuator-rs00 (alias to actuator/rs00)
 <table><tr>
-<td valign=top><a href="actuator-rs00.extrude"><img src="./doc/actuator-rs00.svg" alt="actuator-rs00" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/actuator-rs00.svg" alt="actuator-rs00" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>RobStride RS00 actuator (x4 in the RS arm)</td>
 </tr></table>
 
 ### actuator-rs06 (alias to actuator/rs06)
 <table><tr>
-<td valign=top><a href="actuator-rs06.extrude"><img src="./doc/actuator-rs06.svg" alt="actuator-rs06" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/actuator-rs06.svg" alt="actuator-rs06" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>RobStride RS06 actuator (x3 in the RS arm)</td>
 </tr></table>
 
@@ -173,37 +173,37 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### bearing-6803zz (alias to bearing/f6803zz)
 <table><tr>
-<td valign=top><a href="vendor/bearing-f6803zz.step"><img src="./doc/bearing-6803zz.svg" alt="bearing-6803zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/bearing-6803zz.svg" alt="bearing-6803zz" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>F6803ZZ flanged shielded ball bearing, 17x26x5 mm with a 28 mm flange (x2 in the RS arm)</td>
 </tr></table>
 
 ### bearing-axk5578 (alias to bearing/axk5578)
 <table><tr>
-<td valign=top><a href="vendor/bearing-axk5578.step"><img src="./doc/bearing-axk5578.svg" alt="bearing-axk5578" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/bearing-axk5578.svg" alt="bearing-axk5578" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>AXK5578 thrust needle roller bearing, 55x78x3 mm (x1 in both arms)</td>
 </tr></table>
 
 ### carriage-mgn9 (alias to carriage/mgn9c)
 <table><tr>
-<td valign=top><a href="vendor/carriage-mgn9c.step"><img src="./doc/carriage-mgn9.svg" alt="carriage-mgn9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/carriage-mgn9.svg" alt="carriage-mgn9" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MGN9C carriage block (x2 in both arms)</td>
 </tr></table>
 
 ### connector-xt30 (alias to connector/xt30-2x2-plug)
 <table><tr>
-<td valign=top><a href="vendor/connector-xt30-2x2.step"><img src="./doc/connector-xt30.svg" alt="connector-xt30" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/connector-xt30.svg" alt="connector-xt30" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>XT30 2+2 connector housing, one end of a motor harness</td>
 </tr></table>
 
 ### connector-xt30-socket (alias to connector/xt30-2x2-socket)
 <table><tr>
-<td valign=top><a href="vendor/connector-xt30-2x2-socket.step"><img src="./doc/connector-xt30-socket.svg" alt="connector-xt30-socket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/connector-xt30-socket.svg" alt="connector-xt30-socket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>XT30 2+2 panel socket, the base end of a motor harness (x2 in the RS arm)</td>
 </tr></table>
 
 ### connector-xt60e (alias to connector/xt60e-female)
 <table><tr>
-<td valign=top><a href="src/connector_xt60e.py"><img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/connector-xt60e.svg" alt="connector-xt60e" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>XT60E-F panel-mount connector with lug pigtail (x1 in both arms)</td>
 </tr></table>
 
@@ -215,19 +215,19 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### gear-connector (alias to gear-connector)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Gear_Connector.step"><img src="./doc/gear-connector.svg" alt="gear-connector" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/gear-connector.svg" alt="gear-connector" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Gear connector (x1)</td>
 </tr></table>
 
 ### gear-m1-16t (alias to gear/m1-16t-b6)
 <table><tr>
-<td valign=top><a href="vendor/gear-m1-16t-b6.step"><img src="./doc/gear-m1-16t.svg" alt="gear-m1-16t" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/gear-m1-16t.svg" alt="gear-m1-16t" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Module 1 spur gear, 16 teeth, 6 mm bore, boss type (x1 in both arms)</td>
 </tr></table>
 
 ### gripper-connector-a (alias to gripper-connector-a)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Gripper_Connector_A.step"><img src="./doc/gripper-connector-a.svg" alt="gripper-connector-a" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/gripper-connector-a.svg" alt="gripper-connector-a" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Gripper connector A (x1)</td>
 </tr></table>
 
@@ -466,7 +466,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### motor-back-spacer (alias to motor-back-spacer)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Motor_Back_Spacer.step"><img src="./doc/motor-back-spacer.svg" alt="motor-back-spacer" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/motor-back-spacer.svg" alt="motor-back-spacer" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Motor 2-4 rear spacer (x3)</td>
 </tr></table>
 
@@ -540,7 +540,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### pad-silicone (alias to pad/silicone-30x9x2)
 <table><tr>
-<td valign=top><a href="vendor/pad-silicone-30x9x2.step"><img src="./doc/pad-silicone.svg" alt="pad-silicone" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/pad-silicone.svg" alt="pad-silicone" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Self-adhesive silicone pad, 30 x 9 x 2 mm (x1 in both arms)</td>
 </tr></table>
 
@@ -558,7 +558,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### psu-lrs-600-48 (alias to psu/lrs-600-48)
 <table><tr>
-<td valign=top><a href="src/psu_enclosed.py"><img src="./doc/psu-lrs-600-48.svg" alt="psu-lrs-600-48" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/psu-lrs-600-48.svg" alt="psu-lrs-600-48" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MeanWell LRS-600-48 power supply, 48V 12.5A (x1, RS arm)</td>
 <td valign=top>Parameters:<br/><ul>
 <li>length: 215.0</li>
@@ -576,7 +576,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### rack (alias to rack)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Rack.step"><img src="./doc/rack.svg" alt="rack" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/rack.svg" alt="rack" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Rack (x2)</td>
 </tr></table>
 
@@ -593,13 +593,13 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### rail-bracket (alias to rail-bracket)
 <table><tr>
-<td valign=top><a href="3D_Printed_Parts/01_Rail_Bracket.step"><img src="./doc/rail-bracket.svg" alt="rail-bracket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/rail-bracket.svg" alt="rail-bracket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Gripper slider support bracket (x1); 0.4 mm nozzle, 0.2 mm layer height, 15% infill</td>
 </tr></table>
 
 ### rail-mgn9-170 (alias to rail/mgn9-170)
 <table><tr>
-<td valign=top><a href="vendor/rail-mgn9-170.step"><img src="./doc/rail-mgn9-170.svg" alt="rail-mgn9-170" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/rail-mgn9-170.svg" alt="rail-mgn9-170" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>MGN9 linear rail, 170 mm (x1 in both arms)</td>
 </tr></table>
 
@@ -639,85 +639,85 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### screw-hm3-26 (alias to screw/hm3x25)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x25.step"><img src="./doc/screw-hm3-26.svg" alt="screw-hm3-26" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-26.svg" alt="screw-hm3-26" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x25 hex socket head cap screw (x6 in the DM arm) - the release calls it HM3-26</td>
 </tr></table>
 
 ### screw-hm3-30 (alias to screw/hm3x30)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x30.step"><img src="./doc/screw-hm3-30.svg" alt="screw-hm3-30" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-30.svg" alt="screw-hm3-30" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x30 hex socket head cap screw (x8 in the RS arm)</td>
 </tr></table>
 
 ### screw-hm3-6 (alias to screw/hm3x6)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x6.step"><img src="./doc/screw-hm3-6.svg" alt="screw-hm3-6" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-6.svg" alt="screw-hm3-6" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x6 hex socket head cap screw (x8 in the DM arm, x8+ in the RS arm)</td>
 </tr></table>
 
 ### screw-hm3-8 (alias to screw/hm3x8)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm3x8.step"><img src="./doc/screw-hm3-8.svg" alt="screw-hm3-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm3-8.svg" alt="screw-hm3-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x8 hex socket head cap screw (x45 in the RS arm)</td>
 </tr></table>
 
 ### screw-hm4-16 (alias to screw/hm4x16)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm4x16.step"><img src="./doc/screw-hm4-16.svg" alt="screw-hm4-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm4-16.svg" alt="screw-hm4-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x16 hex socket head cap screw (x18 in the RS arm) - README.md calls it a set screw</td>
 </tr></table>
 
 ### screw-hm4-70 (alias to screw/hm4x70)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm4x70.step"><img src="./doc/screw-hm4-70.svg" alt="screw-hm4-70" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm4-70.svg" alt="screw-hm4-70" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x70 hex socket head cap screw (x4 in the RS arm) - README.md calls it a set screw</td>
 </tr></table>
 
 ### screw-hm4-8 (alias to screw/hm4x8)
 <table><tr>
-<td valign=top><a href="vendor/screw-hm4x8.step"><img src="./doc/screw-hm4-8.svg" alt="screw-hm4-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-hm4-8.svg" alt="screw-hm4-8" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x8 hex socket head cap screw (x6 in the RS arm) - README.md calls it a set screw</td>
 </tr></table>
 
 ### screw-ka3-12 (alias to screw/ka3x12)
 <table><tr>
-<td valign=top><a href="vendor/screw-ka3x12.step"><img src="./doc/screw-ka3-12.svg" alt="screw-ka3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-ka3-12.svg" alt="screw-ka3-12" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>KA3x12 Phillips pan head self-tapping screw (x60 in the DM arm, x34 in the RS arm)</td>
 </tr></table>
 
 ### screw-km3-16
 <table><tr>
-<td valign=top><a href="screw-km3-16.enrich"><img src="./doc/screw-km3-16.svg" alt="screw-km3-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-16.svg" alt="screw-km3-16" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x16 countersunk head screw (x8+ per README.md; the released CAD holds none - see ../../PARTCAD.md)</td>
 </tr></table>
 
 ### screw-km3-7 (alias to screw/km3x7)
 <table><tr>
-<td valign=top><a href="vendor/screw-km3x7.step"><img src="./doc/screw-km3-7.svg" alt="screw-km3-7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-km3-7.svg" alt="screw-km3-7" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x7 countersunk head screw (x64 in the DM arm, x58 in the RS arm)</td>
 </tr></table>
 
 ### screw-m3x8-countersunk
 <table><tr>
-<td valign=top><a href="screw-m3x8-countersunk.enrich"><img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m3x8-countersunk.svg" alt="screw-m3x8-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x8 304 stainless steel Phillips countersunk head screw (x2)</td>
 </tr></table>
 
 ### screw-m3x8-pan
 <table><tr>
-<td valign=top><a href="screw-m3x8-pan.enrich"><img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m3x8-pan.svg" alt="screw-m3x8-pan" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M3x8 304 stainless steel Phillips pan head screw (x2)</td>
 </tr></table>
 
 ### screw-m4x6-countersunk
 <table><tr>
-<td valign=top><a href="screw-m4x6-countersunk.enrich"><img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/screw-m4x6-countersunk.svg" alt="screw-m4x6-countersunk" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>M4x6 304 stainless steel Phillips countersunk head screw (x10)</td>
 </tr></table>
 
 ### slider-bracket (alias to slider-bracket)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Slider_Bracket.step"><img src="./doc/slider-bracket.svg" alt="slider-bracket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/slider-bracket.svg" alt="slider-bracket" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Gripper slider metal bracket (x1) - printable in ABS at high infill, not for long-term use</td>
 </tr></table>
 
@@ -734,7 +734,7 @@ pc --no-ansi supply quote //pub/robotics/rebot/devarm/b601-rs:arm
 
 ### slider-extension (alias to slider-extension)
 <table><tr>
-<td valign=top><a href="Metal_Parts/02_Slider_Extension.step"><img src="./doc/slider-extension.svg" alt="slider-extension" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></a></td>
+<td valign=top><img src="./doc/slider-extension.svg" alt="slider-extension" style="width: auto; height: auto; max-width: 200px; max-height: 200px;"></td>
 <td valign=top>Slider to gripper extension (x2)</td>
 </tr></table>
 
